@@ -34,28 +34,28 @@ export const Header = () => {
 
     return (
         <>
-            <header className="fixed top-0 right-0 left-0 z-50 border-b border-gray-200 bg-white shadow-sm">
-                <div className="container mx-auto px-6 py-4">
-                    <div className="flex items-center justify-between">
+            <header className="top-0 right-0 left-0 z-50 fixed bg-white shadow-sm border-gray-200 border-b">
+                <div className="mx-auto px-6 py-4 container">
+                    <div className="flex justify-between items-center">
                         {/* Left: Logo */}
                         <div className="flex items-center gap-3">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-600">
-                                <span className="text-lg font-bold text-white">
+                            <div className="flex justify-center items-center bg-gradient-to-br from-primary to-primary/50 rounded-full w-10 h-10">
+                                <span className="font-bold text-lg text-white">
                                     ML
                                 </span>
                             </div>
-                            <span className="text-xl font-semibold text-gray-800">
+                            <span className="font-semibold text-gray-800 text-xl">
                                 MrLoyd
                             </span>
                         </div>
 
                         {/* Center: Navigation (Desktop) */}
-                        <nav className="hidden items-center gap-1 md:flex">
+                        <nav className="md:flex items-center gap-1 hidden">
                             {navItems.map((item) => (
                                 <button
                                     key={item.id}
                                     onClick={() => scrollToSection(item.id)}
-                                    className="rounded-md px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+                                    className="hover:bg-primary/10 px-4 py-2 rounded-md font-medium text-gray-600 text-sm hover:text-gray-900 transition-colors"
                                 >
                                     {item.label}
                                 </button>
@@ -65,19 +65,19 @@ export const Header = () => {
                         {/* Right: Resume Button & Mobile Menu Toggle */}
                         <div className="flex items-center gap-3">
                             <Button onClick={handleDownloadResume}>
-                                <Download className="h-4 w-4 md:mr-2" />
-                                <span className="hidden md:inline">Resume</span>
+                                <Download className="md:mr-2 w-4 h-4" />
+                                <span className="md:inline hidden">Resume</span>
                             </Button>
 
                             {/* Mobile Menu Button */}
                             <button
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                                className="rounded-md p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 md:hidden"
+                                className="md:hidden hover:bg-gray-100 p-2 rounded-md text-gray-600 hover:text-gray-900"
                             >
                                 {isMenuOpen ? (
-                                    <X className="h-6 w-6" />
+                                    <X className="w-6 h-6" />
                                 ) : (
-                                    <Menu className="h-6 w-6" />
+                                    <Menu className="w-6 h-6" />
                                 )}
                             </button>
                         </div>
@@ -86,14 +86,14 @@ export const Header = () => {
 
                 {/* Mobile Navigation Menu */}
                 {isMenuOpen && (
-                    <div className="border-t border-gray-200 bg-white md:hidden">
-                        <nav className="container mx-auto px-6 py-4">
+                    <div className="md:hidden bg-white border-gray-200 border-t">
+                        <nav className="mx-auto px-6 py-4 container">
                             <div className="flex flex-col gap-2">
                                 {navItems.map((item) => (
                                     <button
                                         key={item.id}
                                         onClick={() => scrollToSection(item.id)}
-                                        className="rounded-md px-4 py-3 text-left text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+                                        className="hover:bg-primary/10 px-4 py-3 rounded-md font-medium text-gray-600 text-left text-sm hover:text-gray-900 transition-colors"
                                     >
                                         {item.label}
                                     </button>
@@ -107,7 +107,7 @@ export const Header = () => {
             {/* Backdrop overlay when menu is open */}
             {isMenuOpen && (
                 <div
-                    className="fixed inset-0 z-40 bg-black/50 md:hidden"
+                    className="z-40 fixed inset-0 md:hidden bg-black/50"
                     onClick={() => setIsMenuOpen(false)}
                 />
             )}

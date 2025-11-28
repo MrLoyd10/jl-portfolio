@@ -24,15 +24,15 @@ export const ProfileSummary = () => {
     return (
         <section
             id="home"
-            className="flex items-center mx-auto max-w-6xl min-h-[calc(100vh-74px)]"
+            className="flex items-center mx-auto max-w-6xl min-h-[calc(100vh)]"
         >
-            <div className="items-center gap-12 grid md:grid-cols-5 mb-14">
+            <div className="items-center gap-12 grid md:grid-cols-5">
                 {/* Left Column: Image and Social Links */}
                 <div className="flex justify-center md:col-span-2">
                     <div className="flex flex-col justify-center items-center space-y-6">
                         {/* Profile Image */}
                         <div className="relative">
-                            <div className="border-2 border-gray-800 rounded-full w-64 h-64 overflow-hidden">
+                            <div className="border-2 border-primary/50 rounded-full w-64 h-64 overflow-hidden">
                                 <img
                                     src="https://picsum.photos/400"
                                     alt="Profile"
@@ -42,7 +42,7 @@ export const ProfileSummary = () => {
                         </div>
 
                         {/* Location */}
-                        <div className="flex items-center gap-2 text-gray-400">
+                        <div className="flex items-center gap-2 text-gray-800">
                             <MapPin className="w-5 h-5" />
                             <span>Ngp, Maharashtra, India</span>
                         </div>
@@ -85,24 +85,28 @@ export const ProfileSummary = () => {
                 <div className="space-y-6 md:col-span-3 text-center md:text-left">
                     {/* Schedule Button */}
                     <div className="flex justify-center md:justify-start">
-                        <Button onClick={handleScheduleCall} variant="outline">
+                        <Button
+                            onClick={handleScheduleCall}
+                            variant="outline"
+                            // className="border-primary/50"
+                        >
                             <Calendar className="mr-2 w-4 h-4" />
                             Schedule a call
                         </Button>
                     </div>
 
                     {/* Name */}
-                    <h1 className="font-bold text-5xl md:text-6xl lg:text-7xl">
+                    <h1 className="font-bold text-5xl text-primary md:text-6xl lg:text-7xl">
                         Aditya Domle
                     </h1>
 
                     {/* Title */}
-                    <p className="text-gray-400 text-xl md:text-2xl">
+                    <p className="text-gray-800 text-xl md:text-2xl">
                         Full-Stack Developer | Next.js, React, Node.js
                     </p>
 
                     {/* Description */}
-                    <p className="max-w-2xl text-base text-gray-300 md:text-lg leading-relaxed">
+                    <p className="max-w-2xl text-base text-gray-600 md:text-lg leading-relaxed">
                         Self-taught Full-Stack Developer from India,
                         specializing in modern web technologies and open-source
                         development. Passionate about building scalable
