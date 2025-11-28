@@ -1,6 +1,7 @@
 import { Badge } from '@/components/ui/badge';
 import { Briefcase, Calendar, MapPin } from 'lucide-react';
 import React from 'react';
+import { SectionHeader } from '../atoms/SectionHeader';
 
 interface ExperienceCardProps {
     title: string;
@@ -47,16 +48,12 @@ export const WorkExperience = () => {
             className="mx-auto px-6 py-10 max-w-6xl min-h-screen"
         >
             <div>
-                {/* Section Header */}
-                <div className="mb-4">
-                    <h2 className="flex items-center gap-2 mb-2 font-bold text-2xl text-primary/80">
-                        <Briefcase className="w-6 h-6" />
-                        Work Experience
-                    </h2>
-                    <p className="text-gray-800 text-lg">
-                        My professional journey and key accomplishments
-                    </p>
-                </div>
+                <SectionHeader
+                    mainDivClassName="mb-4"
+                    title="Work Experience"
+                    subtitle="My professional journey and key accomplishments"
+                    icon={Briefcase}
+                />
 
                 {/* Experience Cards */}
                 <div className="space-y-6">

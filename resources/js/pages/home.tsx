@@ -1,3 +1,5 @@
+import { Achievements } from '@/components/custom/organisms/Achievements';
+import { FeaturedProjects } from '@/components/custom/organisms/FeaturedProjects';
 import { ProfileSummary } from '@/components/custom/organisms/ProfileSummary';
 import { WorkExperience } from '@/components/custom/organisms/WorkExperience';
 import {
@@ -24,6 +26,8 @@ export default function Home({
                 <PublicMainContentLayout>
                     <ProfileSummary />
                     <WorkExperience />
+                    <FeaturedProjects />
+                    <Achievements />
                 </PublicMainContentLayout>
             </PublicLayout>
         </>
