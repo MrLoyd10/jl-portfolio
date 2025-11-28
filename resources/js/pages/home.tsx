@@ -1,4 +1,5 @@
 import { ProfileSummary } from '@/components/custom/organisms/ProfileSummary';
+import { WorkExperience } from '@/components/custom/organisms/WorkExperience';
 import {
     PublicHeaderLayout,
     PublicLayout,
@@ -18,10 +19,11 @@ export default function Home({
         <>
             <Head title="Home" />
             <PublicLayout>
-                <PublicHeaderLayout />
+                <PublicHeaderLayout withSpacer={false} />
 
                 <PublicMainContentLayout>
                     <ProfileSummary />
+                    <WorkExperience />
                 </PublicMainContentLayout>
             </PublicLayout>
         </>

@@ -2,17 +2,21 @@ import { Header } from '@/components/custom/organisms/Header';
 
 export const PublicLayout = ({ children }: { children: React.ReactNode }) => {
     return (
-        <main className="container mx-auto flex min-h-screen flex-col items-center">
+        <main className="flex flex-col items-center mx-auto min-h-screen container">
             {children}
         </main>
     );
 };
 
-export const PublicHeaderLayout = () => {
+export const PublicHeaderLayout = ({
+    withSpacer = true,
+}: {
+    withSpacer?: boolean;
+}) => {
     return (
         <>
             <Header />
-            <hr className="h-[74px]" />
+            {withSpacer && <hr className="h-[74px]" />}
         </>
     );
 };
@@ -22,7 +26,7 @@ export const PublicMainContentLayout = ({
 }: {
     children: React.ReactNode;
 }) => {
-    return <main className="flex w-full flex-1 flex-col">{children}</main>;
+    return <main className="flex flex-col flex-1 w-full">{children}</main>;
 };
 
 export const PublicFooterLayout = ({
@@ -31,6 +35,6 @@ export const PublicFooterLayout = ({
     children: React.ReactNode;
 }) => {
     return (
-        <footer className="w-full bg-transparent px-4 py-6">{children}</footer>
+        <footer className="bg-transparent px-4 py-6 w-full">{children}</footer>
     );
 };
