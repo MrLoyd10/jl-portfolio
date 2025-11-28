@@ -22,7 +22,7 @@ export const PublicMainContentLayout = ({
 }: {
     children: React.ReactNode;
 }) => {
-    return <main className="flex w-full flex-1 flex-col p-4">{children}</main>;
+    return <main className="flex w-full flex-1 flex-col">{children}</main>;
 };
 
 export const PublicFooterLayout = ({

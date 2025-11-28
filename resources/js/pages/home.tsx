@@ -1,3 +1,4 @@
+import { ProfileSummary } from '@/components/custom/organisms/ProfileSummary';
 import {
     PublicHeaderLayout,
     PublicLayout,
@@ -19,7 +20,9 @@ export default function Home({
             <PublicLayout>
                 <PublicHeaderLayout />
 
-                <PublicMainContentLayout>Hello</PublicMainContentLayout>
+                <PublicMainContentLayout>
+                    <ProfileSummary />
+                </PublicMainContentLayout>
             </PublicLayout>
         </>
     );
