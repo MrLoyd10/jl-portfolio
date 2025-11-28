@@ -1,6 +1,7 @@
 import { Achievements } from '@/components/custom/organisms/Achievements';
 import { FeaturedProjects } from '@/components/custom/organisms/FeaturedProjects';
 import { ProfileSummary } from '@/components/custom/organisms/ProfileSummary';
+import { TechArsenal } from '@/components/custom/organisms/TechArsenal';
 import { WorkExperience } from '@/components/custom/organisms/WorkExperience';
 import {
     PublicHeaderLayout,
@@ -28,6 +29,7 @@ export default function Home({
                     <WorkExperience />
                     <FeaturedProjects />
                     <Achievements />
+                    <TechArsenal />
                 </PublicMainContentLayout>
             </PublicLayout>
         </>
