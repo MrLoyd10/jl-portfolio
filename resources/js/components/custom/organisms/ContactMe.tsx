@@ -1,14 +1,19 @@
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
     Check,
     CheckCircle2,
+    Clock,
     Copy,
+    Globe,
     Mail,
     MapPin,
     MessageSquare,
     Phone,
     Send,
     Sparkles,
+    Star,
+    Zap,
 } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 import { SectionHeader } from '../atoms/SectionHeader';
@@ -18,12 +23,14 @@ interface ContactInfoProps {
     label: string;
     value: string;
     copyable?: boolean;
+    href?: string;
 }
 
 export function ContactMe() {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
+        subject: '',
         message: '',
     });
     const [isVisible, setIsVisible] = useState(false);
@@ -31,26 +38,50 @@ export function ContactMe() {
     const [submitSuccess, setSubmitSuccess] = useState(false);
     const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
     const [focusedField, setFocusedField] = useState<string | null>(null);
+    const [charCount, setCharCount] = useState(0);
     const sectionRef = useRef<HTMLDivElement>(null);
 
     const contactInfo: ContactInfoProps[] = [
         {
-            icon: <Mail className="h-6 w-6" />,
+            icon: <Mail className="h-5 w-5" />,
             label: 'Email',
             value: 'purnankjadhav195@gmail.com',
             copyable: true,
+            href: 'mailto:purnankjadhav195@gmail.com',
         },
         {
-            icon: <Phone className="h-6 w-6" />,
+            icon: <Phone className="h-5 w-5" />,
             label: 'Phone',
             value: '+91 9099987195',
             copyable: true,
+            href: 'tel:+919099987195',
         },
         {
-            icon: <MapPin className="h-6 w-6" />,
+            icon: <MapPin className="h-5 w-5" />,
             label: 'Location',
-            value: 'CMR University, Banglore, India',
+            value: 'CMR University, Bangalore, India',
             copyable: false,
+        },
+    ];
+
+    const quickStats = [
+        {
+            icon: <Clock className="h-5 w-5" />,
+            label: 'Response Time',
+            value: '< 24 hours',
+            color: 'from-primary to-blue-500',
+        },
+        {
+            icon: <Globe className="h-5 w-5" />,
+            label: 'Time Zone',
+            value: 'IST (GMT+5:30)',
+            color: 'from-blue-500 to-blue-600',
+        },
+        {
+            icon: <Star className="h-5 w-5" />,
+            label: 'Availability',
+            value: 'Open to Work',
+            color: 'from-green-500 to-green-600',
         },
     ];
 
@@ -75,7 +106,7 @@ export function ContactMe() {
 
     const handleSubmit = async () => {
         if (!formData.name || !formData.email || !formData.message) {
-            alert('Please fill in all fields');
+            alert('Please fill in all required fields');
             return;
         }
 
@@ -88,10 +119,11 @@ export function ContactMe() {
         setIsSubmitting(false);
         setSubmitSuccess(true);
 
-        // Reset form after 3 seconds
+        // Reset after 3 seconds
         setTimeout(() => {
-            setFormData({ name: '', email: '', message: '' });
+            setFormData({ name: '', email: '', subject: '', message: '' });
             setSubmitSuccess(false);
+            setCharCount(0);
         }, 3000);
     };
 
@@ -100,6 +132,10 @@ export function ContactMe() {
             ...formData,
             [name]: value,
         });
+
+        if (name === 'message') {
+            setCharCount(value.length);
+        }
     };
 
     const handleCopy = (text: string, index: number) => {
@@ -112,54 +148,59 @@ export function ContactMe() {
         <section
             id="contact"
             ref={sectionRef}
-            className="relative w-full px-6 py-16"
+            className="relative w-full bg-gradient-to-b from-white to-gray-50 px-6 py-16"
         >
-            {/* Background decoration */}
+            {/* Enhanced Background decoration */}
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                <div className="absolute top-1/4 -right-32 h-96 w-96 rounded-full bg-blue-500/5 blur-3xl" />
-                <div className="absolute bottom-1/4 -left-32 h-96 w-96 rounded-full bg-purple-500/5 blur-3xl" />
-                <div className="absolute top-1/2 left-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-3xl" />
+                <div className="absolute top-1/4 -right-32 h-96 w-96 animate-pulse rounded-full bg-blue-500/5 blur-3xl" />
+                <div
+                    className="absolute bottom-1/4 -left-32 h-96 w-96 animate-pulse rounded-full bg-primary/5 blur-3xl"
+                    style={{ animationDelay: '1s' }}
+                />
             </div>
 
-            <div className="relative mx-auto max-w-6xl">
+            <div className="relative mx-auto max-w-7xl">
                 {/* Section Header */}
                 <div
-                    className={`mb-12 transition-all duration-700 ${
+                    className={`mb-8 transition-all duration-700 ${
                         isVisible
                             ? 'translate-y-0 opacity-100'
                             : 'translate-y-10 opacity-0'
                     }`}
                 >
                     <SectionHeader
-                        mainDivClassName="mb-12"
-                        title="Get In Touch"
-                        subtitle="Let's connect and discuss opportunities"
+                        mainDivClassName="mb-8"
+                        title="Let's Connect"
+                        subtitle="Have a project in mind? Let's discuss how we can work together"
                         icon={MessageSquare}
                     />
                 </div>
 
-                {/* Content Grid */}
-                <div className="mt-8 grid gap-8 md:grid-cols-2">
-                    {/* Contact Information */}
+                {/* Main Content Grid */}
+                <div className="grid gap-8 lg:grid-cols-5">
+                    {/* Contact Information - 2 columns */}
                     <div
-                        className={`space-y-6 transition-all duration-700 ${
+                        className={`space-y-6 transition-all duration-700 lg:col-span-2 ${
                             isVisible
                                 ? 'translate-x-0 opacity-100'
                                 : '-translate-x-10 opacity-0'
                         }`}
                         style={{ transitionDelay: '200ms' }}
                     >
-                        <div className="mb-4">
-                            <h3 className="text-xl font-bold text-gray-900">
+                        <div className="space-y-1">
+                            <h3 className="flex items-center gap-2 text-xl font-bold text-gray-900">
+                                <div className="rounded-lg bg-primary/10 p-2">
+                                    <MessageSquare className="h-4 w-4 text-primary" />
+                                </div>
                                 Contact Information
                             </h3>
                             <p className="text-gray-600">
-                                Feel free to reach out through any of these
-                                channels
+                                Choose your preferred way to reach out
                             </p>
                         </div>
 
-                        <div className="space-y-4">
+                        {/* Contact Info Cards */}
+                        <div className="flex flex-col space-y-2">
                             {contactInfo.map((info, index) => (
                                 <ContactInfoItem
                                     key={index}
@@ -171,118 +212,211 @@ export function ContactMe() {
                             ))}
                         </div>
 
-                        {/* Decorative Card */}
-                        <div className="group relative mt-8 overflow-hidden rounded-2xl border border-gray-200 bg-gradient-to-br from-primary/5 via-blue-500/5 to-purple-500/5 p-6 shadow-md transition-all duration-500 hover:shadow-xl">
-                            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                            <div className="relative flex items-start gap-4">
-                                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-blue-500 text-white shadow-lg">
-                                    <Sparkles className="h-6 w-6" />
+                        {/* Availability Card */}
+                        <div className="group relative overflow-hidden rounded-2xl border-2 border-gray-200 bg-white p-6 shadow-lg transition-all duration-500 hover:border-primary/30 hover:shadow-xl">
+                            {/* Animated gradient background */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-blue-500/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+                            {/* Top accent bar */}
+                            <div className="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-primary to-blue-500" />
+
+                            <div className="relative">
+                                <div className="mb-4 flex items-start gap-4">
+                                    <div className="relative flex-shrink-0">
+                                        {/* Pulsing rings */}
+                                        <div className="absolute inset-0 animate-ping rounded-xl bg-gradient-to-br from-primary to-blue-500 opacity-20" />
+                                        <div className="relative flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-blue-500 text-white shadow-lg">
+                                            <Sparkles className="h-7 w-7" />
+                                        </div>
+                                    </div>
+                                    <div className="flex-1">
+                                        <div className="mb-2 flex items-center gap-2">
+                                            <h4 className="text-lg font-bold text-gray-900">
+                                                Available for Opportunities
+                                            </h4>
+                                            <Badge className="bg-gradient-to-r from-green-500 to-green-600 text-white shadow-sm">
+                                                <span className="relative mr-1.5 flex h-2 w-2">
+                                                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
+                                                    <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
+                                                </span>
+                                                Open
+                                            </Badge>
+                                        </div>
+                                        <p className="text-sm leading-relaxed text-gray-600">
+                                            I'm currently open to freelance
+                                            projects, full-time positions, and
+                                            exciting collaborations. Let's build
+                                            something amazing together!
+                                        </p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h4 className="mb-1 font-semibold text-gray-900">
-                                        Available for opportunities
-                                    </h4>
-                                    <p className="text-sm leading-relaxed text-gray-600">
-                                        I'm currently open to freelance projects
-                                        and full-time positions. Let's build
-                                        something amazing together!
-                                    </p>
+
+                                {/* Interest Tags */}
+                                <div className="flex flex-wrap gap-2 border-t border-gray-200 pt-4">
+                                    {[
+                                        'Web Development',
+                                        'AI/ML Projects',
+                                        'Open Source',
+                                    ].map((tag, idx) => (
+                                        <Badge
+                                            key={idx}
+                                            variant="outline"
+                                            className="border-primary/30 bg-primary/5 text-primary transition-all duration-300 hover:scale-105 hover:bg-primary/10"
+                                        >
+                                            <Zap className="mr-1 h-3 w-3" />
+                                            {tag}
+                                        </Badge>
+                                    ))}
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* Contact Form */}
+                    {/* Contact Form - 3 columns */}
                     <div
-                        className={`space-y-6 transition-all duration-700 ${
+                        className={`transition-all duration-700 lg:col-span-3 ${
                             isVisible
                                 ? 'translate-x-0 opacity-100'
                                 : 'translate-x-10 opacity-0'
                         }`}
                         style={{ transitionDelay: '400ms' }}
                     >
-                        <div className="mb-4">
-                            <h3 className="text-xl font-bold text-gray-900">
-                                Send Me a Message
+                        <div className="mb-6 space-y-1">
+                            <h3 className="flex items-center gap-2 text-xl font-bold text-gray-900">
+                                <div className="rounded-lg bg-blue-500/10 p-2">
+                                    <Send className="h-4 w-4 text-blue-600" />
+                                </div>
+                                Send a Message
                             </h3>
                             <p className="text-gray-600">
-                                I'll get back to you as soon as possible
+                                Fill out the form below and I'll get back to you
+                                within 24 hours
                             </p>
                         </div>
 
-                        <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 shadow-lg transition-all duration-500 hover:border-primary/30 hover:shadow-xl">
-                            {/* Glow Effect */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-blue-500/5 opacity-0 blur-xl transition-opacity duration-500 hover:opacity-100" />
+                        <div className="relative overflow-hidden rounded-2xl border-2 border-gray-200 bg-white shadow-lg transition-all duration-500 hover:border-primary/30 hover:shadow-xl">
+                            <div className="space-y-5 p-6">
+                                {/* Name & Email Row */}
+                                <div className="grid gap-4 sm:grid-cols-2">
+                                    {/* Name Input */}
+                                    <div>
+                                        <label
+                                            htmlFor="name"
+                                            className="mb-2 flex items-center gap-2 text-sm font-bold text-gray-700"
+                                        >
+                                            Your Name
+                                            <span className="text-red-500">
+                                                *
+                                            </span>
+                                        </label>
+                                        <div className="relative">
+                                            <input
+                                                type="text"
+                                                id="name"
+                                                value={formData.name}
+                                                onChange={(e) =>
+                                                    handleChange(
+                                                        'name',
+                                                        e.target.value,
+                                                    )
+                                                }
+                                                onFocus={() =>
+                                                    setFocusedField('name')
+                                                }
+                                                onBlur={() =>
+                                                    setFocusedField(null)
+                                                }
+                                                placeholder="John Doe"
+                                                className="w-full rounded-xl border-2 border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 transition-all duration-300 placeholder:text-gray-400 focus:border-primary focus:bg-white focus:shadow-lg focus:outline-none"
+                                            />
+                                            <div
+                                                className={`absolute -bottom-0 left-1.5 h-1 rounded-full bg-gradient-to-r from-primary to-blue-500 transition-all duration-300 ${
+                                                    focusedField === 'name'
+                                                        ? 'w-[calc(100%-12px)]'
+                                                        : 'w-0'
+                                                }`}
+                                            />
+                                        </div>
+                                    </div>
 
-                            <div className="relative space-y-5">
-                                {/* Name Input */}
+                                    {/* Email Input */}
+                                    <div>
+                                        <label
+                                            htmlFor="email"
+                                            className="mb-2 flex items-center gap-2 text-sm font-bold text-gray-700"
+                                        >
+                                            Your Email
+                                            <span className="text-red-500">
+                                                *
+                                            </span>
+                                        </label>
+                                        <div className="relative">
+                                            <input
+                                                type="email"
+                                                id="email"
+                                                value={formData.email}
+                                                onChange={(e) =>
+                                                    handleChange(
+                                                        'email',
+                                                        e.target.value,
+                                                    )
+                                                }
+                                                onFocus={() =>
+                                                    setFocusedField('email')
+                                                }
+                                                onBlur={() =>
+                                                    setFocusedField(null)
+                                                }
+                                                placeholder="john@example.com"
+                                                className="w-full rounded-xl border-2 border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 transition-all duration-300 placeholder:text-gray-400 focus:border-primary focus:bg-white focus:shadow-lg focus:outline-none"
+                                            />
+                                            <div
+                                                className={`absolute -bottom-0 left-1.5 h-1 rounded-full bg-gradient-to-r from-primary to-blue-500 transition-all duration-300 ${
+                                                    focusedField === 'email'
+                                                        ? 'w-[calc(100%-12px)]'
+                                                        : 'w-0'
+                                                }`}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Subject Input */}
                                 <div>
                                     <label
-                                        htmlFor="name"
-                                        className="mb-2 block text-sm font-semibold text-gray-700"
+                                        htmlFor="subject"
+                                        className="mb-2 flex items-center gap-2 text-sm font-bold text-gray-700"
                                     >
-                                        Your Name
+                                        Subject
+                                        <Badge
+                                            variant="outline"
+                                            className="border-gray-300 text-xs text-gray-600"
+                                        >
+                                            Optional
+                                        </Badge>
                                     </label>
                                     <div className="relative">
                                         <input
                                             type="text"
-                                            id="name"
-                                            name="name"
-                                            value={formData.name}
+                                            id="subject"
+                                            value={formData.subject}
                                             onChange={(e) =>
                                                 handleChange(
-                                                    'name',
+                                                    'subject',
                                                     e.target.value,
                                                 )
                                             }
                                             onFocus={() =>
-                                                setFocusedField('name')
+                                                setFocusedField('subject')
                                             }
                                             onBlur={() => setFocusedField(null)}
-                                            placeholder="John Doe"
-                                            className="w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 transition-all duration-300 placeholder:text-gray-400 focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/20 focus:outline-none"
+                                            placeholder="Project inquiry, Collaboration, etc."
+                                            className="w-full rounded-xl border-2 border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 transition-all duration-300 placeholder:text-gray-400 focus:border-primary focus:bg-white focus:shadow-lg focus:outline-none"
                                         />
                                         <div
-                                            className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-primary to-blue-500 transition-all duration-300 ${
-                                                focusedField === 'name'
-                                                    ? 'w-full'
-                                                    : 'w-0'
-                                            }`}
-                                        />
-                                    </div>
-                                </div>
-
-                                {/* Email Input */}
-                                <div>
-                                    <label
-                                        htmlFor="email"
-                                        className="mb-2 block text-sm font-semibold text-gray-700"
-                                    >
-                                        Your Email
-                                    </label>
-                                    <div className="relative">
-                                        <input
-                                            type="email"
-                                            id="email"
-                                            name="email"
-                                            value={formData.email}
-                                            onChange={(e) =>
-                                                handleChange(
-                                                    'email',
-                                                    e.target.value,
-                                                )
-                                            }
-                                            onFocus={() =>
-                                                setFocusedField('email')
-                                            }
-                                            onBlur={() => setFocusedField(null)}
-                                            placeholder="john@example.com"
-                                            className="w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 transition-all duration-300 placeholder:text-gray-400 focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/20 focus:outline-none"
-                                        />
-                                        <div
-                                            className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-primary to-blue-500 transition-all duration-300 ${
-                                                focusedField === 'email'
-                                                    ? 'w-full'
+                                            className={`absolute -bottom-0 left-1.5 h-1 rounded-full bg-gradient-to-r from-primary to-blue-500 transition-all duration-300 ${
+                                                focusedField === 'subject'
+                                                    ? 'w-[calc(100%-12px)]'
                                                     : 'w-0'
                                             }`}
                                         />
@@ -293,14 +427,21 @@ export function ContactMe() {
                                 <div>
                                     <label
                                         htmlFor="message"
-                                        className="mb-2 block text-sm font-semibold text-gray-700"
+                                        className="mb-2 flex items-center justify-between text-sm font-bold text-gray-700"
                                     >
-                                        Your Message
+                                        <span className="flex items-center gap-2">
+                                            Your Message
+                                            <span className="text-red-500">
+                                                *
+                                            </span>
+                                        </span>
+                                        <span className="text-xs font-normal text-gray-500">
+                                            {charCount}/500
+                                        </span>
                                     </label>
                                     <div className="relative">
                                         <textarea
                                             id="message"
-                                            name="message"
                                             value={formData.message}
                                             onChange={(e) =>
                                                 handleChange(
@@ -312,14 +453,15 @@ export function ContactMe() {
                                                 setFocusedField('message')
                                             }
                                             onBlur={() => setFocusedField(null)}
-                                            placeholder="Tell me about your project..."
-                                            rows={5}
-                                            className="w-full resize-none rounded-lg border border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 transition-all duration-300 placeholder:text-gray-400 focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/20 focus:outline-none"
+                                            placeholder="Tell me about your project, ideas, or how we can collaborate..."
+                                            rows={6}
+                                            maxLength={500}
+                                            className="w-full resize-none rounded-xl border-2 border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 transition-all duration-300 placeholder:text-gray-400 focus:border-primary focus:bg-white focus:shadow-lg focus:outline-none"
                                         />
                                         <div
-                                            className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-primary to-blue-500 transition-all duration-300 ${
+                                            className={`absolute -bottom-0 left-1.5 h-1 rounded-full bg-gradient-to-r from-primary to-blue-500 transition-all duration-300 ${
                                                 focusedField === 'message'
-                                                    ? 'w-full'
+                                                    ? 'w-[calc(100%-12px)]'
                                                     : 'w-0'
                                             }`}
                                         />
@@ -330,33 +472,24 @@ export function ContactMe() {
                                 <Button
                                     onClick={handleSubmit}
                                     disabled={isSubmitting || submitSuccess}
-                                    className={`group relative w-full overflow-hidden rounded-lg py-6 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl active:scale-95 ${
-                                        submitSuccess
-                                            ? 'bg-green-500 hover:bg-green-500'
-                                            : 'bg-gradient-to-r from-primary via-blue-500 to-purple-500 hover:from-primary/90 hover:via-blue-500/90 hover:to-purple-500/90'
-                                    }`}
+                                    className="h-12 w-full px-6 py-3 text-sm font-medium transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]"
                                 >
-                                    {/* Button Background Animation */}
-                                    <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
-
-                                    <span className="relative flex items-center justify-center gap-2">
-                                        {isSubmitting ? (
-                                            <>
-                                                <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                                                Sending...
-                                            </>
-                                        ) : submitSuccess ? (
-                                            <>
-                                                <CheckCircle2 className="h-5 w-5" />
-                                                Message Sent!
-                                            </>
-                                        ) : (
-                                            <>
-                                                <Send className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                                                Send Message
-                                            </>
-                                        )}
-                                    </span>
+                                    {isSubmitting ? (
+                                        <>
+                                            <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                                            Sending...
+                                        </>
+                                    ) : submitSuccess ? (
+                                        <>
+                                            <CheckCircle2 className="mr-2 h-4 w-4" />
+                                            Message Sent!
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Send className="mr-2 h-4 w-4" />
+                                            Send Message
+                                        </>
+                                    )}
                                 </Button>
                             </div>
                         </div>
@@ -372,6 +505,7 @@ const ContactInfoItem = ({
     label,
     value,
     copyable = false,
+    href,
     index,
     onCopy,
     isCopied,
@@ -382,43 +516,60 @@ const ContactInfoItem = ({
 }) => {
     const [isHovered, setIsHovered] = useState(false);
 
-    const iconColors = [
-        { bg: 'from-blue-500 to-blue-600', text: 'text-blue-500' },
-        { bg: 'from-green-500 to-green-600', text: 'text-green-500' },
-        { bg: 'from-purple-500 to-purple-600', text: 'text-purple-500' },
+    const gradientColors = [
+        { bg: 'from-green-500 to-green-600', light: 'bg-green-500/10' },
+        { bg: 'from-orange-500 to-orange-600', light: 'bg-orange-500/10' },
+        { bg: 'from-red-500 to-red-600', light: 'bg-red-500/10' },
     ];
 
-    const color = iconColors[index % iconColors.length];
+    const color = gradientColors[index % gradientColors.length];
 
-    return (
+    const content = (
         <div
-            className="group relative overflow-hidden rounded-xl border border-gray-200 bg-white p-4 shadow-md transition-all duration-300 hover:scale-105 hover:border-primary/30 hover:shadow-lg"
+            className="group relative cursor-pointer overflow-hidden rounded-xl border-2 border-gray-200 bg-white p-4 shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
             {/* Glow Effect */}
             <div
-                className={`absolute inset-0 bg-gradient-to-br ${color.bg} opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-10`}
+                className={`absolute inset-0 bg-gradient-to-br ${color.bg} opacity-0 blur-xl transition-opacity duration-500 ${
+                    isHovered ? 'opacity-10' : ''
+                }`}
             />
 
-            <div className="relative flex items-start gap-4">
+            {/* Top accent line */}
+            <div
+                className={`absolute top-0 right-0 left-0 h-1 bg-gradient-to-r ${color.bg} origin-left transform transition-transform duration-300 ${
+                    isHovered ? 'scale-x-100' : 'scale-x-0'
+                }`}
+            />
+
+            <div className="relative flex items-center gap-4">
                 {/* Icon */}
                 <div className="flex-shrink-0">
-                    <div
-                        className={`flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${color.bg} text-white shadow-lg transition-all duration-300 ${
-                            isHovered ? 'scale-110 rotate-6' : ''
-                        }`}
-                    >
-                        {icon}
+                    <div className="relative">
+                        {/* Glow ring on hover */}
+                        {isHovered && (
+                            <div
+                                className={`absolute -inset-1 animate-pulse rounded-xl bg-gradient-to-br ${color.bg} opacity-30 blur-md`}
+                            />
+                        )}
+                        <div
+                            className={`relative flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${color.bg} text-white shadow-lg transition-all duration-300 ${
+                                isHovered ? 'scale-110 rotate-6' : ''
+                            }`}
+                        >
+                            {icon}
+                        </div>
                     </div>
                 </div>
 
                 {/* Content */}
                 <div className="min-w-0 flex-1">
-                    <p className="mb-1 text-sm font-medium text-gray-600">
+                    <p className="mb-0.5 text-xs font-semibold tracking-wide text-gray-500 uppercase">
                         {label}
                     </p>
-                    <p className="text-base font-semibold break-words text-gray-900">
+                    <p className="text-sm font-bold break-words text-gray-900 transition-colors duration-300 group-hover:text-primary">
                         {value}
                     </p>
                 </div>
@@ -426,11 +577,14 @@ const ContactInfoItem = ({
                 {/* Copy Button */}
                 {copyable && (
                     <button
-                        onClick={() => onCopy(value, index)}
-                        className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg transition-all duration-300 ${
+                        onClick={(e) => {
+                            e.preventDefault();
+                            onCopy(value, index);
+                        }}
+                        className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg transition-all duration-300 ${
                             isCopied
-                                ? 'bg-green-100 text-green-600'
-                                : 'bg-gray-100 text-gray-600 hover:bg-primary/10 hover:text-primary'
+                                ? 'scale-110 bg-green-100 text-green-600'
+                                : `${color.light} text-gray-600 hover:scale-110`
                         }`}
                         title="Copy to clipboard"
                     >
@@ -442,15 +596,16 @@ const ContactInfoItem = ({
                     </button>
                 )}
             </div>
-
-            {/* Progress Bar */}
-            <div className="relative mt-3 h-0.5 w-full overflow-hidden rounded-full bg-gray-200">
-                <div
-                    className={`absolute top-0 left-0 h-full rounded-full bg-gradient-to-r ${color.bg} transition-all duration-500 ${
-                        isHovered ? 'w-full' : 'w-0'
-                    }`}
-                />
-            </div>
         </div>
     );
+
+    if (href) {
+        return (
+            <a href={href} target="_blank" rel="noopener noreferrer">
+                {content}
+            </a>
+        );
+    }
+
+    return content;
 };
