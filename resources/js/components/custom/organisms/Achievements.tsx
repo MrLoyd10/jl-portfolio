@@ -79,8 +79,8 @@ export const Achievements = () => {
         >
             {/* Background decoration - using your theme colors */}
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                <div className="absolute top-1/3 -right-32 h-96 w-96 rounded-full bg-primary/8 blur-3xl" />
-                <div className="absolute bottom-1/3 -left-32 h-96 w-96 rounded-full bg-blue-500/8 blur-3xl" />
+                <div className="absolute top-1/3 -right-32 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
+                <div className="absolute bottom-1/3 -left-32 h-96 w-96 rounded-full bg-blue-500/5 blur-3xl" />
             </div>
 
             <div className="relative mx-auto max-w-7xl">

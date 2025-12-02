@@ -363,9 +363,9 @@ export function TechArsenal() {
         >
             {/* Enhanced Background decoration */}
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                <div className="absolute top-1/4 -left-32 h-96 w-96 animate-pulse rounded-full bg-primary/8 blur-3xl" />
+                <div className="absolute top-1/4 -left-32 h-96 w-96 animate-pulse rounded-full bg-primary/5 blur-3xl" />
                 <div
-                    className="absolute -right-32 bottom-1/4 h-96 w-96 animate-pulse rounded-full bg-blue-500/8 blur-3xl"
+                    className="absolute -right-32 bottom-1/4 h-96 w-96 animate-pulse rounded-full bg-blue-500/5 blur-3xl"
                     style={{ animationDelay: '1s' }}
                 />
                 <div
