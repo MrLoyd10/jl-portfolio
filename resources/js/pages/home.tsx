@@ -25,8 +25,8 @@ export default function Home({
                     <ProfileSummary />
                     <WorkExperience />
                     <FeaturedProjects />
-                    <Achievements />
                     <TechArsenal />
+                    <Achievements />
                     <EducationJourney />
                     <ContactMe />
                 </div>

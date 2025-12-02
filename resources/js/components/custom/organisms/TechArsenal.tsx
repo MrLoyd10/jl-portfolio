@@ -357,7 +357,7 @@ export function TechArsenal() {
 
     return (
         <section
-            id="tech-arsenal"
+            id="skills"
             ref={sectionRef}
             className="relative w-full px-6 py-16"
         >

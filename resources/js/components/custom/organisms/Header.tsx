@@ -12,7 +12,7 @@ export const Header = () => {
         { id: 'experience', label: 'Experience' },
         { id: 'project', label: 'Project' },
         { id: 'skills', label: 'Skills' },
-        { id: 'awards', label: 'Awards' },
+        { id: 'awards', label: 'Certificates & Awards' },
         { id: 'education', label: 'Education' },
         { id: 'contact', label: 'Contact' },
     ];
