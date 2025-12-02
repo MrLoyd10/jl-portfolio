@@ -92,7 +92,7 @@ export const FeaturedProjects = () => {
                     }`}
                 >
                     <SectionHeader
-                        mainDivClassName="mb-8"
+                        mainDivClassName="mb-6"
                         title="Featured Projects"
                         subtitle="Showcasing my best work and personal projects"
                         icon={Code2}
@@ -101,7 +101,7 @@ export const FeaturedProjects = () => {
 
                 {/* View Mode Toggle */}
                 <div
-                    className={`mb-8 flex justify-end transition-all duration-700 ${
+                    className={`mb-6 flex justify-start transition-all duration-700 ${
                         isVisible
                             ? 'translate-y-0 opacity-100'
                             : 'translate-y-10 opacity-0'
@@ -111,7 +111,7 @@ export const FeaturedProjects = () => {
                     <div className="flex items-center gap-2 rounded-lg bg-gray-100 p-1">
                         <button
                             onClick={() => setViewMode('grid')}
-                            className={`rounded-md p-2 transition-all duration-300 ${
+                            className={`flex items-center gap-2 rounded-md px-4 py-2 transition-all duration-300 ${
                                 viewMode === 'grid'
                                     ? 'bg-white text-primary shadow-sm'
                                     : 'text-gray-600 hover:text-gray-900'
@@ -119,10 +119,11 @@ export const FeaturedProjects = () => {
                             aria-label="Grid view"
                         >
                             <LayoutGrid className="h-4 w-4" />
+                            <span className="text-sm font-medium">Grid</span>
                         </button>
                         <button
                             onClick={() => setViewMode('list')}
-                            className={`rounded-md p-2 transition-all duration-300 ${
+                            className={`flex items-center gap-2 rounded-md px-4 py-2 transition-all duration-300 ${
                                 viewMode === 'list'
                                     ? 'bg-white text-primary shadow-sm'
                                     : 'text-gray-600 hover:text-gray-900'
@@ -130,6 +131,7 @@ export const FeaturedProjects = () => {
                             aria-label="List view"
                         >
                             <Grid3x3 className="h-4 w-4" />
+                            <span className="text-sm font-medium">List</span>
                         </button>
                     </div>
                 </div>

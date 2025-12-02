@@ -93,7 +93,7 @@ export const Achievements = () => {
                     }`}
                 >
                     <SectionHeader
-                        mainDivClassName="mb-12"
+                        mainDivClassName="mb-8"
                         title="Achievements & Certifications"
                         subtitle="Professional milestones and continuous learning journey"
                         icon={Award}
