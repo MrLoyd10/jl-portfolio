@@ -1,13 +1,14 @@
-import { Code2 } from 'lucide-react';
+import { Code2, Grid3x3, LayoutGrid } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { SectionHeader } from '../atoms/SectionHeader';
-import { ProjectCard } from '../molecules/ProjectCards';
+import { ProjectCard, ProjectCardProps } from '../molecules/ProjectCards';
 
 export const FeaturedProjects = () => {
     const [isVisible, setIsVisible] = useState(false);
+    const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
     const sectionRef = useRef<HTMLDivElement>(null);
 
-    const projects = [
+    const projects: ProjectCardProps[] = [
         {
             title: 'ResearchX',
             description:
@@ -71,16 +72,15 @@ export const FeaturedProjects = () => {
 
     return (
         <section
-            id="projects"
+            id="project"
             ref={sectionRef}
             className="relative w-full px-6 py-16"
         >
-            {/* Background Gradient Orbs */}
-            <div className="absolute top-0 left-1/4 h-96 w-96 -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-primary/5 blur-3xl" />
-            <div
-                className="bg-blue/5 absolute right-1/4 bottom-0 h-96 w-96 translate-x-1/2 translate-y-1/2 animate-pulse rounded-full blur-3xl"
-                style={{ animationDelay: '1s' }}
-            />
+            {/* Background decoration */}
+            <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                <div className="absolute top-1/3 -right-32 h-96 w-96 rounded-full bg-purple-500/5 blur-3xl" />
+                <div className="absolute bottom-1/3 -left-32 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
+            </div>
 
             <div className="relative mx-auto max-w-7xl">
                 {/* Section Header with animation */}
@@ -92,15 +92,56 @@ export const FeaturedProjects = () => {
                     }`}
                 >
                     <SectionHeader
-                        mainDivClassName="mb-12"
+                        mainDivClassName="mb-8"
                         title="Featured Projects"
-                        subtitle="Showcasing my recent work and technical expertise"
+                        subtitle="Showcasing my best work and personal projects"
                         icon={Code2}
                     />
                 </div>
 
-                {/* Projects Grid */}
-                <div className="grid gap-8 md:grid-cols-2">
+                {/* View Mode Toggle */}
+                <div
+                    className={`mb-8 flex justify-end transition-all duration-700 ${
+                        isVisible
+                            ? 'translate-y-0 opacity-100'
+                            : 'translate-y-10 opacity-0'
+                    }`}
+                    style={{ transitionDelay: '100ms' }}
+                >
+                    <div className="flex items-center gap-2 rounded-lg bg-gray-100 p-1">
+                        <button
+                            onClick={() => setViewMode('grid')}
+                            className={`rounded-md p-2 transition-all duration-300 ${
+                                viewMode === 'grid'
+                                    ? 'bg-white text-primary shadow-sm'
+                                    : 'text-gray-600 hover:text-gray-900'
+                            }`}
+                            aria-label="Grid view"
+                        >
+                            <LayoutGrid className="h-4 w-4" />
+                        </button>
+                        <button
+                            onClick={() => setViewMode('list')}
+                            className={`rounded-md p-2 transition-all duration-300 ${
+                                viewMode === 'list'
+                                    ? 'bg-white text-primary shadow-sm'
+                                    : 'text-gray-600 hover:text-gray-900'
+                            }`}
+                            aria-label="List view"
+                        >
+                            <Grid3x3 className="h-4 w-4" />
+                        </button>
+                    </div>
+                </div>
+
+                {/* Projects Grid/List with animation */}
+                <div
+                    className={`gap-6 ${
+                        viewMode === 'grid'
+                            ? 'grid md:grid-cols-2'
+                            : 'flex flex-col'
+                    } transition-all duration-500`}
+                >
                     {projects.map((project, index) => (
                         <div
                             key={index}
@@ -113,7 +154,7 @@ export const FeaturedProjects = () => {
                                 transitionDelay: `${200 + index * 100}ms`,
                             }}
                         >
-                            <ProjectCard {...project} />
+                            <ProjectCard {...project} viewMode={viewMode} />
                         </div>
                     ))}
                 </div>
