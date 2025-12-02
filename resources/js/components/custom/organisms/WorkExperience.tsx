@@ -8,10 +8,18 @@ import {
 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { SectionHeader } from '../atoms/SectionHeader';
-import {
-    AvailabilityCard,
-    ExperienceCardProps,
-} from '../molecules/WorkExperienceCards';
+
+interface ExperienceCardProps {
+    title: string;
+    company: string;
+    location: string;
+    period: string;
+    employmentType: string;
+    description: string;
+    achievements: string[];
+    technologies: string[];
+    icon?: React.ReactNode;
+}
 
 export const WorkExperience = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -252,7 +260,7 @@ export const WorkExperience = () => {
                         </div>
 
                         <div className="md:ml-20">
-                            <AvailabilityCard />
+                            {/* Do availability card */}
                         </div>
                     </div>
                 </div>
