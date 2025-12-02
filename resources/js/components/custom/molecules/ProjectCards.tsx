@@ -41,7 +41,7 @@ export const ProjectCard = ({
                 onMouseLeave={() => setIsHovered(false)}
             >
                 {/* Gradient Border Glow Effect */}
-                <div className="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-r from-primary/10 via-blue-500/10 to-purple-500/10 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-r from-primary/5 to-blue-500/5 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
 
                 <div className="flex flex-col md:flex-row">
                     {/* Image Container - List View */}
@@ -152,7 +152,7 @@ export const ProjectCard = ({
             onMouseLeave={() => setIsHovered(false)}
         >
             {/* Gradient Border Glow Effect */}
-            <div className="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br from-primary/20 via-blue-500/20 to-purple-500/20 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
+            <div className="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br from-primary/5 to-blue-500/5 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
 
             {/* Category Badge */}
             {category && (
@@ -294,7 +294,7 @@ export const ProjectCard = ({
                 {/* Progress Bar Decoration */}
                 <div className="relative h-1 w-full overflow-hidden rounded-full bg-gray-200">
                     <div
-                        className={`absolute top-0 left-0 h-full rounded-full bg-gradient-to-r from-primary via-blue-500 to-purple-500 transition-all duration-1000 ${
+                        className={`absolute top-0 left-0 h-full rounded-full bg-gradient-to-r from-primary to-blue-500 transition-all duration-1000 ${
                             isHovered ? 'w-full' : 'w-0'
                         }`}
                     />
