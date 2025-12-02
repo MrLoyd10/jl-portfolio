@@ -6,7 +6,6 @@ import {
     AchievementCard,
     AchievementCardProps,
 } from '../molecules/AchievementCards';
-
 export const Achievements = () => {
     const [isVisible, setIsVisible] = useState(false);
     const sectionRef = useRef<HTMLDivElement>(null);
@@ -74,18 +73,18 @@ export const Achievements = () => {
 
     return (
         <section
-            id="achievements"
+            id="awards"
             ref={sectionRef}
             className="relative w-full px-6 py-16"
         >
-            {/* Background decoration */}
+            {/* Background decoration - using your theme colors */}
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                <div className="absolute top-1/4 -right-32 h-96 w-96 rounded-full bg-yellow-500/5 blur-3xl" />
-                <div className="absolute bottom-1/4 -left-32 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
+                <div className="absolute top-1/3 -right-32 h-96 w-96 rounded-full bg-primary/8 blur-3xl" />
+                <div className="absolute bottom-1/3 -left-32 h-96 w-96 rounded-full bg-blue-500/8 blur-3xl" />
             </div>
 
             <div className="relative mx-auto max-w-7xl">
-                {/* Section Header with animation */}
+                {/* Section Header */}
                 <div
                     className={`transition-all duration-700 ${
                         isVisible
@@ -95,14 +94,14 @@ export const Achievements = () => {
                 >
                     <SectionHeader
                         mainDivClassName="mb-12"
-                        title="Achievements & Badges"
-                        subtitle="Professional certifications and accomplishments"
+                        title="Achievements & Certifications"
+                        subtitle="Professional milestones and continuous learning journey"
                         icon={Award}
                     />
                 </div>
 
                 {/* Achievement Cards Grid */}
-                <div className="grid gap-6 md:grid-cols-2">
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
                     {achievements.map((achievement, index) => (
                         <div
                             key={index}
