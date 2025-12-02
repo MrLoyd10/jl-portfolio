@@ -1,20 +1,26 @@
-import { Atom, Zap } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Atom, Code2, Sparkles, Zap } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 import { SectionHeader } from '../atoms/SectionHeader';
 
 interface TechItemProps {
     name: string;
     icon: React.ReactNode;
+    category: string;
+    level?: 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert';
     color: string;
     index?: number;
+    isHovered?: boolean;
 }
 
-export const TechArsenal = () => {
+export function TechArsenal() {
     const [isVisible, setIsVisible] = useState(false);
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const [selectedCategory, setSelectedCategory] = useState<string>('All');
     const sectionRef = useRef<HTMLDivElement>(null);
 
     const technologies: TechItemProps[] = [
+        // Languages
         {
             name: 'JavaScript',
             icon: (
@@ -22,6 +28,8 @@ export const TechArsenal = () => {
                     <span className="text-2xl font-bold text-black">JS</span>
                 </div>
             ),
+            category: 'Languages',
+            level: 'Advanced',
             color: 'yellow',
         },
         {
@@ -31,8 +39,12 @@ export const TechArsenal = () => {
                     <span className="text-2xl font-bold text-white">TS</span>
                 </div>
             ),
+            category: 'Languages',
+            level: 'Intermediate',
             color: 'blue',
         },
+
+        // Frontend
         {
             name: 'Tailwind',
             icon: (
@@ -44,6 +56,8 @@ export const TechArsenal = () => {
                     />
                 </svg>
             ),
+            category: 'Frontend',
+            level: 'Advanced',
             color: 'cyan',
         },
         {
@@ -55,6 +69,8 @@ export const TechArsenal = () => {
                     </span>
                 </div>
             ),
+            category: 'Frontend',
+            level: 'Intermediate',
             color: 'pink',
         },
         {
@@ -68,6 +84,8 @@ export const TechArsenal = () => {
                     />
                 </svg>
             ),
+            category: 'Frontend',
+            level: 'Intermediate',
             color: 'pink',
         },
         {
@@ -115,6 +133,8 @@ export const TechArsenal = () => {
                     />
                 </svg>
             ),
+            category: 'Frontend',
+            level: 'Advanced',
             color: 'cyan',
         },
         {
@@ -128,6 +148,8 @@ export const TechArsenal = () => {
                     />
                 </svg>
             ),
+            category: 'Frontend',
+            level: 'Intermediate',
             color: 'purple',
         },
         {
@@ -137,8 +159,12 @@ export const TechArsenal = () => {
                     <span className="text-2xl font-bold text-black">N</span>
                 </div>
             ),
+            category: 'Frontend',
+            level: 'Advanced',
             color: 'white',
         },
+
+        // Backend
         {
             name: 'Node.js',
             icon: (
@@ -150,6 +176,8 @@ export const TechArsenal = () => {
                     />
                 </svg>
             ),
+            category: 'Backend',
+            level: 'Intermediate',
             color: 'green',
         },
         {
@@ -159,8 +187,12 @@ export const TechArsenal = () => {
                     <span className="text-3xl font-bold text-gray-400">ex</span>
                 </div>
             ),
+            category: 'Backend',
+            level: 'Intermediate',
             color: 'gray',
         },
+
+        // Database / Backend-as-a-Service
         {
             name: 'MongoDB',
             icon: (
@@ -172,6 +204,8 @@ export const TechArsenal = () => {
                     />
                 </svg>
             ),
+            category: 'Database',
+            level: 'Intermediate',
             color: 'green',
         },
         {
@@ -185,6 +219,8 @@ export const TechArsenal = () => {
                     />
                 </svg>
             ),
+            category: 'Backend',
+            level: 'Beginner',
             color: 'green',
         },
         {
@@ -196,8 +232,12 @@ export const TechArsenal = () => {
                     </div>
                 </div>
             ),
+            category: 'Backend',
+            level: 'Beginner',
             color: 'red',
         },
+
+        // DevOps / Tools
         {
             name: 'Docker',
             icon: (
@@ -209,6 +249,8 @@ export const TechArsenal = () => {
                     />
                 </svg>
             ),
+            category: 'Tools',
+            level: 'Beginner',
             color: 'blue',
         },
         {
@@ -222,6 +264,8 @@ export const TechArsenal = () => {
                     />
                 </svg>
             ),
+            category: 'Hosting',
+            level: 'Advanced',
             color: 'black',
         },
         {
@@ -235,6 +279,8 @@ export const TechArsenal = () => {
                     />
                 </svg>
             ),
+            category: 'Tools',
+            level: 'Advanced',
             color: 'orange',
         },
         {
@@ -254,6 +300,8 @@ export const TechArsenal = () => {
                     />
                 </svg>
             ),
+            category: 'Tools',
+            level: 'Advanced',
             color: 'orange',
         },
         {
@@ -272,9 +320,21 @@ export const TechArsenal = () => {
                     />
                 </svg>
             ),
+            category: 'Hosting',
+            level: 'Beginner',
             color: 'orange',
         },
     ];
+
+    const categories = [
+        'All',
+        ...Array.from(new Set(technologies.map((t) => t.category))),
+    ];
+
+    const filteredTechs =
+        selectedCategory === 'All'
+            ? technologies
+            : technologies.filter((t) => t.category === selectedCategory);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -301,21 +361,21 @@ export const TechArsenal = () => {
             ref={sectionRef}
             className="relative w-full px-6 py-16"
         >
-            {/* Background decoration - Floating orbs */}
+            {/* Enhanced Background decoration */}
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                <div className="absolute top-1/4 -left-20 h-72 w-72 animate-pulse rounded-full bg-cyan-500/10 blur-3xl" />
+                <div className="absolute top-1/4 -left-32 h-96 w-96 animate-pulse rounded-full bg-primary/8 blur-3xl" />
                 <div
-                    className="absolute -right-20 bottom-1/3 h-96 w-96 animate-pulse rounded-full bg-purple-500/10 blur-3xl"
+                    className="absolute -right-32 bottom-1/4 h-96 w-96 animate-pulse rounded-full bg-blue-500/8 blur-3xl"
                     style={{ animationDelay: '1s' }}
                 />
                 <div
-                    className="absolute top-1/2 left-1/2 h-64 w-64 animate-pulse rounded-full bg-yellow-500/10 blur-3xl"
+                    className="absolute top-1/2 left-1/2 h-80 w-80 animate-pulse rounded-full bg-purple-500/5 blur-3xl"
                     style={{ animationDelay: '2s' }}
                 />
             </div>
 
             <div className="relative mx-auto max-w-7xl">
-                {/* Section Header with animation */}
+                {/* Section Header */}
                 <div
                     className={`transition-all duration-700 ${
                         isVisible
@@ -324,25 +384,95 @@ export const TechArsenal = () => {
                     }`}
                 >
                     <SectionHeader
-                        mainDivClassName="mb-12"
+                        mainDivClassName="mb-6"
                         title="Tech Arsenal"
-                        subtitle="Technologies and tools I work with"
+                        subtitle="Powerful technologies and tools that bring ideas to life"
                         icon={Atom}
                     />
                 </div>
 
-                {/* Tech Grid with stagger animation */}
+                {/* Category Filter Pills */}
+                <div
+                    className={`mb-6 flex flex-wrap items-center justify-center gap-3 transition-all duration-700 ${
+                        isVisible
+                            ? 'translate-y-0 opacity-100'
+                            : 'translate-y-10 opacity-0'
+                    }`}
+                    style={{ transitionDelay: '100ms' }}
+                >
+                    {categories.map((category, index) => (
+                        <button
+                            key={category}
+                            onClick={() => setSelectedCategory(category)}
+                            className={`group relative overflow-hidden rounded-full px-6 py-2.5 font-semibold transition-all duration-300 ${
+                                selectedCategory === category
+                                    ? 'scale-105 bg-primary text-white shadow-lg'
+                                    : 'border-2 border-gray-200 bg-white text-gray-700 hover:scale-105 hover:border-primary/50'
+                            }`}
+                            style={{ transitionDelay: `${index * 50}ms` }}
+                        >
+                            {selectedCategory === category && (
+                                <div className="animate-shimmer absolute inset-0 bg-gradient-to-r from-primary via-blue-500 to-primary" />
+                            )}
+                            <span className="relative flex items-center gap-2">
+                                {category === 'All' && (
+                                    <Sparkles className="h-4 w-4" />
+                                )}
+                                {category}
+                            </span>
+                        </button>
+                    ))}
+                </div>
+
+                {/* Stats Bar */}
+                <div
+                    className={`mb-12 flex flex-wrap items-center justify-center gap-8 transition-all duration-700 ${
+                        isVisible
+                            ? 'translate-y-0 opacity-100'
+                            : 'translate-y-10 opacity-0'
+                    }`}
+                    style={{ transitionDelay: '200ms' }}
+                >
+                    <div className="flex items-center gap-3 rounded-2xl border-2 border-gray-200 bg-white px-6 py-4 shadow-md">
+                        <div className="rounded-lg bg-primary/10 p-2">
+                            <Code2 className="h-5 w-5 text-primary" />
+                        </div>
+                        <div>
+                            <div className="text-2xl font-bold text-primary">
+                                {technologies.length}
+                            </div>
+                            <div className="text-sm text-gray-600">
+                                Technologies
+                            </div>
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-3 rounded-2xl border-2 border-gray-200 bg-white px-6 py-4 shadow-md">
+                        <div className="rounded-lg bg-blue-500/10 p-2">
+                            <Zap className="h-5 w-5 text-blue-600" />
+                        </div>
+                        <div>
+                            <div className="text-2xl font-bold text-blue-600">
+                                {categories.length - 1}
+                            </div>
+                            <div className="text-sm text-gray-600">
+                                Categories
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Tech Grid */}
                 <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-                    {technologies.map((tech, index) => (
+                    {filteredTechs.map((tech, index) => (
                         <div
-                            key={index}
+                            key={`${tech.name}-${index}`}
                             className={`transition-all duration-700 ${
                                 isVisible
                                     ? 'translate-y-0 opacity-100'
                                     : 'translate-y-10 opacity-0'
                             }`}
                             style={{
-                                transitionDelay: `${100 + index * 50}ms`,
+                                transitionDelay: `${300 + index * 50}ms`,
                             }}
                             onMouseEnter={() => setHoveredIndex(index)}
                             onMouseLeave={() => setHoveredIndex(null)}
@@ -358,26 +488,43 @@ export const TechArsenal = () => {
             </div>
 
             <style>{`
-                @keyframes gradient {
-                    0%, 100% { transform: translateX(0%) translateY(0%); }
-                    50% { transform: translateX(20%) translateY(10%); }
+                @keyframes shimmer {
+                    0% { transform: translateX(-100%); }
+                    100% { transform: translateX(100%); }
                 }
-                .animate-gradient {
-                    animation: gradient 15s ease infinite;
+                .animate-shimmer {
+                    animation: shimmer 2s infinite;
                 }
             `}</style>
         </section>
     );
-};
+}
 
 const TechItem = ({
     name,
     icon,
+    category,
+    level,
     color,
     index = 0,
     isHovered,
-}: TechItemProps & { isHovered?: boolean }) => {
+}: TechItemProps) => {
     const [localHover, setLocalHover] = useState(false);
+
+    const getLevelColor = (level?: string) => {
+        switch (level) {
+            case 'Expert':
+                return 'bg-green-500';
+            case 'Advanced':
+                return 'bg-blue-500';
+            case 'Intermediate':
+                return 'bg-yellow-500';
+            case 'Beginner':
+                return 'bg-gray-500';
+            default:
+                return 'bg-gray-400';
+        }
+    };
 
     return (
         <div
@@ -385,74 +532,118 @@ const TechItem = ({
             onMouseEnter={() => setLocalHover(true)}
             onMouseLeave={() => setLocalHover(false)}
         >
-            {/* Glow effect on hover */}
-            <div
-                className={`absolute -inset-2 rounded-2xl bg-gradient-to-r from-${color}-500/20 via-${color}-400/20 to-transparent opacity-0 blur-xl transition-all duration-500 group-hover:opacity-100`}
-            />
+            {/* Outer glow effect */}
+            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-primary/20 via-blue-500/20 to-purple-500/20 opacity-0 blur-lg transition-all duration-500 group-hover:opacity-100" />
 
             {/* Main card */}
-            <div className="relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 shadow-md transition-all duration-500 group-hover:-translate-y-2 group-hover:border-gray-300 group-hover:shadow-2xl">
-                {/* Animated corner accent */}
-                <div className="absolute top-0 right-0 h-16 w-16 rounded-bl-3xl bg-gradient-to-bl from-primary/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+            <div className="relative flex h-full flex-col items-center justify-between overflow-hidden rounded-2xl border-2 border-gray-200 bg-white p-5 shadow-lg transition-all duration-500 group-hover:-translate-y-3 group-hover:border-primary/30 group-hover:shadow-2xl">
+                {/* Level indicator dot */}
+                {level && (
+                    <div className="absolute top-3 left-3 z-10">
+                        <div className="relative">
+                            <div
+                                className={`h-2.5 w-2.5 rounded-full ${getLevelColor(level)}`}
+                            />
+                            <div
+                                className={`absolute inset-0 animate-ping rounded-full ${getLevelColor(level)} opacity-75`}
+                            />
+                        </div>
+                    </div>
+                )}
 
-                {/* Lightning bolt decoration on hover */}
+                {/* Sparkle decoration on hover */}
                 <div
-                    className={`absolute top-2 right-2 transition-all duration-300 ${localHover ? 'scale-100 rotate-12 opacity-100' : 'scale-0 rotate-0 opacity-0'}`}
+                    className={`absolute top-2 right-2 transition-all duration-300 ${
+                        localHover
+                            ? 'scale-100 rotate-12 opacity-100'
+                            : 'scale-0 rotate-0 opacity-0'
+                    }`}
                 >
-                    <Zap className="h-4 w-4 fill-yellow-500 text-yellow-500" />
+                    <Sparkles className="h-4 w-4 fill-primary text-primary" />
                 </div>
 
-                {/* Icon container with unique animations */}
-                <div className="relative mb-4 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
+                {/* Icon container */}
+                <div className="relative mb-4 transition-all duration-500 group-hover:scale-110 group-hover:-rotate-6">
                     {/* Pulse ring effect */}
                     <div
-                        className={`absolute inset-0 rounded-full bg-${color}-500/20 animate-ping opacity-0 group-hover:opacity-75`}
-                        style={{ animationDuration: '1.5s' }}
+                        className="absolute -inset-2 animate-pulse rounded-2xl bg-primary/20 opacity-0 blur-md group-hover:opacity-100"
+                        style={{ animationDuration: '2s' }}
                     />
 
                     {/* Icon */}
                     <div className="relative z-10">{icon}</div>
                 </div>
 
-                {/* Tech name with slide-up effect */}
-                <div className="relative h-6 overflow-hidden">
-                    <span className="block text-center text-sm font-semibold text-gray-800 transition-transform duration-300 group-hover:-translate-y-6">
-                        {name}
-                    </span>
-                    <span className="absolute top-6 right-0 left-0 block text-center text-sm font-bold text-primary transition-transform duration-300 group-hover:-translate-y-6">
-                        {name}
-                    </span>
+                {/* Tech name with category badge */}
+                <div className="w-full space-y-2">
+                    <div className="text-center">
+                        <span className="block text-sm font-bold text-gray-900 transition-colors duration-300 group-hover:text-primary">
+                            {name}
+                        </span>
+                    </div>
+
+                    {/* Category badge - visible on hover */}
+                    <div
+                        className={`flex justify-center transition-all duration-300 ${
+                            localHover
+                                ? 'translate-y-0 opacity-100'
+                                : 'translate-y-2 opacity-0'
+                        }`}
+                    >
+                        <Badge
+                            variant="outline"
+                            className="border-primary/30 bg-primary/5 text-xs text-primary"
+                        >
+                            {category}
+                        </Badge>
+                    </div>
                 </div>
 
-                {/* Bottom accent line */}
-                <div className="absolute right-0 bottom-0 left-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                {/* Bottom progress bar */}
+                <div className="absolute right-0 bottom-0 left-0 h-1 bg-gray-100">
+                    <div
+                        className="h-full bg-gradient-to-r from-primary via-blue-500 to-primary transition-all duration-700 group-hover:w-full"
+                        style={{ width: '0%' }}
+                    />
+                </div>
 
-                {/* Particle effect */}
+                {/* Floating particles */}
                 <div
-                    className={`pointer-events-none absolute inset-0 transition-opacity duration-500 ${localHover ? 'opacity-100' : 'opacity-0'}`}
+                    className={`pointer-events-none absolute inset-0 transition-opacity duration-500 ${
+                        localHover ? 'opacity-100' : 'opacity-0'
+                    }`}
                 >
-                    {[...Array(3)].map((_, i) => (
+                    {[...Array(4)].map((_, i) => (
                         <div
                             key={i}
-                            className="animate-float absolute h-1 w-1 rounded-full bg-primary"
+                            className="animate-float absolute h-1.5 w-1.5 rounded-full bg-gradient-to-r from-primary to-blue-500"
                             style={{
-                                left: `${20 + i * 30}%`,
-                                top: '50%',
-                                animationDelay: `${i * 0.2}s`,
-                                animationDuration: '2s',
+                                left: `${15 + i * 25}%`,
+                                top: `${30 + (i % 2) * 20}%`,
+                                animationDelay: `${i * 0.3}s`,
+                                animationDuration: '3s',
                             }}
                         />
                     ))}
                 </div>
+
+                {/* Corner accent */}
+                <div className="absolute right-0 bottom-0 h-8 w-8 rounded-tl-2xl bg-gradient-to-tl from-primary/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
             </div>
 
             <style>{`
                 @keyframes float {
-                    0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0; }
-                    50% { transform: translateY(-20px) translateX(10px); opacity: 1; }
+                    0%, 100% {
+                        transform: translateY(0px) translateX(0px) scale(1);
+                        opacity: 0;
+                    }
+                    50% {
+                        transform: translateY(-25px) translateX(15px) scale(1.2);
+                        opacity: 1;
+                    }
                 }
                 .animate-float {
-                    animation: float 2s ease-in-out infinite;
+                    animation: float 3s ease-in-out infinite;
                 }
             `}</style>
         </div>
