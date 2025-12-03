@@ -6,6 +6,7 @@ import { ProjectCard, ProjectCardProps } from '../molecules/ProjectCards';
 export const FeaturedProjects = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+    const [isMobile, setIsMobile] = useState(false);
     const sectionRef = useRef<HTMLDivElement>(null);
 
     const projects: ProjectCardProps[] = [
@@ -52,6 +53,26 @@ export const FeaturedProjects = () => {
     ];
 
     useEffect(() => {
+        const checkScreenSize = () => {
+            const isMobileScreen = window.innerWidth < 768; // md breakpoint
+            setIsMobile(isMobileScreen);
+
+            // Force grid view on mobile
+            if (isMobileScreen) {
+                setViewMode('grid');
+            }
+        };
+
+        // Check on mount
+        checkScreenSize();
+
+        // Add resize listener
+        window.addEventListener('resize', checkScreenSize);
+
+        return () => window.removeEventListener('resize', checkScreenSize);
+    }, []);
+
+    useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
@@ -74,12 +95,12 @@ export const FeaturedProjects = () => {
         <section
             id="project"
             ref={sectionRef}
-            className="relative w-full px-6 py-16"
+            className="relative px-6 py-16 w-full"
         >
             {/* Background decoration */}
-            <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                <div className="absolute top-1/3 -right-32 h-96 w-96 rounded-full bg-blue-500/5 blur-3xl" />
-                <div className="absolute bottom-1/3 -left-32 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="top-1/3 -right-32 absolute bg-blue-500/5 blur-3xl rounded-full w-96 h-96" />
+                <div className="bottom-1/3 -left-32 absolute bg-primary/5 blur-3xl rounded-full w-96 h-96" />
             </div>
 
             <div className="relative mx-auto max-w-7xl">
@@ -99,16 +120,16 @@ export const FeaturedProjects = () => {
                     />
                 </div>
 
-                {/* View Mode Toggle */}
+                {/* View Mode Toggle - Hidden on mobile (< md) */}
                 <div
-                    className={`mb-6 flex justify-start transition-all duration-700 ${
+                    className={`mb-6 hidden justify-start transition-all duration-700 md:flex ${
                         isVisible
                             ? 'translate-y-0 opacity-100'
                             : 'translate-y-10 opacity-0'
                     }`}
                     style={{ transitionDelay: '100ms' }}
                 >
-                    <div className="flex items-center gap-2 rounded-lg bg-gray-100 p-1">
+                    <div className="flex items-center gap-2 bg-gray-100 p-1 rounded-lg">
                         <button
                             onClick={() => setViewMode('grid')}
                             className={`flex items-center gap-2 rounded-md px-4 py-2 transition-all duration-300 ${
@@ -118,8 +139,8 @@ export const FeaturedProjects = () => {
                             }`}
                             aria-label="Grid view"
                         >
-                            <LayoutGrid className="h-4 w-4" />
-                            <span className="text-sm font-medium">Grid</span>
+                            <LayoutGrid className="w-4 h-4" />
+                            <span className="font-medium text-sm">Grid</span>
                         </button>
                         <button
                             onClick={() => setViewMode('list')}
@@ -130,8 +151,8 @@ export const FeaturedProjects = () => {
                             }`}
                             aria-label="List view"
                         >
-                            <Grid3x3 className="h-4 w-4" />
-                            <span className="text-sm font-medium">List</span>
+                            <Grid3x3 className="w-4 h-4" />
+                            <span className="font-medium text-sm">List</span>
                         </button>
                     </div>
                 </div>
@@ -139,7 +160,8 @@ export const FeaturedProjects = () => {
                 {/* Projects Grid/List with animation */}
                 <div
                     className={`gap-6 ${
-                        viewMode === 'grid'
+                        // Always use grid on mobile, respect viewMode on desktop
+                        isMobile || viewMode === 'grid'
                             ? 'grid md:grid-cols-2'
                             : 'flex flex-col'
                     } transition-all duration-500`}
@@ -156,7 +178,10 @@ export const FeaturedProjects = () => {
                                 transitionDelay: `${200 + index * 100}ms`,
                             }}
                         >
-                            <ProjectCard {...project} viewMode={viewMode} />
+                            <ProjectCard
+                                {...project}
+                                viewMode={isMobile ? 'grid' : viewMode}
+                            />
                         </div>
                     ))}
                 </div>

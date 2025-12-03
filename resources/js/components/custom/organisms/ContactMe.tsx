@@ -43,21 +43,21 @@ export function ContactMe() {
 
     const contactInfo: ContactInfoProps[] = [
         {
-            icon: <Mail className="h-5 w-5" />,
+            icon: <Mail className="w-5 h-5" />,
             label: 'Email',
             value: 'purnankjadhav195@gmail.com',
             copyable: true,
             href: 'mailto:purnankjadhav195@gmail.com',
         },
         {
-            icon: <Phone className="h-5 w-5" />,
+            icon: <Phone className="w-5 h-5" />,
             label: 'Phone',
             value: '+91 9099987195',
             copyable: true,
             href: 'tel:+919099987195',
         },
         {
-            icon: <MapPin className="h-5 w-5" />,
+            icon: <MapPin className="w-5 h-5" />,
             label: 'Location',
             value: 'CMR University, Bangalore, India',
             copyable: false,
@@ -66,19 +66,19 @@ export function ContactMe() {
 
     const quickStats = [
         {
-            icon: <Clock className="h-5 w-5" />,
+            icon: <Clock className="w-5 h-5" />,
             label: 'Response Time',
             value: '< 24 hours',
             color: 'from-primary to-blue-500',
         },
         {
-            icon: <Globe className="h-5 w-5" />,
+            icon: <Globe className="w-5 h-5" />,
             label: 'Time Zone',
             value: 'IST (GMT+5:30)',
             color: 'from-blue-500 to-blue-600',
         },
         {
-            icon: <Star className="h-5 w-5" />,
+            icon: <Star className="w-5 h-5" />,
             label: 'Availability',
             value: 'Open to Work',
             color: 'from-green-500 to-green-600',
@@ -148,13 +148,13 @@ export function ContactMe() {
         <section
             id="contact"
             ref={sectionRef}
-            className="relative w-full bg-gradient-to-b from-white to-gray-50 px-6 py-16"
+            className="relative bg-gradient-to-b from-white to-gray-50 px-6 py-16 w-full"
         >
             {/* Enhanced Background decoration */}
-            <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                <div className="absolute top-1/4 -right-32 h-96 w-96 animate-pulse rounded-full bg-blue-500/5 blur-3xl" />
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="top-1/4 -right-32 absolute bg-blue-500/5 blur-3xl rounded-full w-96 h-96 animate-pulse" />
                 <div
-                    className="absolute bottom-1/4 -left-32 h-96 w-96 animate-pulse rounded-full bg-primary/5 blur-3xl"
+                    className="bottom-1/4 -left-32 absolute bg-primary/5 blur-3xl rounded-full w-96 h-96 animate-pulse"
                     style={{ animationDelay: '1s' }}
                 />
             </div>
@@ -177,7 +177,7 @@ export function ContactMe() {
                 </div>
 
                 {/* Main Content Grid */}
-                <div className="grid gap-8 lg:grid-cols-5">
+                <div className="gap-8 grid lg:grid-cols-5">
                     {/* Contact Information - 2 columns */}
                     <div
                         className={`space-y-6 transition-all duration-700 lg:col-span-2 ${
@@ -188,9 +188,9 @@ export function ContactMe() {
                         style={{ transitionDelay: '200ms' }}
                     >
                         <div className="space-y-1">
-                            <h3 className="flex items-center gap-2 text-xl font-bold text-gray-900">
-                                <div className="rounded-lg bg-primary/10 p-2">
-                                    <MessageSquare className="h-4 w-4 text-primary" />
+                            <h3 className="flex items-center gap-2 font-bold text-gray-900 text-xl">
+                                <div className="bg-primary/10 p-2 rounded-lg">
+                                    <MessageSquare className="w-4 h-4 text-primary" />
                                 </div>
                                 Contact Information
                             </h3>
@@ -213,36 +213,36 @@ export function ContactMe() {
                         </div>
 
                         {/* Availability Card */}
-                        <div className="group relative overflow-hidden rounded-2xl border-2 border-gray-200 bg-white p-6 shadow-lg transition-all duration-500 hover:border-primary/30 hover:shadow-xl">
+                        <div className="group relative bg-white shadow-lg hover:shadow-xl p-6 border-2 border-gray-200 hover:border-primary/30 rounded-2xl transition-all duration-500 overflow-hidden">
                             {/* Animated gradient background */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-blue-500/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                             {/* Top accent bar */}
-                            <div className="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-primary to-blue-500" />
+                            <div className="top-0 right-0 left-0 absolute bg-gradient-to-r from-primary to-blue-500 h-0.5" />
 
                             <div className="relative">
-                                <div className="mb-4 flex items-start gap-4">
+                                <div className="flex items-start gap-4 mb-4">
                                     <div className="relative flex-shrink-0">
                                         {/* Pulsing rings */}
-                                        <div className="absolute inset-0 animate-ping rounded-xl bg-gradient-to-br from-primary to-blue-500 opacity-20" />
-                                        <div className="relative flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-blue-500 text-white shadow-lg">
-                                            <Sparkles className="h-7 w-7" />
+                                        <div className="absolute inset-0 bg-gradient-to-br from-primary to-blue-500 opacity-10 rounded-lg animate-ping" />
+                                        <div className="relative flex justify-center items-center bg-gradient-to-br from-primary to-blue-500 shadow-lg rounded-xl w-14 h-14 text-white">
+                                            <Sparkles className="w-7 h-7" />
                                         </div>
                                     </div>
                                     <div className="flex-1">
-                                        <div className="mb-2 flex items-center gap-2">
-                                            <h4 className="text-lg font-bold text-gray-900">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <h4 className="font-bold text-gray-900 text-lg">
                                                 Available for Opportunities
                                             </h4>
-                                            <Badge className="bg-gradient-to-r from-green-500 to-green-600 text-white shadow-sm">
-                                                <span className="relative mr-1.5 flex h-2 w-2">
-                                                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
-                                                    <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
+                                            <Badge className="bg-gradient-to-r from-green-500 to-green-600 shadow-sm text-white">
+                                                <span className="relative flex mr-1.5 w-2 h-2">
+                                                    <span className="inline-flex absolute bg-white opacity-75 rounded-full w-full h-full animate-ping" />
+                                                    <span className="inline-flex relative bg-white rounded-full w-2 h-2" />
                                                 </span>
                                                 Open
                                             </Badge>
                                         </div>
-                                        <p className="text-sm leading-relaxed text-gray-600">
+                                        <p className="text-gray-600 text-sm leading-relaxed">
                                             I'm currently open to freelance
                                             projects, full-time positions, and
                                             exciting collaborations. Let's build
@@ -252,7 +252,7 @@ export function ContactMe() {
                                 </div>
 
                                 {/* Interest Tags */}
-                                <div className="flex flex-wrap gap-2 border-t border-gray-200 pt-4">
+                                <div className="flex flex-wrap gap-2 pt-4 border-gray-200 border-t">
                                     {[
                                         'Web Development',
                                         'AI/ML Projects',
@@ -261,9 +261,9 @@ export function ContactMe() {
                                         <Badge
                                             key={idx}
                                             variant="outline"
-                                            className="border-primary/30 bg-primary/5 text-primary transition-all duration-300 hover:scale-105 hover:bg-primary/10"
+                                            className="bg-primary/5 hover:bg-primary/10 border-primary/30 text-primary transition-all duration-300 hover:scale-105"
                                         >
-                                            <Zap className="mr-1 h-3 w-3" />
+                                            <Zap className="mr-1 w-3 h-3" />
                                             {tag}
                                         </Badge>
                                     ))}
@@ -281,10 +281,10 @@ export function ContactMe() {
                         }`}
                         style={{ transitionDelay: '400ms' }}
                     >
-                        <div className="mb-6 space-y-1">
-                            <h3 className="flex items-center gap-2 text-xl font-bold text-gray-900">
-                                <div className="rounded-lg bg-blue-500/10 p-2">
-                                    <Send className="h-4 w-4 text-blue-600" />
+                        <div className="space-y-1 mb-6">
+                            <h3 className="flex items-center gap-2 font-bold text-gray-900 text-xl">
+                                <div className="bg-blue-500/10 p-2 rounded-lg">
+                                    <Send className="w-4 h-4 text-blue-600" />
                                 </div>
                                 Send a Message
                             </h3>
@@ -294,15 +294,15 @@ export function ContactMe() {
                             </p>
                         </div>
 
-                        <div className="relative overflow-hidden rounded-2xl border-2 border-gray-200 bg-white shadow-lg transition-all duration-500 hover:border-primary/30 hover:shadow-xl">
+                        <div className="relative bg-white shadow-lg hover:shadow-xl border-2 border-gray-200 hover:border-primary/30 rounded-2xl transition-all duration-500 overflow-hidden">
                             <div className="space-y-5 p-6">
                                 {/* Name & Email Row */}
-                                <div className="grid gap-4 sm:grid-cols-2">
+                                <div className="gap-4 grid sm:grid-cols-2">
                                     {/* Name Input */}
                                     <div>
                                         <label
                                             htmlFor="name"
-                                            className="mb-2 flex items-center gap-2 text-sm font-bold text-gray-700"
+                                            className="flex items-center gap-2 mb-2 font-bold text-gray-700 text-sm"
                                         >
                                             Your Name
                                             <span className="text-red-500">
@@ -327,7 +327,7 @@ export function ContactMe() {
                                                     setFocusedField(null)
                                                 }
                                                 placeholder="John Doe"
-                                                className="w-full rounded-xl border-2 border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 transition-all duration-300 placeholder:text-gray-400 focus:border-primary focus:bg-white focus:shadow-lg focus:outline-none"
+                                                className="bg-gray-50 focus:bg-white focus:shadow-lg px-4 py-3 border-2 border-gray-200 focus:border-primary rounded-xl w-full text-gray-900 placeholder:text-gray-400 transition-all duration-300 focus:outline-none"
                                             />
                                             <div
                                                 className={`absolute -bottom-0 left-1.5 h-1 rounded-full bg-gradient-to-r from-primary to-blue-500 transition-all duration-300 ${
@@ -343,7 +343,7 @@ export function ContactMe() {
                                     <div>
                                         <label
                                             htmlFor="email"
-                                            className="mb-2 flex items-center gap-2 text-sm font-bold text-gray-700"
+                                            className="flex items-center gap-2 mb-2 font-bold text-gray-700 text-sm"
                                         >
                                             Your Email
                                             <span className="text-red-500">
@@ -368,7 +368,7 @@ export function ContactMe() {
                                                     setFocusedField(null)
                                                 }
                                                 placeholder="john@example.com"
-                                                className="w-full rounded-xl border-2 border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 transition-all duration-300 placeholder:text-gray-400 focus:border-primary focus:bg-white focus:shadow-lg focus:outline-none"
+                                                className="bg-gray-50 focus:bg-white focus:shadow-lg px-4 py-3 border-2 border-gray-200 focus:border-primary rounded-xl w-full text-gray-900 placeholder:text-gray-400 transition-all duration-300 focus:outline-none"
                                             />
                                             <div
                                                 className={`absolute -bottom-0 left-1.5 h-1 rounded-full bg-gradient-to-r from-primary to-blue-500 transition-all duration-300 ${
@@ -385,12 +385,12 @@ export function ContactMe() {
                                 <div>
                                     <label
                                         htmlFor="subject"
-                                        className="mb-2 flex items-center gap-2 text-sm font-bold text-gray-700"
+                                        className="flex items-center gap-2 mb-2 font-bold text-gray-700 text-sm"
                                     >
                                         Subject
                                         <Badge
                                             variant="outline"
-                                            className="border-gray-300 text-xs text-gray-600"
+                                            className="border-gray-300 text-gray-600 text-xs"
                                         >
                                             Optional
                                         </Badge>
@@ -411,7 +411,7 @@ export function ContactMe() {
                                             }
                                             onBlur={() => setFocusedField(null)}
                                             placeholder="Project inquiry, Collaboration, etc."
-                                            className="w-full rounded-xl border-2 border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 transition-all duration-300 placeholder:text-gray-400 focus:border-primary focus:bg-white focus:shadow-lg focus:outline-none"
+                                            className="bg-gray-50 focus:bg-white focus:shadow-lg px-4 py-3 border-2 border-gray-200 focus:border-primary rounded-xl w-full text-gray-900 placeholder:text-gray-400 transition-all duration-300 focus:outline-none"
                                         />
                                         <div
                                             className={`absolute -bottom-0 left-1.5 h-1 rounded-full bg-gradient-to-r from-primary to-blue-500 transition-all duration-300 ${
@@ -427,7 +427,7 @@ export function ContactMe() {
                                 <div>
                                     <label
                                         htmlFor="message"
-                                        className="mb-2 flex items-center justify-between text-sm font-bold text-gray-700"
+                                        className="flex justify-between items-center mb-2 font-bold text-gray-700 text-sm"
                                     >
                                         <span className="flex items-center gap-2">
                                             Your Message
@@ -435,7 +435,7 @@ export function ContactMe() {
                                                 *
                                             </span>
                                         </span>
-                                        <span className="text-xs font-normal text-gray-500">
+                                        <span className="font-normal text-gray-500 text-xs">
                                             {charCount}/500
                                         </span>
                                     </label>
@@ -456,7 +456,7 @@ export function ContactMe() {
                                             placeholder="Tell me about your project, ideas, or how we can collaborate..."
                                             rows={6}
                                             maxLength={500}
-                                            className="w-full resize-none rounded-xl border-2 border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 transition-all duration-300 placeholder:text-gray-400 focus:border-primary focus:bg-white focus:shadow-lg focus:outline-none"
+                                            className="bg-gray-50 focus:bg-white focus:shadow-lg px-4 py-3 border-2 border-gray-200 focus:border-primary rounded-xl w-full text-gray-900 placeholder:text-gray-400 transition-all duration-300 resize-none focus:outline-none"
                                         />
                                         <div
                                             className={`absolute -bottom-0 left-1.5 h-1 rounded-full bg-gradient-to-r from-primary to-blue-500 transition-all duration-300 ${
@@ -472,21 +472,21 @@ export function ContactMe() {
                                 <Button
                                     onClick={handleSubmit}
                                     disabled={isSubmitting || submitSuccess}
-                                    className="h-12 w-full px-6 py-3 text-sm font-medium transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]"
+                                    className="px-6 py-2 w-full h-10 font-medium text-sm transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]"
                                 >
                                     {isSubmitting ? (
                                         <>
-                                            <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                                            <div className="mr-2 border-2 border-white border-t-transparent rounded-full w-4 h-4 animate-spin" />
                                             Sending...
                                         </>
                                     ) : submitSuccess ? (
                                         <>
-                                            <CheckCircle2 className="mr-2 h-4 w-4" />
+                                            <CheckCircle2 className="mr-2 w-4 h-4" />
                                             Message Sent!
                                         </>
                                     ) : (
                                         <>
-                                            <Send className="mr-2 h-4 w-4" />
+                                            <Send className="mr-2 w-4 h-4" />
                                             Send Message
                                         </>
                                     )}
@@ -517,16 +517,19 @@ const ContactInfoItem = ({
     const [isHovered, setIsHovered] = useState(false);
 
     const gradientColors = [
-        { bg: 'from-green-500 to-green-600', light: 'bg-green-500/10' },
-        { bg: 'from-orange-500 to-orange-600', light: 'bg-orange-500/10' },
-        { bg: 'from-red-500 to-red-600', light: 'bg-red-500/10' },
+        { bg: 'from-green-500/80 to-green-600/80', light: 'bg-green-500/10' },
+        {
+            bg: 'from-orange-500/80 to-orange-600/80',
+            light: 'bg-orange-500/10',
+        },
+        { bg: 'from-red-500/80 to-red-600/80', light: 'bg-red-500/10' },
     ];
 
     const color = gradientColors[index % gradientColors.length];
 
     const content = (
         <div
-            className="group relative cursor-pointer overflow-hidden rounded-xl border-2 border-gray-200 bg-white p-4 shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl"
+            className="group relative bg-white shadow-md hover:shadow-xl p-4 border-2 border-gray-200 hover:border-primary/30 rounded-xl transition-all hover:-translate-y-1 duration-300 cursor-pointer overflow-hidden"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
@@ -539,7 +542,7 @@ const ContactInfoItem = ({
 
             {/* Top accent line */}
             <div
-                className={`absolute top-0 right-0 left-0 h-1 bg-gradient-to-r ${color.bg} origin-left transform transition-transform duration-300 ${
+                className={`absolute top-[-2px] right-0 left-0 h-1 bg-gradient-to-r ${color.bg} origin-left transform opacity-90 transition-transform duration-300 ${
                     isHovered ? 'scale-x-100' : 'scale-x-0'
                 }`}
             />
@@ -565,11 +568,11 @@ const ContactInfoItem = ({
                 </div>
 
                 {/* Content */}
-                <div className="min-w-0 flex-1">
-                    <p className="mb-0.5 text-xs font-semibold tracking-wide text-gray-500 uppercase">
+                <div className="flex-1 min-w-0">
+                    <p className="mb-0.5 font-semibold text-gray-500 text-xs uppercase tracking-wide">
                         {label}
                     </p>
-                    <p className="text-sm font-bold break-words text-gray-900 transition-colors duration-300 group-hover:text-primary">
+                    <p className="font-bold text-gray-900 text-sm group-hover:text-primary break-words transition-colors duration-300">
                         {value}
                     </p>
                 </div>
@@ -589,9 +592,9 @@ const ContactInfoItem = ({
                         title="Copy to clipboard"
                     >
                         {isCopied ? (
-                            <Check className="h-4 w-4" />
+                            <Check className="w-4 h-4" />
                         ) : (
-                            <Copy className="h-4 w-4" />
+                            <Copy className="w-4 h-4" />
                         )}
                     </button>
                 )}
