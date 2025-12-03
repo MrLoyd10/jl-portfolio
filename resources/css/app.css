@@ -130,6 +130,8 @@
     --sidebar-ring: oklch(0.408 0.123 38.172);
 }
 
+/* Green, Orange, Red, Rose, Violet, Yellow */
+
 @layer base {
     * {
         @apply border-border;

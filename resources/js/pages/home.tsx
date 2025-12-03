@@ -2,6 +2,7 @@ import { Achievements } from '@/components/custom/organisms/Achievements';
 import { ContactMe } from '@/components/custom/organisms/ContactMe';
 import { EducationJourney } from '@/components/custom/organisms/EducationJourney';
 import { FeaturedProjects } from '@/components/custom/organisms/FeaturedProjects';
+import { Footer } from '@/components/custom/organisms/Footer';
 import { Header } from '@/components/custom/organisms/Header';
 import { ProfileSummary } from '@/components/custom/organisms/ProfileSummary';
 import { TechArsenal } from '@/components/custom/organisms/TechArsenal';
@@ -31,6 +32,7 @@ export default function Home({
                     <ContactMe />
                 </div>
             </main>
+            <Footer />
         </>
     );
 }
