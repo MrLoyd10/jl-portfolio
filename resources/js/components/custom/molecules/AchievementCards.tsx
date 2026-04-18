@@ -16,6 +16,7 @@ export interface AchievementCardProps {
     certificateId?: string;
     image: string;
     link?: string;
+    buttonLabel?: string;
 }
 
 export const AchievementCard = ({
@@ -26,6 +27,7 @@ export const AchievementCard = ({
     certificateId,
     image,
     link,
+    buttonLabel,
 }: AchievementCardProps) => {
     const [isHovered, setIsHovered] = useState(false);
     const [imageLoaded, setImageLoaded] = useState(false);
@@ -132,7 +134,7 @@ export const AchievementCard = ({
                             rel="noopener noreferrer"
                             className="group/btn flex items-center justify-center gap-2 rounded-lg border-2 border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 shadow-sm transition-all duration-300 hover:scale-105 hover:border-gray-400 hover:bg-gray-50 hover:shadow-md active:scale-95"
                         >
-                            View Certificate
+                            {buttonLabel || 'View Certificate'}
                             <ExternalLink className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
                         </a>
                     )}

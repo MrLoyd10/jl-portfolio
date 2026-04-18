@@ -35,10 +35,9 @@ export const ProfileSummary = () => {
     ];
 
     const titles = [
-        'Full-Stack Developer',
-        'Next.js Enthusiast',
-        'React Specialist',
-        'Node.js Developer',
+        'Full Stack Web Developer',
+        'Laravel & React Developer',
+        'Government Systems Developer',
     ];
     const [currentTitle, setCurrentTitle] = useState(0);
 
@@ -62,7 +61,7 @@ export const ProfileSummary = () => {
     }, []);
 
     const handleScheduleCall = () => {
-        window.open('https://calendly.com/your-link', '_blank');
+        window.location.href = 'mailto:jl.ocoy.work@gmail.com';
     };
 
     return (
@@ -71,45 +70,45 @@ export const ProfileSummary = () => {
 
             <section
                 id="home"
-                className="relative flex items-center 2xl:py-32 w-full min-h-[calc(100vh-74px)] 2xl:min-h-auto overflow-hidden"
+                className="relative flex min-h-[calc(100vh-74px)] w-full items-center overflow-hidden 2xl:min-h-auto 2xl:py-32"
             >
                 {/* Animated Background Elements */}
-                <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    <div className="top-20 -right-20 absolute bg-primary/10 blur-3xl rounded-full w-96 h-96 animate-pulse" />
+                <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                    <div className="absolute top-20 -right-20 h-96 w-96 animate-pulse rounded-full bg-primary/10 blur-3xl" />
                     <div
-                        className="bottom-20 -left-20 absolute bg-blue-500/10 blur-3xl rounded-full w-96 h-96 animate-pulse"
+                        className="absolute bottom-20 -left-20 h-96 w-96 animate-pulse rounded-full bg-blue-500/10 blur-3xl"
                         style={{ animationDelay: '1s' }}
                     />
                 </div>
 
-                <div className="relative items-center gap-12 grid md:grid-cols-5 mx-auto px-6 py-12 w-full max-w-7xl">
+                <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 px-6 py-12 md:grid-cols-5">
                     {/* Left Column: Image and Social Links */}
                     <div
                         className={`flex justify-center transition-all duration-1000 md:col-span-2 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}
                     >
-                        <div className="flex flex-col justify-center items-center space-y-6">
+                        <div className="flex flex-col items-center justify-center space-y-6">
                             {/* Profile Image with Gradient Border */}
                             <div className="group relative">
                                 {/* Animated gradient border */}
-                                <div className="absolute inset-0 bg-gradient-to-tr from-primary via-blue-500 to-purple-500 opacity-75 group-hover:opacity-100 blur-sm rounded-full transition-all animate-spin-slow duration-500" />
+                                <div className="animate-spin-slow absolute inset-0 rounded-full bg-gradient-to-tr from-primary via-blue-500 to-purple-500 opacity-75 blur-sm transition-all duration-500 group-hover:opacity-100" />
 
-                                <div className="relative shadow-xl border-4 border-white rounded-full w-64 h-64 transition-transform duration-500 overflow-hidden group-hover:scale-105">
+                                <div className="relative h-64 w-64 overflow-hidden rounded-full border-4 border-white shadow-xl transition-transform duration-500 group-hover:scale-105">
                                     <img
                                         src="https://picsum.photos/400"
                                         alt="Profile"
-                                        className="w-full h-full transition-transform duration-700 object-cover group-hover:scale-110"
+                                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                                     />
                                     {/* Overlay on hover */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                                 </div>
 
                                 {/* Floating status badge */}
-                                <div className="right-4 bottom-4 absolute flex items-center gap-2 bg-white shadow-lg px-3 py-1.5 border border-green-200 rounded-full animate-bounce-slow">
-                                    <span className="relative flex w-3 h-3">
-                                        <span className="inline-flex absolute bg-green-400 opacity-75 rounded-full w-full h-full animate-ping" />
-                                        <span className="inline-flex relative bg-green-500 rounded-full w-3 h-3" />
+                                <div className="animate-bounce-slow absolute right-4 bottom-4 flex items-center gap-2 rounded-full border border-green-200 bg-white px-3 py-1.5 shadow-lg">
+                                    <span className="relative flex h-3 w-3">
+                                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
+                                        <span className="relative inline-flex h-3 w-3 rounded-full bg-green-500" />
                                     </span>
-                                    <span className="font-medium text-green-700 text-xs">
+                                    <span className="text-xs font-medium text-green-700">
                                         Available
                                     </span>
                                 </div>
@@ -120,9 +119,9 @@ export const ProfileSummary = () => {
                                 className={`flex items-center gap-2 text-gray-800 transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
                                 style={{ transitionDelay: '200ms' }}
                             >
-                                <MapPin className="w-5 h-5 text-primary animate-pulse" />
+                                <MapPin className="h-5 w-5 animate-pulse text-primary" />
                                 <span className="font-medium">
-                                    Ngp, Maharashtra, India
+                                    Sucat, Parañaque City, Philippines
                                 </span>
                             </div>
 
@@ -138,7 +137,7 @@ export const ProfileSummary = () => {
                                         style={{ transitionDelay: '30ms' }}
                                         aria-label={social.label}
                                     >
-                                        <social.icon className="w-6 h-6" />
+                                        <social.icon className="h-6 w-6" />
                                     </a>
                                 ))}
                                 {/* X (Twitter) Icon */}
@@ -151,7 +150,7 @@ export const ProfileSummary = () => {
                                     aria-label="X (Twitter)"
                                 >
                                     <svg
-                                        className="w-6 h-6"
+                                        className="h-6 w-6"
                                         viewBox="0 0 24 24"
                                         fill="currentColor"
                                     >
@@ -174,14 +173,12 @@ export const ProfileSummary = () => {
                             <Button
                                 onClick={handleScheduleCall}
                                 variant="outline"
-                                className="group relative hover:shadow-lg border-primary/50 hover:border-primary transition-all duration-300 overflow-hidden hover:scale-105"
+                                className="group relative overflow-hidden border-primary/50 transition-all duration-300 hover:scale-105 hover:border-primary hover:shadow-lg"
                             >
-                                <span className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
-                                <Calendar className="mr-2 w-4 h-4 transition-transform duration-300 group-hover:rotate-12" />
-                                <span className="relative">
-                                    Schedule a call
-                                </span>
-                                <Sparkles className="opacity-60 group-hover:opacity-100 ml-2 w-4 h-4 transition-opacity duration-300" />
+                                <span className="absolute inset-0 bg-primary opacity-0 transition-opacity duration-300 group-hover:opacity-10" />
+                                <Calendar className="mr-2 h-4 w-4 transition-transform duration-300 group-hover:rotate-12" />
+                                <span className="relative">Contact Me</span>
+                                <Sparkles className="ml-2 h-4 w-4 opacity-60 transition-opacity duration-300 group-hover:opacity-100" />
                             </Button>
                         </div>
 
@@ -190,11 +187,11 @@ export const ProfileSummary = () => {
                             className={`animate-gradient bg-gradient-to-r from-primary via-blue-600 to-purple-600 bg-clip-text text-5xl font-bold text-transparent transition-all duration-700 md:text-6xl lg:text-7xl`}
                             style={{ transitionDelay: '200ms' }}
                         >
-                            Aditya Domle
+                            Jhon Loyd Ocoy
                         </h1>
 
                         {/* Rotating Title */}
-                        <div className="relative h-8 md:h-10 overflow-hidden">
+                        <div className="relative h-8 overflow-hidden md:h-10">
                             {titles.map((title, index) => (
                                 <p
                                     key={index}
@@ -214,21 +211,24 @@ export const ProfileSummary = () => {
                             className={`transition-all duration-700`}
                             style={{ transitionDelay: '400ms' }}
                         >
-                            <p className="group relative max-w-2xl text-base text-gray-600 md:text-lg leading-relaxed">
+                            <p className="group relative max-w-2xl text-base leading-relaxed text-gray-600 md:text-lg">
                                 <span className="relative z-10">
-                                    Self-taught Full-Stack Developer from India,
-                                    specializing in modern web technologies and
-                                    open-source development. Passionate about
-                                    building{' '}
+                                    Full Stack Web Developer with hands-on
+                                    experience building
                                     <span className="font-semibold text-primary">
-                                        scalable applications
-                                    </span>{' '}
-                                    with Next.js and contributing to the
-                                    developer community through{' '}
-                                    <span className="font-semibold text-primary">
-                                        open-source projects
+                                        {' '}
+                                        government and enterprise web
+                                        applications
                                     </span>
-                                    .
+                                    , including dashboards, booking systems, and
+                                    document management platforms. Experienced
+                                    in delivering
+                                    <span className="font-semibold text-primary">
+                                        {' '}
+                                        end-to-end solutions
+                                    </span>{' '}
+                                    using Laravel, React, Vue, and modern
+                                    deployment workflows on AWS.
                                 </span>
                             </p>
                         </div>
@@ -238,30 +238,30 @@ export const ProfileSummary = () => {
                             className={`flex flex-wrap justify-center gap-6 pt-4 transition-all duration-700 md:justify-start`}
                             style={{ transitionDelay: '500ms' }}
                         >
-                            <div className="group text-center cursor-default">
-                                <div className="font-bold text-3xl text-primary transition-transform duration-300 group-hover:scale-110">
-                                    5+
+                            <div className="group cursor-default text-center">
+                                <div className="text-3xl font-bold text-primary transition-transform duration-300 group-hover:scale-110">
+                                    2
                                 </div>
-                                <div className="text-gray-600 text-sm">
+                                <div className="text-sm text-gray-600">
                                     Years Experience
                                 </div>
                             </div>
-                            <div className="border-gray-300 border-l" />
-                            <div className="group text-center cursor-default">
-                                <div className="font-bold text-3xl text-primary transition-transform duration-300 group-hover:scale-110">
-                                    50+
-                                </div>
-                                <div className="text-gray-600 text-sm">
-                                    Projects Completed
-                                </div>
-                            </div>
-                            <div className="border-gray-300 border-l" />
-                            <div className="group text-center cursor-default">
-                                <div className="font-bold text-3xl text-primary transition-transform duration-300 group-hover:scale-110">
+                            <div className="border-l border-gray-300" />
+                            <div className="group cursor-default text-center">
+                                <div className="text-3xl font-bold text-primary transition-transform duration-300 group-hover:scale-110">
                                     10+
                                 </div>
-                                <div className="text-gray-600 text-sm">
-                                    Tech Stack
+                                <div className="text-sm text-gray-600">
+                                    Projects Built
+                                </div>
+                            </div>
+                            <div className="border-l border-gray-300" />
+                            <div className="group cursor-default text-center">
+                                <div className="text-3xl font-bold text-primary transition-transform duration-300 group-hover:scale-110">
+                                    10+
+                                </div>
+                                <div className="text-sm text-gray-600">
+                                    Technologies Used
                                 </div>
                             </div>
                         </div>

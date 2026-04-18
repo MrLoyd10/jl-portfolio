@@ -6,49 +6,61 @@ import {
     AchievementCard,
     AchievementCardProps,
 } from '../molecules/AchievementCards';
+
 export const Achievements = () => {
     const [isVisible, setIsVisible] = useState(false);
     const sectionRef = useRef<HTMLDivElement>(null);
 
     const achievements: AchievementCardProps[] = [
         {
-            title: 'Job Ready Cohort',
-            issuer: 'Sheryians Coding School',
-            date: 'Nov 03, 2025',
+            title: 'Introduction to Computer Science',
+            issuer: 'Harvard University',
+            date: 'Year 2023',
             description:
-                'Completed comprehensive training in Frontend Development, Data Structures & Algorithms, Backend Development, and DevOps practices including CI/CD, Docker, and Kubernetes.',
-            certificateId: '96015788',
-            image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop',
-            link: '#',
+                "Completed Harvard University's renowned CS50 online course, covering fundamental computer science concepts, algorithms, data structures, and programming principles.",
+            image: '/certificates/Certificate - CS50x.jpg',
+            link: '/certificates/Certificate - CS50x.pdf',
+            buttonLabel: 'View Certificate',
         },
         {
-            title: 'JavaScript (Intermediate)',
-            issuer: 'HackerRank',
-            date: 'Aug 09, 2025',
+            title: 'Agile Scrum Foundation',
+            issuer: 'Simplilearn',
+            date: 'April 2024',
             description:
-                'Passed the HackerRank skill certification test demonstrating intermediate proficiency in JavaScript programming.',
-            certificateId: '8DD58332539',
-            image: 'https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=800&h=600&fit=crop',
-            link: '#',
+                'Completed online seminar on Agile Scrum Foundation, learning key principles of agile methodology, sprint planning, and team collaboration in software development.',
+            image: '/certificates/Certificate - Agile Scrum Foundation.jpg',
+            link: '/certificates/Certificate - Agile Scrum Foundation.pdf',
+            buttonLabel: 'View Certificate',
         },
         {
-            title: 'Frontend Developer (React)',
-            issuer: 'HackerRank',
-            date: 'Nov 03, 2025',
+            title: 'Introduction to Graphic Design; Basics of UI/UX',
+            issuer: 'Simplilearn',
+            date: 'April 2024',
             description:
-                'Passed the HackerRank role certification test for Frontend Developer specializing in React.',
-            certificateId: '89D04252665',
-            image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop',
-            link: '#',
+                'Completed online seminar covering fundamental principles of graphic design and user interface/user experience design basics.',
+            image: '/certificates/Certificate - Introduction to Graphic Design Basics of UIUX.jpg',
+            link: '/certificates/Certificate - Introduction to Graphic Design Basics of UIUX.pdf',
+            buttonLabel: 'View Certificate',
         },
+        // {
+        //     title: 'Basic Office Application Software',
+        //     issuer: 'Arellano University',
+        //     date: 'Year 2017',
+        //     description:
+        //         'Completed face-to-face course on basic office application software, covering essential productivity tools and business software applications.',
+        //     image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
+        //     link: '#',
+        //     buttonLabel: 'View Certificate',
+        // },
         {
-            title: 'Complete JavaScript Programming: From Novice to Expert',
-            issuer: 'Udemy - Knowledge Nest',
-            date: 'June 6, 2025',
+            title: 'Academic & Professional Awards',
+            issuer: 'College of Saint Lawrence & ZAP I.T. Services',
+            date: 'Year 2024',
             description:
-                'Completed comprehensive JavaScript course covering fundamentals to advanced concepts. Total duration: 3.5 hours.',
-            image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop',
-            link: '#',
+                'Departmental Awardee - Recognized for outstanding academic performance and contributions within the Computer Science department. Leadership Awardee - Awarded for demonstrating exceptional leadership qualities and positive influence among peers. Best in Internship - Recognized as the top-performing intern at ZAP I.T. Services during OJT period.',
+            image: '/certificates/college-award.png',
+            link: '/certificates/college-award.png',
+            buttonLabel: 'View Photo',
         },
     ];
 

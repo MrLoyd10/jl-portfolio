@@ -34,70 +34,48 @@ export function WorkExperience() {
 
     const experiences: ExperienceCardProps[] = [
         {
-            title: 'Web Developer',
-            company: 'MetriStambh',
-            location: 'Remote',
-            period: 'Aug 2024 - May 2025',
+            title: 'Full Stack Web Developer',
+            company: 'Skyward Technology Solutions',
+            location: 'Perpetual Village, Parañaque City',
+            period: 'Nov 2024 - Present',
             employmentType: 'Full-time',
             description:
-                'Worked as a web developer for MetriStambh, creating their company portfolio and managing their website for project uploads and details. Gained expertise in website development, project management, and technical support during this role.',
+                'Developing and maintaining full-stack web applications, primarily government systems featuring dashboards and booking workflows. Building end-to-end application features and serving as technical point of contact for clients.',
             achievements: [
-                "Developed and maintained MetriStambh's company portfolio and website",
-                'Enhanced website functionality, boosting user engagement and accessibility',
-                'Gained experience in project management and technical troubleshooting',
-                'Streamlined processes for uploading and showcasing projects online',
+                'Independently built end-to-end application features including authentication, CRUD modules, payment integrations, and courier service integrations',
+                'Implemented frontend interfaces using React (TypeScript), Vue, and Laravel Blade integrated with Laravel (PHP) backend APIs',
+                'Led requirement discussions with clients, evaluated technical risks, and ensured changes aligned with existing system processes',
+                'Developed and maintained government systems with complex booking workflows and dashboard functionalities',
             ],
             technologies: [
                 'React.js',
-                'Node.js',
                 'TypeScript',
-                'SEO',
-                'express.js',
-                'MongoDB',
-            ],
-        },
-        {
-            title: 'Frontend Developer',
-            company: 'CreativeSync Digital',
-            location: 'Makati, Philippines',
-            period: 'Jan 2023 - Jun 2024',
-            employmentType: 'Contract',
-            description:
-                'Led UI implementation for multiple client-facing applications. Focused on responsive design, component-driven architecture, and optimizing performance across browsers and devices.',
-            achievements: [
-                'Developed scalable UI components using React and TailwindCSS',
-                'Improved Lighthouse performance scores by up to 40%',
-                'Collaborated with designers to refine UX workflows',
-                'Reduced bundle size by applying code splitting and asset optimization',
-            ],
-            technologies: [
-                'React.js',
-                'Next.js',
-                'TailwindCSS',
-                'JavaScript',
-                'Vercel',
-            ],
-        },
-        {
-            title: 'Full Stack Developer',
-            company: 'CodeForge Solutions',
-            location: 'Quezon City, Philippines',
-            period: 'Jul 2022 - Dec 2023',
-            employmentType: 'Part-time',
-            description:
-                'Handled full-stack development for internal tools and SaaS-based products. Responsible for API development, automation scripts, and database maintenance.',
-            achievements: [
-                'Built REST APIs improving workflow automation by 30%',
-                'Integrated CI/CD pipelines for faster deployment cycles',
-                'Implemented authentication and role-based access',
-                'Designed relational database schemas for new app modules',
-            ],
-            technologies: [
+                'Vue.js',
                 'Laravel',
+                'PHP',
                 'MySQL',
-                'React.js',
-                'Docker',
-                'GitHub Actions',
+                'Laravel Blade',
+            ],
+        },
+        {
+            title: 'Assistant System Administrator',
+            company: 'ZAP I.T. Services and I.T. Consultancy',
+            location: 'Norzagaray, Bulacan',
+            period: 'Mar 2024 - May 2024',
+            employmentType: 'OJT',
+            description:
+                'On-the-job training focused on system administration and IT support. Gained hands-on experience in network configuration, hardware troubleshooting, and technical support operations.',
+            achievements: [
+                'Configured IP phones to register with servers and ensured operational readiness',
+                'Deployed to repair computers at off-site client locations',
+                'Built and troubleshot PCs running Windows operating systems',
+                'Provided technical support and maintenance for IT infrastructure',
+            ],
+            technologies: [
+                'Windows',
+                'IP Phone Configuration',
+                'Hardware Troubleshooting',
+                'Network Configuration',
             ],
         },
     ];
@@ -328,8 +306,8 @@ export function WorkExperience() {
                                             I'm actively looking for exciting
                                             projects and full-time opportunities
                                             where I can contribute my skills in
-                                            web development and create impactful
-                                            solutions.
+                                            full-stack web development and
+                                            create impactful solutions.
                                         </p>
 
                                         <div className="flex flex-wrap gap-3">
@@ -360,7 +338,7 @@ export function WorkExperience() {
                                             asChild
                                             className="group/btn flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95"
                                         >
-                                            <a href="mailto:your-email@example.com">
+                                            <a href="mailto:jl.ocoy.work@gmail.com">
                                                 <Mail className="h-5 w-5 transition-transform duration-300 group-hover/btn:scale-110 group-hover/btn:rotate-12" />
                                                 Email Me
                                                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
@@ -373,9 +351,9 @@ export function WorkExperience() {
                                             variant="outline"
                                             className="group/btn flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-semibold shadow-md transition-all duration-300 hover:scale-105 active:scale-95"
                                         >
-                                            <a href="#">
+                                            <a href="tel:+639946965365">
                                                 <Calendar className="h-5 w-5 transition-transform duration-300 group-hover/btn:scale-110 group-hover/btn:-rotate-12" />
-                                                Schedule Call
+                                                Call Me
                                                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
                                             </a>
                                         </Button>

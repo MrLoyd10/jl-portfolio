@@ -30,66 +30,72 @@ export function EducationJourney() {
 
     const education: EducationItemProps[] = [
         {
-            degree: 'Matriculation',
-            institution: 'Army Public School Ahmedabad',
-            period: '2020 - 2021',
+            degree: 'Elementary Education',
+            institution: 'Masville Elementary School',
+            period: '2008 - 2014',
             description:
-                'Completed with Science stream, building a strong foundation in core subjects and developing critical thinking abilities.',
-            icon: <BookOpen className="w-6 h-6" />,
-            yearRange: '2020 - 2021',
+                'Completed primary education, building foundational knowledge and developing early interest in technology and problem-solving.',
+            icon: <BookOpen className="h-6 w-6" />,
+            yearRange: '2008 - 2014',
             status: 'completed',
-            achievements: [
-                'Developed strong analytical and problem-solving skills',
-                'Excellence in Mathematics and Science subjects',
-                'Built foundation for higher studies in STEM',
-            ],
-            skills: ['Mathematics', 'Science', 'Problem Solving'],
+            achievements: [],
+            skills: [],
         },
         {
-            degree: 'Intermediate (Class XII)',
-            institution: 'Army Public School Ahmedabad',
-            period: '2021 - 2023',
+            degree: 'Junior High School',
+            institution: 'Masville National High School',
+            period: '2014 - 2018',
             description:
-                'Specialized in Physics, Chemistry and Mathematics with high distinction, preparing for engineering entrance exams.',
-            icon: <GraduationCap className="w-6 h-6" />,
-            yearRange: '2021 - 2023',
+                'Completed secondary education with focus on academic excellence and preparation for specialized studies.',
+            icon: <School className="h-6 w-6" />,
+            yearRange: '2014 - 2018',
+            status: 'completed',
+            achievements: [],
+            skills: [],
+        },
+        {
+            degree: 'Senior High School - Accountancy',
+            institution: 'APEC School Sta. Rita, Parañaque City',
+            period: '2018 - 2020',
+            description:
+                'Specialized in Accountancy, Business, and Management (ABM) strand, developing business acumen and analytical skills that complement technical expertise.',
+            icon: <GraduationCap className="h-6 w-6" />,
+            yearRange: '2018 - 2020',
             status: 'completed',
             achievements: [
-                'High distinction in PCM stream',
-                'Advanced understanding of mathematical concepts',
-                'Prepared foundation for engineering studies',
-                'Strong performance in competitive examinations',
+                'Completed Accountancy strand with distinction',
+                'Developed strong analytical and business skills',
+                'Enhanced mathematical and logical reasoning abilities',
             ],
             skills: [
-                'Physics',
-                'Chemistry',
-                'Mathematics',
-                'Analytical Thinking',
+                'Accounting',
+                'Business Management',
+                'Financial Analysis',
+                'Critical Thinking',
             ],
         },
         {
-            degree: "Bachelor's Degree in Computer Science",
-            institution: 'B.Tech, CMR University',
-            period: '2023 - 2027',
+            degree: 'BS Computer Science',
+            institution: 'College of Saint Lawrence, Balagtas, Bulacan',
+            period: '2020 - 2024',
             description:
-                'Computer Science and Engineering, specializing in AI & ML with focus on cutting-edge technologies and practical application development.',
-            icon: <School className="w-6 h-6" />,
-            yearRange: '2023 - 2027',
-            status: 'ongoing',
-            gpa: '8.5/10',
+                'Graduated with a Bachelor of Science in Computer Science, specializing in full-stack web development with hands-on experience in modern JavaScript frameworks and backend technologies.',
+            icon: <GraduationCap className="h-6 w-6" />,
+            yearRange: '2020 - 2024',
+            status: 'completed',
             achievements: [
-                'Specialization in Artificial Intelligence & Machine Learning',
-                'Building expertise in modern web technologies',
-                'Active participation in coding projects and hackathons',
-                'Contributing to open-source projects',
-                'Maintaining strong academic performance',
+                'Completed thesis on RFID College Attendance System',
+                'Gained basics of React, Vue, C#, and Laravel PHP',
+                'Completed Harvard CS50 Introduction to Computer Science',
+                'Received Best in Internship Award',
+                'Departmental Awardee and Leadership Awardee',
             ],
             skills: [
-                'AI/ML',
-                'Web Development',
-                'DSA',
-                'Software Engineering',
-                'Cloud Computing',
+                'JavaScript/TypeScript',
+                'React & Vue',
+                'Laravel PHP',
+                'MySQL',
+                'Git & GitHub',
             ],
         },
     ];
@@ -117,16 +123,16 @@ export function EducationJourney() {
         <section
             id="education"
             ref={sectionRef}
-            className="relative px-6 py-16 w-full"
+            className="relative w-full px-6 py-16"
         >
             {/* Enhanced Background decoration */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="pointer-events-none absolute inset-0 overflow-hidden">
                 <div
-                    className="bottom-1/4 -left-32 absolute bg-blue-500/5 blur-3xl rounded-full w-96 h-96 animate-pulse"
+                    className="absolute bottom-1/4 -left-32 h-96 w-96 animate-pulse rounded-full bg-blue-500/5 blur-3xl"
                     style={{ animationDelay: '1s' }}
                 />
                 <div
-                    className="top-1/2 left-1/2 absolute bg-primary/5 blur-3xl rounded-full w-96 h-96 -translate-x-1/2 -translate-y-1/2 animate-pulse"
+                    className="absolute top-1/2 left-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-primary/5 blur-3xl"
                     style={{ animationDelay: '2s' }}
                 />
             </div>
@@ -151,9 +157,9 @@ export function EducationJourney() {
                 {/* Timeline */}
                 <div className="relative mt-12">
                     {/* Animated Timeline Line with Gradient */}
-                    <div className="md:top-[20px] left-8 md:left-[198px] absolute inset-y-0 w-1">
+                    <div className="absolute inset-y-0 left-8 w-1 md:top-[20px] md:left-[198px]">
                         {/* Background line */}
-                        <div className="bg-gradient-to-b from-gray-200 via-gray-300 to-gray-200 rounded-full w-full h-full" />
+                        <div className="h-full w-full rounded-full bg-gradient-to-b from-gray-200 via-gray-300 to-gray-200" />
                         {/* Animated gradient line */}
                         <div
                             className={`absolute top-0 left-0 w-full rounded-full bg-gradient-to-b from-primary/80 to-blue-500/80 shadow-lg transition-all duration-[2000ms] ease-out ${
@@ -192,8 +198,8 @@ export function EducationJourney() {
                         style={{ transitionDelay: '2000ms' }}
                     >
                         <div className="relative">
-                            <div className="absolute inset-0 bg-primary/50 opacity-75 rounded-full animate-ping" />
-                            <div className="relative bg-gradient-to-br from-primary to-blue-600 shadow-lg rounded-full w-6 h-6" />
+                            <div className="absolute inset-0 animate-ping rounded-full bg-primary/50 opacity-75" />
+                            <div className="relative h-6 w-6 rounded-full bg-gradient-to-br from-primary to-blue-600 shadow-lg" />
                         </div>
                     </div>
                 </div>
@@ -260,7 +266,7 @@ const EducationItem = ({
             onMouseLeave={onLeave}
         >
             {/* Year Label (Desktop) */}
-            <div className="md:block text-right hidden pt-1 pr-8 w-44">
+            <div className="hidden w-44 pt-1 pr-8 text-right md:block">
                 <div className="space-y-2">
                     <div
                         className={`text-3xl font-bold transition-all duration-300 ${
@@ -287,7 +293,7 @@ const EducationItem = ({
             </div>
 
             {/* Enhanced Timeline Dot with Pulsing Ring */}
-            <div className="left-8 md:left-[200px] absolute flex justify-center items-center w-8 h-8 -translate-x-1/2">
+            <div className="absolute left-8 flex h-8 w-8 -translate-x-1/2 items-center justify-center md:left-[200px]">
                 {/* Outer pulsing ring */}
                 {isActive && (
                     <>
@@ -312,16 +318,16 @@ const EducationItem = ({
                     className={`relative h-4 w-4 rounded-full bg-white ring-4 ${color.ring} shadow-inner`}
                 >
                     {status === 'ongoing' && (
-                        <div className="absolute inset-0 bg-green-400 rounded-full animate-pulse" />
+                        <div className="absolute inset-0 animate-pulse rounded-full bg-green-400" />
                     )}
                 </div>
             </div>
 
             {/* Content Card */}
-            <div className="flex-1 ml-16 md:ml-6">
+            <div className="ml-16 flex-1 md:ml-6">
                 {/* Year Label (Mobile) */}
-                <div className="flex items-center gap-3 md:hidden mb-4">
-                    <div className="font-bold text-3xl text-gray-400">
+                <div className="mb-4 flex items-center gap-3 md:hidden">
+                    <div className="text-3xl font-bold text-gray-400">
                         {yearRange}
                     </div>
                 </div>
@@ -335,7 +341,7 @@ const EducationItem = ({
                     />
 
                     {/* Main Card with Enhanced Design */}
-                    <div className="relative bg-white shadow-lg hover:shadow-2xl border-2 border-gray-200 hover:border-primary/30 rounded-2xl transition-all duration-500 overflow-hidden">
+                    <div className="relative overflow-hidden rounded-2xl border-2 border-gray-200 bg-white shadow-lg transition-all duration-500 hover:border-primary/30 hover:shadow-2xl">
                         {/* Top accent bar */}
                         <div
                             className={`h-1 w-full bg-gradient-to-r ${color.bg}`}
@@ -364,8 +370,8 @@ const EducationItem = ({
                                         </div>
                                         {/* Sparkle on hover */}
                                         {isActive && (
-                                            <div className="-top-1 -right-1 absolute">
-                                                <Sparkles className="w-5 h-5 text-yellow-400 animate-pulse fill-yellow-400" />
+                                            <div className="absolute -top-1 -right-1">
+                                                <Sparkles className="h-5 w-5 animate-pulse fill-yellow-400 text-yellow-400" />
                                             </div>
                                         )}
                                     </div>
@@ -374,13 +380,13 @@ const EducationItem = ({
                                 {/* Content */}
                                 <div className="flex-1 space-y-4">
                                     {/* Header Section */}
-                                    <div className="flex flex-wrap justify-between items-start gap-3">
+                                    <div className="flex flex-wrap items-start justify-between gap-3">
                                         <div className="flex-1">
-                                            <h3 className="mb-2 font-bold text-2xl text-gray-900 group-hover:text-primary transition-colors duration-300">
+                                            <h3 className="mb-2 text-2xl font-bold text-gray-900 transition-colors duration-300 group-hover:text-primary">
                                                 {degree}
                                             </h3>
-                                            <p className="flex items-center gap-2 font-medium text-base text-gray-700">
-                                                <GraduationCap className="w-5 h-5 text-primary" />
+                                            <p className="flex items-center gap-2 text-base font-medium text-gray-700">
+                                                <GraduationCap className="h-5 w-5 text-primary" />
                                                 {institution}
                                             </p>
                                         </div>
@@ -389,26 +395,26 @@ const EducationItem = ({
                                         <div className="flex flex-wrap gap-2">
                                             <Badge
                                                 variant="outline"
-                                                className="bg-gray-50 hover:bg-primary/10 border-gray-300 hover:border-primary transition-all duration-300 hover:scale-105"
+                                                className="border-gray-300 bg-gray-50 transition-all duration-300 hover:scale-105 hover:border-primary hover:bg-primary/10"
                                             >
-                                                <Calendar className="mr-1.5 w-3.5 h-3.5" />
+                                                <Calendar className="mr-1.5 h-3.5 w-3.5" />
                                                 {period}
                                             </Badge>
 
                                             {gpa && (
-                                                <Badge className="bg-gradient-to-r from-blue-500 to-blue-600 shadow-md text-white">
-                                                    <TrendingUp className="mr-1.5 w-3.5 h-3.5" />
+                                                <Badge className="bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-md">
+                                                    <TrendingUp className="mr-1.5 h-3.5 w-3.5" />
                                                     GPA: {gpa}
                                                 </Badge>
                                             )}
 
                                             {status === 'ongoing' && (
-                                                <div className="flex items-center gap-2 bg-green-50 shadow-sm px-3 py-1.5 border-2 border-green-200 rounded-full">
-                                                    <span className="relative flex w-2.5 h-2.5">
-                                                        <span className="inline-flex absolute bg-green-400 opacity-75 rounded-full w-full h-full animate-ping" />
-                                                        <span className="inline-flex relative bg-green-500 rounded-full w-2.5 h-2.5" />
+                                                <div className="flex items-center gap-2 rounded-full border-2 border-green-200 bg-green-50 px-3 py-1.5 shadow-sm">
+                                                    <span className="relative flex h-2.5 w-2.5">
+                                                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
+                                                        <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-500" />
                                                     </span>
-                                                    <span className="font-bold text-green-700 text-xs">
+                                                    <span className="text-xs font-bold text-green-700">
                                                         In Progress
                                                     </span>
                                                 </div>
@@ -417,7 +423,7 @@ const EducationItem = ({
                                     </div>
 
                                     {/* Description */}
-                                    <p className="text-base text-gray-600 leading-relaxed">
+                                    <p className="text-base leading-relaxed text-gray-600">
                                         {description}
                                     </p>
 
@@ -428,7 +434,7 @@ const EducationItem = ({
                                                 <Badge
                                                     key={idx}
                                                     variant="outline"
-                                                    className="bg-primary/5 hover:bg-primary/10 border-primary/30 text-primary transition-all duration-300 hover:scale-105"
+                                                    className="border-primary/30 bg-primary/5 text-primary transition-all duration-300 hover:scale-105 hover:bg-primary/10"
                                                 >
                                                     {skill}
                                                 </Badge>
@@ -439,14 +445,14 @@ const EducationItem = ({
                                     {/* Achievements Section */}
                                     {achievements &&
                                         achievements.length > 0 && (
-                                            <div className="space-y-3 bg-gray-50 p-4 rounded-xl">
+                                            <div className="space-y-3 rounded-xl bg-gray-50 p-4">
                                                 <div className="flex items-center gap-2">
                                                     <div
                                                         className={`rounded-lg ${color.light} p-1.5`}
                                                     >
-                                                        <Award className="w-4 h-4 text-primary" />
+                                                        <Award className="h-4 w-4 text-primary" />
                                                     </div>
-                                                    <h4 className="font-bold text-gray-900 text-sm">
+                                                    <h4 className="text-sm font-bold text-gray-900">
                                                         Key Highlights &
                                                         Achievements
                                                     </h4>
@@ -456,10 +462,10 @@ const EducationItem = ({
                                                         (achievement, idx) => (
                                                             <li
                                                                 key={idx}
-                                                                className="flex items-start gap-3 text-gray-600 text-sm hover:text-gray-900 transition-colors duration-300"
+                                                                className="flex items-start gap-3 text-sm text-gray-600 transition-colors duration-300 hover:text-gray-900"
                                                             >
-                                                                <div className="flex-shrink-0 mt-1.5">
-                                                                    <div className="bg-gradient-to-r from-primary to-blue-500 shadow-sm rounded-full w-2 h-2" />
+                                                                <div className="mt-1.5 flex-shrink-0">
+                                                                    <div className="h-2 w-2 rounded-full bg-gradient-to-r from-primary to-blue-500 shadow-sm" />
                                                                 </div>
                                                                 <span className="leading-relaxed">
                                                                     {
@@ -477,7 +483,7 @@ const EducationItem = ({
                         </div>
 
                         {/* Animated Progress Bar */}
-                        <div className="relative bg-gray-100 w-full h-1 overflow-hidden">
+                        <div className="relative h-1 w-full overflow-hidden bg-gray-100">
                             <div
                                 className={`absolute top-0 left-0 h-full bg-gradient-to-r ${color.bg} opacity-60 transition-all duration-1000 ${
                                     isActive ? 'w-full' : 'w-0'
