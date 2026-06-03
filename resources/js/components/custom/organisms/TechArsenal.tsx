@@ -1,284 +1,232 @@
-import { Badge } from '@/components/ui/badge';
-import { Atom, Code2, Sparkles, Zap } from 'lucide-react';
+import { Atom, ChevronDown, Layers } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { SectionHeader } from '../atoms/SectionHeader';
 
 interface TechItemProps {
     name: string;
-    iconName: string; // filename without extension
+    iconName: string;
     category: string;
     level?: 'Beginner' | 'Intermediate' | 'Advanced';
-    color: string;
-    index?: number;
-    isHovered?: boolean;
 }
+
+const LEVEL_CONFIG = {
+    Advanced: {
+        dot: 'bg-emerald-500',
+        ring: 'shadow-emerald-100',
+        badge: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+        ping: 'bg-emerald-400',
+    },
+    Intermediate: {
+        dot: 'bg-amber-400',
+        ring: 'shadow-amber-100',
+        badge: 'bg-amber-50 text-amber-700 border-amber-200',
+        ping: 'bg-amber-300',
+    },
+    Beginner: {
+        dot: 'bg-gray-400',
+        ring: 'shadow-gray-100',
+        badge: 'bg-gray-50 text-gray-500 border-gray-200',
+        ping: 'bg-gray-300',
+    },
+} as const;
 
 export function TechArsenal() {
     const [isVisible, setIsVisible] = useState(false);
-    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
     const [selectedCategory, setSelectedCategory] = useState<string>('All');
+    const [showProjectUsed, setShowProjectUsed] = useState(false);
+    const [hoveredCard, setHoveredCard] = useState<string | null>(null);
     const sectionRef = useRef<HTMLDivElement>(null);
 
     const technologies: TechItemProps[] = [
-        // Languages
         {
             name: 'JavaScript',
             iconName: 'javascript',
             category: 'Languages',
             level: 'Advanced',
-            color: 'yellow',
         },
         {
             name: 'TypeScript',
             iconName: 'typescript',
             category: 'Languages',
             level: 'Advanced',
-            color: 'blue',
         },
         {
             name: 'PHP',
             iconName: 'php',
             category: 'Languages',
             level: 'Advanced',
-            color: 'purple',
         },
         {
             name: 'C#',
             iconName: 'csharp',
             category: 'Languages',
             level: 'Intermediate',
-            color: 'purple',
         },
         {
             name: 'C++',
             iconName: 'cpp',
             category: 'Languages',
             level: 'Intermediate',
-            color: 'blue',
         },
         {
             name: 'Python',
             iconName: 'python',
             category: 'Languages',
             level: 'Beginner',
-            color: 'yellow',
         },
-        {
-            name: 'C',
-            iconName: 'c',
-            category: 'Languages',
-            level: 'Beginner',
-            color: 'blue',
-        },
-
-        // Frontend Frameworks & Libraries
+        { name: 'C', iconName: 'c', category: 'Languages', level: 'Beginner' },
         {
             name: 'React',
             iconName: 'react',
             category: 'Frontend',
             level: 'Advanced',
-            color: 'cyan',
         },
         {
             name: 'Vue',
             iconName: 'vue',
             category: 'Frontend',
             level: 'Advanced',
-            color: 'green',
         },
         {
             name: 'Next.js',
             iconName: 'next-js',
             category: 'Frontend',
             level: 'Intermediate',
-            color: 'black',
         },
         {
             name: 'Nuxt',
             iconName: 'nuxt-js',
             category: 'Frontend',
             level: 'Intermediate',
-            color: 'green',
         },
         {
             name: 'jQuery',
             iconName: 'jquery',
             category: 'Frontend',
             level: 'Beginner',
-            color: 'blue',
         },
-
-        // CSS Frameworks & Styling
         {
             name: 'Tailwind CSS',
             iconName: 'tailwind',
             category: 'CSS',
             level: 'Advanced',
-            color: 'cyan',
         },
         {
             name: 'Shadcn/UI',
             iconName: 'shadcn',
             category: 'CSS',
             level: 'Advanced',
-            color: 'black',
         },
+        { name: 'HTML', iconName: 'html', category: 'CSS', level: 'Advanced' },
+        { name: 'CSS', iconName: 'css', category: 'CSS', level: 'Advanced' },
         {
             name: 'Bootstrap',
             iconName: 'bootstrap',
             category: 'CSS',
             level: 'Intermediate',
-            color: 'purple',
         },
         {
             name: 'Material UI',
             iconName: 'material-ui',
             category: 'CSS',
             level: 'Intermediate',
-            color: 'blue',
         },
-        {
-            name: 'HTML',
-            iconName: 'html',
-            category: 'CSS',
-            level: 'Advanced',
-            color: 'orange',
-        },
-        {
-            name: 'CSS',
-            iconName: 'css',
-            category: 'CSS',
-            level: 'Advanced',
-            color: 'blue',
-        },
-
-        // Backend
         {
             name: 'Laravel',
             iconName: 'laravel',
             category: 'Backend',
             level: 'Advanced',
-            color: 'red',
         },
-
-        // Database
         {
             name: 'MySQL',
             iconName: 'mysql',
             category: 'Database',
             level: 'Advanced',
-            color: 'teal',
         },
         {
             name: 'SQLite',
             iconName: 'sqlite',
             category: 'Database',
             level: 'Intermediate',
-            color: 'blue',
         },
-
-        // Tools
-        {
-            name: 'Git',
-            iconName: 'git',
-            category: 'Tools',
-            level: 'Advanced',
-            color: 'orange',
-        },
-        {
-            name: 'GitHub',
-            iconName: 'github',
-            category: 'Tools',
-            level: 'Intermediate',
-            color: 'gray',
-        },
+        { name: 'Git', iconName: 'git', category: 'Tools', level: 'Advanced' },
         {
             name: 'Bitbucket',
             iconName: 'bitbucket',
             category: 'Tools',
             level: 'Advanced',
-            color: 'blue',
         },
         {
             name: 'Postman',
             iconName: 'postman',
             category: 'Tools',
             level: 'Advanced',
-            color: 'orange',
+        },
+        {
+            name: 'GitHub',
+            iconName: 'github',
+            category: 'Tools',
+            level: 'Intermediate',
         },
         {
             name: 'Figma',
             iconName: 'figma',
             category: 'Tools',
             level: 'Intermediate',
-            color: 'red',
         },
         {
             name: 'Canva',
             iconName: 'canva',
             category: 'Tools',
             level: 'Intermediate',
-            color: 'purple',
         },
         {
             name: 'Webhook.site',
             iconName: 'webhook-site',
             category: 'Tools',
             level: 'Beginner',
-            color: 'green',
-        },
-
-        // Build Tools
-        {
-            name: 'npm',
-            iconName: 'npm',
-            category: 'Build Tools',
-            level: 'Intermediate',
-            color: 'red',
         },
         {
             name: 'Vite',
             iconName: 'vite',
             category: 'Build Tools',
             level: 'Intermediate',
-            color: 'purple',
         },
-
-        // Hosting/Deployment
+        {
+            name: 'npm',
+            iconName: 'npm',
+            category: 'Build Tools',
+            level: 'Intermediate',
+        },
         {
             name: 'Vercel',
             iconName: 'vercel',
             category: 'Hosting',
             level: 'Intermediate',
-            color: 'black',
         },
         {
             name: 'Netlify',
             iconName: 'netlify',
             category: 'Hosting',
             level: 'Intermediate',
-            color: 'teal',
         },
         {
             name: 'Render',
             iconName: 'render',
             category: 'Hosting',
             level: 'Beginner',
-            color: 'purple',
         },
         {
             name: 'AWS S3',
             iconName: 'aws-s3',
             category: 'Hosting',
             level: 'Beginner',
-            color: 'orange',
         },
         {
             name: 'Laravel Forge',
             iconName: 'laravel-forge',
             category: 'Hosting',
             level: 'Beginner',
-            color: 'red',
         },
     ];
 
@@ -287,27 +235,33 @@ export function TechArsenal() {
         ...Array.from(new Set(technologies.map((t) => t.category))),
     ];
 
-    const filteredTechs =
+    const filtered =
         selectedCategory === 'All'
             ? technologies
             : technologies.filter((t) => t.category === selectedCategory);
+
+    const masteryTechs = filtered.filter((t) => t.level === 'Advanced');
+    const projectUsedTechs = filtered.filter((t) => t.level !== 'Advanced');
+
+    // Auto-open when a specific category is selected, auto-close when back to All
+    useEffect(() => {
+        if (selectedCategory !== 'All') {
+            setShowProjectUsed(true);
+        } else {
+            setShowProjectUsed(false);
+        }
+    }, [selectedCategory]);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setIsVisible(true);
-                    }
+                    if (entry.isIntersecting) setIsVisible(true);
                 });
             },
             { threshold: 0.1 },
         );
-
-        if (sectionRef.current) {
-            observer.observe(sectionRef.current);
-        }
-
+        if (sectionRef.current) observer.observe(sectionRef.current);
         return () => observer.disconnect();
     }, []);
 
@@ -315,9 +269,9 @@ export function TechArsenal() {
         <section
             id="skills"
             ref={sectionRef}
-            className="relative w-full px-6 py-16"
+            className="relative w-full px-6 py-12"
         >
-            {/* Enhanced Background decoration */}
+            {/* Background blobs */}
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
                 <div className="absolute top-1/4 -left-32 h-96 w-96 animate-pulse rounded-full bg-primary/5 blur-3xl" />
                 <div
@@ -325,13 +279,13 @@ export function TechArsenal() {
                     style={{ animationDelay: '1s' }}
                 />
                 <div
-                    className="absolute top-1/2 left-1/2 h-80 w-80 animate-pulse rounded-full bg-purple-500/5 blur-3xl"
+                    className="absolute top-3/4 left-1/3 h-64 w-64 animate-pulse rounded-full bg-purple-500/5 blur-3xl"
                     style={{ animationDelay: '2s' }}
                 />
             </div>
 
-            <div className="relative mx-auto max-w-7xl">
-                {/* Section Header */}
+            <div className="relative mx-auto max-w-5xl">
+                {/* Header */}
                 <div
                     className={`transition-all duration-700 ${
                         isVisible
@@ -340,280 +294,360 @@ export function TechArsenal() {
                     }`}
                 >
                     <SectionHeader
-                        mainDivClassName="mb-6"
+                        mainDivClassName="mb-8"
                         title="Tech Arsenal"
                         subtitle="Powerful technologies and tools that bring ideas to life"
                         icon={Atom}
                     />
                 </div>
 
-                {/* Category Filter Pills */}
+                {/* Legend + Category Filters row */}
                 <div
-                    className={`mb-6 flex flex-wrap items-center justify-center gap-3 transition-all duration-700 ${
+                    className={`mb-8 flex flex-col gap-4 transition-all duration-700 sm:flex-row sm:items-center sm:justify-between ${
                         isVisible
                             ? 'translate-y-0 opacity-100'
                             : 'translate-y-10 opacity-0'
                     }`}
                     style={{ transitionDelay: '100ms' }}
                 >
-                    {categories.map((category, index) => (
-                        <button
-                            key={category}
-                            onClick={() => setSelectedCategory(category)}
-                            className={`group relative overflow-hidden rounded-full px-6 py-2.5 font-semibold transition-all duration-300 ${
-                                selectedCategory === category
-                                    ? 'scale-105 bg-primary text-white shadow-lg'
-                                    : 'border-2 border-gray-200 bg-white text-gray-700 hover:scale-105 hover:border-primary/50'
-                            }`}
-                            style={{ transitionDelay: `${index * 50}ms` }}
-                        >
-                            {selectedCategory === category && (
-                                <div className="animate-shimmer absolute inset-0 bg-gradient-to-r from-primary via-blue-500 to-primary" />
-                            )}
-                            <span className="relative flex items-center gap-2">
-                                {category === 'All' && (
-                                    <Sparkles className="h-4 w-4" />
-                                )}
-                                {category}
-                            </span>
-                        </button>
-                    ))}
+                    {/* Legend */}
+                    <div className="flex items-center gap-5">
+                        {(
+                            Object.entries(LEVEL_CONFIG) as [
+                                keyof typeof LEVEL_CONFIG,
+                                (typeof LEVEL_CONFIG)[keyof typeof LEVEL_CONFIG],
+                            ][]
+                        ).map(([label, cfg]) => (
+                            <div
+                                key={label}
+                                className="flex items-center gap-2"
+                            >
+                                <span className="relative flex h-2.5 w-2.5">
+                                    <span
+                                        className={`absolute inline-flex h-full w-full animate-ping rounded-full opacity-60 ${cfg.ping}`}
+                                    />
+                                    <span
+                                        className={`relative inline-flex h-2.5 w-2.5 rounded-full ${cfg.dot}`}
+                                    />
+                                </span>
+                                <span className="text-xs font-medium text-gray-500">
+                                    {label}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Count badge */}
+                    <div className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-1.5 shadow-sm">
+                        <Layers className="h-3.5 w-3.5 text-primary" />
+                        <span className="text-xs font-medium text-gray-600">
+                            {technologies.length} technologies
+                        </span>
+                    </div>
                 </div>
 
-                {/* Stats Bar */}
+                {/* Category Filter Pills */}
                 <div
-                    className={`mb-12 flex flex-wrap items-center justify-center gap-8 transition-all duration-700 ${
+                    className={`mb-8 flex flex-wrap items-center gap-2 transition-all duration-700 ${
                         isVisible
                             ? 'translate-y-0 opacity-100'
                             : 'translate-y-10 opacity-0'
                     }`}
-                    style={{ transitionDelay: '200ms' }}
+                    style={{ transitionDelay: '180ms' }}
                 >
-                    <div className="flex items-center gap-3 rounded-2xl border-2 border-gray-200 bg-white px-6 py-4 shadow-md">
-                        <div className="rounded-lg bg-primary/10 p-2">
-                            <Code2 className="h-5 w-5 text-primary" />
-                        </div>
-                        <div>
-                            <div className="text-2xl font-bold text-primary">
-                                {technologies.length}
-                            </div>
-                            <div className="text-sm text-gray-600">
-                                Technologies
-                            </div>
-                        </div>
-                    </div>
-                    <div className="flex items-center gap-3 rounded-2xl border-2 border-gray-200 bg-white px-6 py-4 shadow-md">
-                        <div className="rounded-lg bg-blue-500/10 p-2">
-                            <Zap className="h-5 w-5 text-blue-600" />
-                        </div>
-                        <div>
-                            <div className="text-2xl font-bold text-blue-600">
-                                {categories.length - 1}
-                            </div>
-                            <div className="text-sm text-gray-600">
-                                Categories
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Tech Grid */}
-                <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-                    {filteredTechs.map((tech, index) => (
-                        <div
-                            key={`${tech.name}-${index}`}
-                            className={`transition-all duration-700 ${
-                                isVisible
-                                    ? 'translate-y-0 opacity-100'
-                                    : 'translate-y-10 opacity-0'
+                    {categories.map((category, i) => (
+                        <button
+                            key={category}
+                            onClick={() => setSelectedCategory(category)}
+                            style={{ transitionDelay: `${i * 30}ms` }}
+                            className={`rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-300 ${
+                                selectedCategory === category
+                                    ? 'scale-105 bg-primary text-white shadow-md shadow-primary/20'
+                                    : 'border border-gray-200 bg-white text-gray-600 hover:scale-105 hover:border-primary/40 hover:bg-primary/5 hover:text-primary hover:shadow-sm'
                             }`}
-                            style={{
-                                transitionDelay: `${300 + index * 50}ms`,
-                            }}
-                            onMouseEnter={() => setHoveredIndex(index)}
-                            onMouseLeave={() => setHoveredIndex(null)}
                         >
-                            <TechItem
-                                {...tech}
-                                index={index}
-                                isHovered={hoveredIndex === index}
-                            />
-                        </div>
+                            {category}
+                        </button>
                     ))}
                 </div>
-            </div>
 
-            <style>{`
-                @keyframes shimmer {
-                    0% { transform: translateX(-100%); }
-                    100% { transform: translateX(100%); }
-                }
-                .animate-shimmer {
-                    animation: shimmer 2s infinite;
-                }
-            `}</style>
+                {/* Mastery Section */}
+                <div
+                    className={`transition-all duration-700 ${
+                        isVisible
+                            ? 'translate-y-0 opacity-100'
+                            : 'translate-y-10 opacity-0'
+                    }`}
+                    style={{ transitionDelay: '250ms' }}
+                >
+                    <SectionDivider
+                        label="Mastery"
+                        count={masteryTechs.length}
+                        accent
+                    />
+
+                    <div className="mb-10 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
+                        {masteryTechs.map((tech, index) => (
+                            <TechCard
+                                key={`mastery-${tech.name}`}
+                                {...tech}
+                                index={index}
+                                isVisible={isVisible}
+                                isHovered={
+                                    hoveredCard === `mastery-${tech.name}`
+                                }
+                                onHover={(v) =>
+                                    setHoveredCard(
+                                        v ? `mastery-${tech.name}` : null,
+                                    )
+                                }
+                            />
+                        ))}
+                        {masteryTechs.length === 0 && (
+                            <p className="col-span-full py-6 text-center text-sm text-gray-400">
+                                No advanced technologies in this category.
+                            </p>
+                        )}
+                    </div>
+                </div>
+
+                {/* "Used in Projects" Section */}
+                {projectUsedTechs.length > 0 && (
+                    <div
+                        className={`transition-all duration-700 ${
+                            isVisible
+                                ? 'translate-y-0 opacity-100'
+                                : 'translate-y-10 opacity-0'
+                        }`}
+                        style={{ transitionDelay: '350ms' }}
+                    >
+                        {/* Clickable SectionDivider */}
+                        <CollapsibleSectionDivider
+                            label="Used in Projects"
+                            count={projectUsedTechs.length}
+                            isOpen={showProjectUsed}
+                            onToggle={() => setShowProjectUsed((prev) => !prev)}
+                        />
+
+                        {/* Grid — slide down */}
+                        <div
+                            className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                                showProjectUsed
+                                    ? 'max-h-[2000px] opacity-100'
+                                    : 'max-h-0 opacity-0'
+                            }`}
+                        >
+                            <div className="mb-8 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
+                                {projectUsedTechs.map((tech, index) => (
+                                    <TechCard
+                                        key={`project-${tech.name}`}
+                                        {...tech}
+                                        index={index}
+                                        isVisible={showProjectUsed}
+                                        isHovered={
+                                            hoveredCard ===
+                                            `project-${tech.name}`
+                                        }
+                                        onHover={(v) =>
+                                            setHoveredCard(
+                                                v
+                                                    ? `project-${tech.name}`
+                                                    : null,
+                                            )
+                                        }
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
         </section>
     );
 }
 
-const TechItem = ({
+/* ─── Collapsible Section Divider ────────────────────────────── */
+function CollapsibleSectionDivider({
+    label,
+    count,
+    isOpen,
+    onToggle,
+}: {
+    label: string;
+    count?: number;
+    isOpen: boolean;
+    onToggle: () => void;
+}) {
+    return (
+        <div className="mb-5 flex items-center gap-3">
+            <button
+                onClick={onToggle}
+                className={`group flex shrink-0 items-center gap-2 rounded-full border px-3 py-1 transition-all duration-300 ${
+                    isOpen
+                        ? 'border-primary/20 shadow-sm'
+                        : 'border-gray-300 bg-white hover:border-primary/30 hover:bg-primary/5 hover:shadow-sm'
+                }`}
+            >
+                <span
+                    className={`text-xs font-semibold tracking-widest uppercase transition-colors duration-200 ${
+                        isOpen
+                            ? 'text-primary/70'
+                            : 'text-gray-500 group-hover:text-primary'
+                    }`}
+                >
+                    {label}
+                </span>
+                {count !== undefined && (
+                    <span
+                        className={`rounded-full px-2 py-0.5 text-[10px] font-medium transition-colors duration-200 ${
+                            isOpen
+                                ? 'bg-primary/10 text-primary/70'
+                                : 'bg-gray-100 text-gray-600 group-hover:bg-primary/10 group-hover:text-primary'
+                        }`}
+                    >
+                        {count}
+                    </span>
+                )}
+                <ChevronDown
+                    className={`h-3.5 w-3.5 shrink-0 transition-all duration-300 ${
+                        isOpen
+                            ? 'rotate-180 text-primary/80'
+                            : 'text-gray-400 group-hover:text-primary'
+                    }`}
+                />
+            </button>
+            <div className="h-px flex-1 bg-gradient-to-r from-gray-400 to-transparent" />
+        </div>
+    );
+}
+
+/* ─── Section Divider (non-clickable) ────────────────────────── */
+function SectionDivider({
+    label,
+    count,
+    accent = false,
+}: {
+    label: string;
+    count?: number;
+    accent?: boolean;
+}) {
+    return (
+        <div className="mb-5 flex items-center gap-3">
+            {accent && (
+                <span className="h-4 w-1 rounded-full bg-gradient-to-b from-primary to-blue-500" />
+            )}
+            <span
+                className={`text-xs font-semibold tracking-widest uppercase ${
+                    accent ? 'text-primary' : 'text-gray-600'
+                }`}
+            >
+                {label}
+            </span>
+            {count !== undefined && (
+                <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-medium text-gray-600">
+                    {count}
+                </span>
+            )}
+            <div className="h-px flex-1 bg-gradient-to-r from-gray-300 to-transparent" />
+        </div>
+    );
+}
+
+/* ─── Tech Card ───────────────────────────────────────────────── */
+function TechCard({
     name,
     iconName,
-    category,
     level,
-    color,
     index = 0,
+    isVisible,
     isHovered,
-}: TechItemProps) => {
-    const [localHover, setLocalHover] = useState(false);
-
-    const getLevelColor = (level?: string) => {
-        switch (level) {
-            case 'Advanced':
-                return 'bg-blue-500';
-            case 'Intermediate':
-                return 'bg-yellow-500';
-            case 'Beginner':
-                return 'bg-gray-500';
-            default:
-                return 'bg-gray-400';
-        }
-    };
+    onHover,
+}: TechItemProps & {
+    index?: number;
+    isVisible: boolean;
+    isHovered: boolean;
+    onHover: (v: boolean) => void;
+}) {
+    const cfg = LEVEL_CONFIG[level ?? 'Beginner'];
 
     return (
         <div
-            className="group relative"
-            onMouseEnter={() => setLocalHover(true)}
-            onMouseLeave={() => setLocalHover(false)}
+            className={`transition-all duration-500 ${
+                isVisible
+                    ? 'translate-y-0 opacity-100'
+                    : 'translate-y-6 opacity-0'
+            }`}
+            style={{ transitionDelay: `${index * 40}ms` }}
+            onMouseEnter={() => onHover(true)}
+            onMouseLeave={() => onHover(false)}
         >
-            {/* Outer glow effect */}
-            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-primary/20 via-blue-500/20 to-purple-500/20 opacity-0 blur-lg transition-all duration-500 group-hover:opacity-100" />
-
-            {/* Main card */}
-            <div className="relative flex h-full flex-col items-center justify-between overflow-hidden rounded-2xl border-2 border-gray-200 bg-white p-5 shadow-lg transition-all duration-500 group-hover:-translate-y-3 group-hover:border-primary/30 group-hover:shadow-2xl">
-                {/* Level indicator dot */}
-                {level && (
-                    <div className="absolute top-3 left-3 z-10">
-                        <div className="relative">
-                            <div
-                                className={`h-2.5 w-2.5 rounded-full ${getLevelColor(level)}`}
-                            />
-                            <div
-                                className={`absolute inset-0 animate-ping rounded-full ${getLevelColor(level)} opacity-75`}
-                            />
-                        </div>
-                    </div>
-                )}
-
-                {/* Sparkle decoration on hover */}
+            {/* Outer glow */}
+            <div className="group relative">
                 <div
-                    className={`absolute top-2 right-2 transition-all duration-300 ${
-                        localHover
-                            ? 'scale-100 rotate-12 opacity-100'
-                            : 'scale-0 rotate-0 opacity-0'
+                    className={`absolute -inset-0.5 rounded-2xl bg-gradient-to-br from-primary/20 via-blue-500/20 to-purple-500/20 blur-sm transition-opacity duration-500 ${
+                        isHovered ? 'opacity-100' : 'opacity-0'
+                    }`}
+                />
+
+                <div
+                    className={`relative flex flex-col items-center gap-2 overflow-hidden rounded-xl border bg-white p-3 transition-all duration-300 ${
+                        isHovered
+                            ? '-translate-y-1.5 border-primary/30 shadow-lg shadow-primary/10'
+                            : 'border-gray-200 shadow-sm hover:shadow-md'
                     }`}
                 >
-                    <Sparkles className="h-4 w-4 fill-primary text-primary" />
-                </div>
+                    {/* Level indicator dot with ping */}
+                    <span className="absolute top-2 left-2 flex h-2 w-2">
+                        <span
+                            className={`absolute inline-flex h-full w-full animate-ping rounded-full opacity-50 ${cfg.ping}`}
+                            style={{ animationDuration: '2.5s' }}
+                        />
+                        <span
+                            className={`relative inline-flex h-2 w-2 rounded-full ${cfg.dot}`}
+                        />
+                    </span>
 
-                {/* Icon container with consistent sizing */}
-                <div className="relative mb-4 transition-all duration-500 group-hover:scale-110 group-hover:-rotate-6">
-                    {/* Pulse ring effect */}
+                    {/* Icon */}
                     <div
-                        className="absolute -inset-2 animate-pulse rounded-2xl bg-primary/20 opacity-0 blur-md group-hover:opacity-100"
-                        style={{ animationDuration: '2s' }}
-                    />
-
-                    {/* Icon with consistent size */}
-                    <div className="relative z-10 flex h-16 w-16 items-center justify-center">
+                        className={`flex h-9 w-9 items-center justify-center transition-all duration-300 ${
+                            isHovered
+                                ? 'scale-110 -rotate-3'
+                                : 'scale-100 rotate-0'
+                        }`}
+                    >
                         <img
                             src={`http://127.0.0.1:8000/icons/${iconName}.png`}
                             alt={name}
                             className="h-full w-full object-contain"
                             onError={(e) => {
-                                // Fallback if image doesn't load
                                 e.currentTarget.style.display = 'none';
                                 const parent = e.currentTarget.parentElement;
                                 if (parent) {
-                                    parent.innerHTML = `<div class="flex justify-center items-center bg-gray-200 rounded-lg w-16 h-16"><span class="font-bold text-gray-600 text-xl">${name.substring(0, 2).toUpperCase()}</span></div>`;
+                                    parent.innerHTML = `<div class="flex items-center justify-center rounded-lg bg-gray-100 w-9 h-9"><span class="text-xs font-bold text-gray-500">${name.substring(0, 2).toUpperCase()}</span></div>`;
                                 }
                             }}
                         />
                     </div>
-                </div>
 
-                {/* Tech name with category badge */}
-                <div className="w-full space-y-2">
-                    <div className="text-center">
-                        <span className="block text-sm font-bold text-gray-900 transition-colors duration-300 group-hover:text-primary">
-                            {name}
-                        </span>
-                    </div>
-
-                    {/* Category badge - visible on hover */}
-                    <div
-                        className={`flex justify-center transition-all duration-300 ${
-                            localHover
-                                ? 'translate-y-0 opacity-100'
-                                : 'translate-y-2 opacity-0'
+                    {/* Name */}
+                    <span
+                        className={`w-full text-center text-[11px] leading-tight font-medium transition-colors duration-200 ${
+                            isHovered ? 'text-primary' : 'text-gray-700'
                         }`}
                     >
-                        <Badge
-                            variant="outline"
-                            className="border-primary/30 bg-primary/5 text-xs text-primary"
-                        >
-                            {category}
-                        </Badge>
+                        {name}
+                    </span>
+
+                    {/* Bottom bar — slides in on hover */}
+                    <div className="absolute right-0 bottom-0 left-0 h-0.5 overflow-hidden rounded-b-xl bg-gray-100">
+                        <div
+                            className={`h-full bg-gradient-to-r from-primary via-blue-500 to-purple-500 transition-all duration-500 ${
+                                isHovered ? 'w-full' : 'w-0'
+                            }`}
+                        />
                     </div>
                 </div>
-
-                {/* Bottom progress bar */}
-                <div className="absolute right-0 bottom-0 left-0 h-1 bg-gray-100">
-                    <div
-                        className="h-full bg-gradient-to-r from-primary via-blue-500 to-primary transition-all duration-700 group-hover:w-full"
-                        style={{ width: '0%' }}
-                    />
-                </div>
-
-                {/* Floating particles */}
-                <div
-                    className={`pointer-events-none absolute inset-0 transition-opacity duration-500 ${
-                        localHover ? 'opacity-100' : 'opacity-0'
-                    }`}
-                >
-                    {[...Array(4)].map((_, i) => (
-                        <div
-                            key={i}
-                            className="animate-float absolute h-1.5 w-1.5 rounded-full bg-gradient-to-r from-primary to-blue-500"
-                            style={{
-                                left: `${15 + i * 25}%`,
-                                top: `${30 + (i % 2) * 20}%`,
-                                animationDelay: `${i * 0.3}s`,
-                                animationDuration: '3s',
-                            }}
-                        />
-                    ))}
-                </div>
-
-                {/* Corner accent */}
-                <div className="absolute right-0 bottom-0 h-8 w-8 rounded-tl-2xl bg-gradient-to-tl from-primary/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
             </div>
-
-            <style>{`
-                @keyframes float {
-                    0%, 100% {
-                        transform: translateY(0px) translateX(0px) scale(1);
-                        opacity: 0;
-                    }
-                    50% {
-                        transform: translateY(-25px) translateX(15px) scale(1.2);
-                        opacity: 1;
-                    }
-                }
-                .animate-float {
-                    animation: float 3s ease-in-out infinite;
-                }
-            `}</style>
         </div>
     );
-};
+}

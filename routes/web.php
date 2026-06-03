@@ -5,16 +5,17 @@ use Inertia\Inertia;
 use Laravel\Fortify\Features;
 
 Route::get('/', function () {
-    return Inertia::render('home', [
-        'canRegister' => Features::enabled(Features::registration()),
-    ]);
+  return Inertia::render('home', [
+    'canRegister' => Features::enabled(Features::registration()),
+  ]);
 })->name('home');
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('dashboard', function () {
-        return Inertia::render('dashboard');
-    })->name('dashboard');
-});
+// ! Disable dashboard for now, we don't have anything to show there
+// Route::middleware(['auth', 'verified'])->group(function () {
+//     Route::get('dashboard', function () {
+//         return Inertia::render('dashboard');
+//     })->name('dashboard');
+// });
 
-require __DIR__ . '/settings.php';
+// require __DIR__ . '/settings.php';
 // Auth like /login and /register are registered by Fortify you can customize them in FortifyServiceProvider.

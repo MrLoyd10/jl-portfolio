@@ -1,3 +1,4 @@
+import { contactLinks, env } from '@/lib/env';
 import {
     ArrowUp,
     Code2,
@@ -5,17 +6,17 @@ import {
     Github,
     Heart,
     Instagram,
-    Linkedin,
     Mail,
     MapPin,
     Phone,
-    Twitter,
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 export function Footer() {
     const [showScrollTop, setShowScrollTop] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
+    const [hoveredLink, setHoveredLink] = useState<string | null>(null);
+    const { contact, footer, socials } = env;
 
     const currentYear = new Date().getFullYear();
 
@@ -33,58 +34,40 @@ export function Footer() {
         {
             name: 'GitHub',
             icon: Github,
-            href: 'https://github.com/yourusername',
-            color: 'hover:text-gray-900',
-        },
-        {
-            name: 'LinkedIn',
-            icon: Linkedin,
-            href: 'https://linkedin.com/in/yourusername',
-            color: 'hover:text-blue-600',
-        },
-        {
-            name: 'Twitter',
-            icon: Twitter,
-            href: 'https://twitter.com/yourusername',
-            color: 'hover:text-blue-400',
-        },
-        {
-            name: 'Facebook',
-            icon: Facebook,
-            href: 'https://facebook.com/yourusername',
-            color: 'hover:text-blue-600',
+            href: socials.githubUrl,
         },
         {
             name: 'Instagram',
             icon: Instagram,
-            href: 'https://instagram.com/yourusername',
-            color: 'hover:text-pink-600',
+            href: socials.instagramUrl,
+        },
+        {
+            name: 'Facebook',
+            icon: Facebook,
+            href: socials.facebookUrl,
         },
     ];
 
-    const contactInfo = [
+    const contactSnippet = [
         {
             icon: Mail,
-            text: 'your.email@example.com',
-            href: 'mailto:your.email@example.com',
+            text: contact.email,
+            href: contactLinks.emailHref,
         },
         {
             icon: Phone,
-            text: '+63 123 456 7890',
-            href: 'tel:+631234567890',
+            text: contact.phone,
+            href: contactLinks.phoneHref,
         },
         {
             icon: MapPin,
-            text: 'Quezon City, Metro Manila, PH',
+            text: contact.location,
             href: null,
         },
     ];
 
     useEffect(() => {
-        const handleScroll = () => {
-            setShowScrollTop(window.scrollY > 400);
-        };
-
+        const handleScroll = () => setShowScrollTop(window.scrollY > 400);
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
@@ -93,149 +76,67 @@ export function Footer() {
         setIsVisible(true);
     }, []);
 
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
+    const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    const scrollToSection = (sectionId: string) => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+    const scrollToSection = (id: string) => {
+        document
+            .getElementById(id)
+            ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
 
     return (
-        <footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
-            {/* Animated Background Elements */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="-top-24 -right-24 absolute bg-primary/5 blur-3xl rounded-full w-96 h-96 animate-pulse" />
+        <footer className="relative mt-10 overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
+            {/* Background blobs */}
+            <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                <div className="absolute -top-24 -right-24 h-96 w-96 animate-pulse rounded-full bg-primary/5 blur-3xl" />
                 <div
-                    className="-bottom-24 -left-24 absolute bg-blue-500/5 blur-3xl rounded-full w-96 h-96 animate-pulse"
+                    className="absolute -bottom-24 -left-24 h-96 w-96 animate-pulse rounded-full bg-blue-500/5 blur-3xl"
                     style={{ animationDelay: '1s' }}
                 />
             </div>
 
             <div className="relative">
-                {/* Top decorative line */}
-                <div className="bg-gradient-to-r from-primary via-blue-500 to-primary w-full h-1" />
+                {/* Top accent line */}
+                <div className="h-0.5 w-full bg-gradient-to-r from-primary via-blue-500/70 to-primary" />
 
-                <div className="mx-auto px-6 py-12 container">
-                    {/* Main Footer Content */}
+                <div className="mx-auto max-w-5xl px-6 py-12">
+                    {/* Main grid — 3 cols */}
                     <div
-                        className={`grid gap-12 transition-all duration-700 md:grid-cols-2 lg:grid-cols-4 ${
+                        className={`grid gap-10 transition-all duration-700 md:grid-cols-3 ${
                             isVisible
                                 ? 'translate-y-0 opacity-100'
                                 : 'translate-y-10 opacity-0'
                         }`}
                     >
-                        {/* Brand Section */}
+                        {/* Col 1 — Brand + socials */}
                         <div
-                            className="space-y-4 transition-all duration-700"
+                            className="space-y-5 transition-all duration-700"
                             style={{ transitionDelay: '100ms' }}
                         >
+                            {/* Logo */}
                             <div className="flex items-center gap-3">
-                                <div className="flex justify-center items-center bg-gradient-to-br from-primary to-primary/50 shadow-lg rounded-full w-12 h-12">
-                                    <span className="font-bold text-white text-xl">
-                                        ML
-                                    </span>
-                                </div>
+                                <img
+                                    src="/assets/icon.png"
+                                    alt={`${footer.brandName} icon`}
+                                    className="h-10 w-10 shrink-0 rounded-md bg-gray-500 object-contain"
+                                />
                                 <div>
-                                    <h3 className="font-bold text-xl">
-                                        MrLoyd
+                                    <h3 className="leading-tight font-bold text-white">
+                                        {footer.brandName}
                                     </h3>
-                                    <p className="text-gray-400 text-sm">
-                                        Web Developer
+                                    <p className="text-xs text-gray-300">
+                                        {footer.brandTitle}
                                     </p>
                                 </div>
                             </div>
-                            <p className="text-gray-400 text-sm leading-relaxed">
-                                Crafting exceptional digital experiences with
-                                modern web technologies. Passionate about clean
-                                code and innovative solutions.
+
+                            <p className="text-sm leading-relaxed text-gray-300">
+                                {footer.brandDescription}
                             </p>
-                            <div className="flex items-center gap-2 text-gray-400 text-sm">
-                                <Code2 className="w-4 h-4 text-primary" />
-                                <span>
-                                    Built with React, TailwindCSS & Shadcn
-                                </span>
-                            </div>
-                        </div>
 
-                        {/* Quick Links */}
-                        <div
-                            className="space-y-4 transition-all duration-700"
-                            style={{ transitionDelay: '200ms' }}
-                        >
-                            <h3 className="font-bold text-lg">Quick Links</h3>
-                            <ul className="space-y-2">
-                                {navLinks.map((link, index) => (
-                                    <li key={link.id}>
-                                        <button
-                                            onClick={() =>
-                                                scrollToSection(link.id)
-                                            }
-                                            className="group flex items-center gap-2 text-gray-400 text-sm hover:text-primary transition-all hover:translate-x-2 duration-300"
-                                        >
-                                            <span className="bg-gray-600 group-hover:bg-primary rounded-full w-1 group-hover:w-2 h-1 transition-all duration-300" />
-                                            {link.label}
-                                        </button>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        {/* Contact Info */}
-                        <div
-                            className="space-y-4 transition-all duration-700"
-                            style={{ transitionDelay: '300ms' }}
-                        >
-                            <h3 className="font-bold text-lg">Get In Touch</h3>
-                            <ul className="space-y-3">
-                                {contactInfo.map((item, index) => {
-                                    const Icon = item.icon;
-                                    const content = (
-                                        <div className="group flex items-start gap-3 text-gray-400 text-sm hover:text-primary transition-all duration-300">
-                                            <div className="bg-gray-800 group-hover:bg-primary/20 mt-0.5 p-2 rounded-lg transition-all duration-300 group-hover:scale-110">
-                                                <Icon className="w-4 h-4" />
-                                            </div>
-                                            <span className="flex-1 leading-relaxed">
-                                                {item.text}
-                                            </span>
-                                        </div>
-                                    );
-
-                                    return (
-                                        <li key={index}>
-                                            {item.href ? (
-                                                <a
-                                                    href={item.href}
-                                                    className="block"
-                                                >
-                                                    {content}
-                                                </a>
-                                            ) : (
-                                                content
-                                            )}
-                                        </li>
-                                    );
-                                })}
-                            </ul>
-                        </div>
-
-                        {/* Social Links */}
-                        <div
-                            className="space-y-4 transition-all duration-700"
-                            style={{ transitionDelay: '400ms' }}
-                        >
-                            <h3 className="font-bold text-lg">
-                                Connect With Me
-                            </h3>
-                            <p className="text-gray-400 text-sm">
-                                Let's connect and create something amazing
-                                together!
-                            </p>
-                            <div className="flex flex-wrap gap-3">
-                                {socialLinks.map((social, index) => {
+                            {/* Socials */}
+                            <div className="flex items-center gap-2">
+                                {socialLinks.map((social) => {
                                     const Icon = social.icon;
                                     return (
                                         <a
@@ -243,53 +144,144 @@ export function Footer() {
                                             href={social.href}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="group relative"
                                             title={social.name}
+                                            className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-700 bg-gray-800/80 text-gray-300 transition-all duration-200 hover:scale-105 hover:border-primary/50 hover:bg-gray-700 hover:text-primary"
                                         >
-                                            <div className="absolute inset-0 bg-gradient-to-br from-primary to-blue-500 opacity-0 group-hover:opacity-100 blur-md rounded-lg transition-opacity duration-300" />
-                                            <div className="relative flex justify-center items-center bg-gray-800 group-hover:bg-gray-700 border border-gray-700 group-hover:border-primary rounded-lg w-10 h-10 transition-all duration-300 group-hover:scale-110">
-                                                <Icon className="w-5 h-5 text-gray-400 group-hover:text-primary transition-colors duration-300" />
-                                            </div>
+                                            <Icon className="h-4 w-4" />
                                         </a>
                                     );
                                 })}
+                            </div>
+
+                            {/* Built with */}
+                            <div className="flex items-center gap-1.5 text-xs text-gray-300">
+                                <Code2 className="h-3.5 w-3.5 text-primary/60" />
+                                <span>{footer.builtWith}</span>
+                            </div>
+                        </div>
+
+                        {/* Col 2 — Quick links */}
+                        <div
+                            className="space-y-4 transition-all duration-700"
+                            style={{ transitionDelay: '200ms' }}
+                        >
+                            <h4 className="text-xs font-semibold tracking-widest text-gray-300 uppercase">
+                                Navigation
+                            </h4>
+                            <ul className="space-y-1.5">
+                                {navLinks.map((link) => (
+                                    <li key={link.id}>
+                                        <button
+                                            onClick={() =>
+                                                scrollToSection(link.id)
+                                            }
+                                            onMouseEnter={() =>
+                                                setHoveredLink(link.id)
+                                            }
+                                            onMouseLeave={() =>
+                                                setHoveredLink(null)
+                                            }
+                                            className="group flex items-center gap-2.5 text-sm text-gray-300 transition-all duration-200 hover:text-primary"
+                                        >
+                                            <span
+                                                aria-hidden="true"
+                                                className={`inline-flex shrink-0 justify-center text-primary transition-all duration-200 ${
+                                                    hoveredLink === link.id
+                                                        ? 'w-5'
+                                                        : 'w-3'
+                                                }`}
+                                            >
+                                                -
+                                            </span>
+                                            {link.label}
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        {/* Col 3 — Contact snippet */}
+                        <div
+                            className="space-y-4 transition-all duration-700"
+                            style={{ transitionDelay: '300ms' }}
+                        >
+                            <h4 className="text-xs font-semibold tracking-widest text-gray-300 uppercase">
+                                Get In Touch
+                            </h4>
+                            <ul className="space-y-3">
+                                {contactSnippet.map((item, index) => {
+                                    const Icon = item.icon;
+                                    const inner = (
+                                        <div className="group flex items-start gap-3 text-sm text-gray-300 transition-colors duration-200 hover:text-primary">
+                                            <div className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-gray-800 transition-all duration-200 group-hover:bg-primary/20">
+                                                <Icon className="h-3.5 w-3.5" />
+                                            </div>
+                                            <span className="flex-1 leading-relaxed">
+                                                {item.text}
+                                            </span>
+                                        </div>
+                                    );
+                                    return (
+                                        <li key={index}>
+                                            {item.href ? (
+                                                <a
+                                                    href={item.href}
+                                                    className="block"
+                                                >
+                                                    {inner}
+                                                </a>
+                                            ) : (
+                                                inner
+                                            )}
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+
+                            {/* Availability pill */}
+                            <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-green-800/60 bg-green-900/30 px-3 py-1.5">
+                                <span className="relative flex h-1.5 w-1.5">
+                                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
+                                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-green-500" />
+                                </span>
+                                <span className="text-xs font-medium text-green-400">
+                                    {footer.availabilityText}
+                                </span>
                             </div>
                         </div>
                     </div>
 
                     {/* Divider */}
                     <div
-                        className={`my-8 h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent transition-all duration-700 ${
+                        className={`my-8 h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent transition-all duration-700 ${
                             isVisible ? 'opacity-100' : 'opacity-0'
                         }`}
-                        style={{ transitionDelay: '500ms' }}
+                        style={{ transitionDelay: '400ms' }}
                     />
 
-                    {/* Bottom Section */}
+                    {/* Bottom bar */}
                     <div
-                        className={`flex flex-col items-center justify-between gap-4 transition-all duration-700 md:flex-row ${
+                        className={`flex flex-col items-center justify-between gap-3 text-xs text-gray-400 transition-all duration-700 md:flex-row ${
                             isVisible
                                 ? 'translate-y-0 opacity-100'
-                                : 'translate-y-10 opacity-0'
+                                : 'translate-y-4 opacity-0'
                         }`}
-                        style={{ transitionDelay: '600ms' }}
+                        style={{ transitionDelay: '500ms' }}
                     >
-                        <div className="flex md:flex-row flex-col items-center gap-2 md:gap-4 text-gray-400 text-sm">
-                            <p className="flex items-center gap-1">
-                                © {currentYear} MrLoyd. All rights reserved.
-                            </p>
-                            <span className="md:inline hidden">•</span>
-                            <p className="flex items-center gap-1.5">
-                                Made with
-                                <Heart className="w-4 h-4 text-red-500 animate-pulse fill-red-500" />
-                                in the Philippines
-                            </p>
-                        </div>
+                        <p>
+                            © {currentYear} {footer.brandName}. All rights
+                            reserved.
+                        </p>
+                        <p className="flex items-center gap-1.5">
+                            Made with
+                            <Heart className="h-3.5 w-3.5 fill-red-500 text-red-500" />
+                            in {footer.madeIn}
+                        </p>
                     </div>
                 </div>
             </div>
 
-            {/* Scroll to Top Button */}
+            {/* Scroll to top */}
             <button
                 onClick={scrollToTop}
                 className={`fixed right-8 bottom-8 z-50 transition-all duration-300 ${
@@ -297,21 +289,10 @@ export function Footer() {
                         ? 'translate-y-0 opacity-100'
                         : 'pointer-events-none translate-y-16 opacity-0'
                 }`}
+                title="Back to top"
             >
-                <div className="group relative">
-                    {/* Glow effect */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary to-blue-500 opacity-0 group-hover:opacity-100 blur-lg rounded-full transition-opacity animate-pulse duration-300" />
-
-                    {/* Button */}
-                    <div className="relative flex justify-center items-center bg-gray-800 group-hover:bg-gray-700 shadow-lg border-2 border-gray-700 group-hover:border-primary rounded-full w-12 h-12 transition-all duration-300 group-hover:scale-110">
-                        <ArrowUp className="w-5 h-5 text-gray-400 group-hover:text-primary transition-colors duration-300" />
-                    </div>
-
-                    {/* Tooltip */}
-                    <div className="right-0 bottom-full absolute bg-gray-900 opacity-0 group-hover:opacity-100 shadow-lg mb-2 px-3 py-1.5 rounded-lg text-white text-xs whitespace-nowrap transition-opacity duration-300 pointer-events-none">
-                        Back to top
-                        <div className="top-full right-4 absolute border-t-4 border-t-gray-900 border-r-4 border-r-transparent border-l-4 border-l-transparent w-0 h-0" />
-                    </div>
+                <div className="group relative flex h-10 w-10 items-center justify-center rounded-full border border-gray-700 bg-gray-800 shadow-lg transition-all duration-200 hover:scale-110 hover:border-primary/60 hover:bg-gray-700">
+                    <ArrowUp className="h-4 w-4 text-gray-400 transition-colors duration-200 group-hover:text-primary" />
                 </div>
             </button>
         </footer>

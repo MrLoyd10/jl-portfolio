@@ -11,62 +11,102 @@ export const FeaturedProjects = () => {
 
     const projects: ProjectCardProps[] = [
         {
-            title: 'ResearchX',
+            title: 'Project: Atlas',
+            systemType: 'Industrial Control System',
+            highlight:
+                'Real-time device monitoring and control via HTTP and WebSockets',
             description:
-                'AI-powered research document generator that creates comprehensive research papers using advanced AI models. Features intelligent document structuring, citation management, and export capabilities.',
-            technologies: ['TypeScript', 'Tailwind CSS', 'Next.js'],
-            image: 'https://picsum.photos/seed/project1/800/500',
+                'A real-time industrial control platform that allows users to monitor and manage devices such as CCTV, lights, and relays. Built for hardware-integrated environments with live system feedback and operational control.',
+            technologies: [
+                'React',
+                'Laravel',
+                'MySQL',
+                'WebSockets',
+                'Tailwind CSS',
+            ],
+            image: 'https://picsum.photos/seed/atlas/800/500',
             liveUrl: '#',
             githubUrl: '#',
-            category: 'AI Tool',
+            category: 'Freelance Project',
         },
         {
-            title: 'Freshmart Store',
+            title: 'Document Stamp Management System',
+            systemType: 'Document Workflow System',
+            highlight:
+                'Electronic document stamp releasing with secure file storage',
             description:
-                'Modern grocery store web application with a clean and responsive UI. Built with efficient state management using Redux, featuring shopping cart, product filters, and checkout flow.',
-            technologies: ['Tailwind CSS', 'React', 'Redux'],
-            image: 'https://picsum.photos/seed/project2/800/500',
+                'A document processing platform for managing and releasing electronic document stamps. Designed to support workflow handling, record tracking, and secure file storage using AWS S3.',
+            technologies: ['Laravel', 'React', 'MySQL', 'AWS S3', 'Inertia.js'],
+            image: 'https://picsum.photos/seed/docstamp/800/500',
             liveUrl: '#',
             githubUrl: '#',
-            category: 'E-commerce',
+            category: 'Professional',
         },
         {
-            title: 'Nike Reimagined',
+            title: 'ESkywardPay',
+            systemType: 'Payment Integration System',
+            highlight:
+                'Integrated secure online payment workflows into business platforms',
             description:
-                'A sleek and modern Nike website redesign showcasing fully responsive design with smooth animations and clean UI inspired by contemporary web design trends.',
-            technologies: ['Tailwind CSS', 'React'],
-            image: 'https://picsum.photos/seed/project3/800/500',
+                'An online payment integration system built to handle transaction workflows inside business applications. Focused on secure processing, backend transaction handling, and smooth user payment experiences.',
+            technologies: ['Laravel', 'React', 'MySQL', 'Payment Integration'],
+            image: 'https://picsum.photos/seed/payment/800/500',
             liveUrl: '#',
             githubUrl: '#',
-            category: 'UI/UX',
+            category: 'Professional',
         },
         {
-            title: 'News Hub',
+            title: 'Delivery Booking Systems',
+            systemType: 'Booking & Logistics Platform',
+            highlight:
+                'Supported booking flows, delivery operations, and dashboard management',
             description:
-                'Real-time news application integrating News API to deliver headlines across various categories. Features a modern interface with search functionality and category filtering.',
-            technologies: ['TypeScript', 'Tailwind CSS', 'React'],
-            image: 'https://picsum.photos/seed/project4/800/500',
+                'Delivery and booking management platforms built for handling logistics workflows, order processing, dashboard tracking, and day-to-day operational visibility.',
+            technologies: ['Laravel', 'Vue', 'MySQL'],
+            image: 'https://picsum.photos/seed/delivery/800/500',
             liveUrl: '#',
             githubUrl: '#',
-            category: 'News App',
+            category: 'Professional',
+        },
+        {
+            title: 'Homeowners Association Management System',
+            systemType: 'Management Platform',
+            highlight:
+                'Centralized records, payments, and admin workflows for communities',
+            description:
+                'A management platform for residential communities that handles member records, payment-related workflows, and administrative operations in one organized system.',
+            technologies: ['Next.js', 'Laravel API', 'MySQL', 'Tailwind CSS'],
+            image: 'https://picsum.photos/seed/homeowners/800/500',
+            liveUrl: '#',
+            githubUrl: '#',
+            category: 'Personal Project',
+        },
+        {
+            title: 'Quiz Management Web App',
+            systemType: 'Assessment Platform',
+            highlight:
+                'Dynamic quizzes, scoring logic, and interactive web-based assessment flow',
+            description:
+                'A web-based quiz management application with dynamic question handling, scoring logic, and interactive user flows. Built with a modern frontend and Laravel API backend.',
+            technologies: ['Nuxt', 'Laravel API', 'SQLite', 'Tailwind CSS'],
+            image: 'https://picsum.photos/seed/quiz/800/500',
+            liveUrl: '#',
+            githubUrl: '#',
+            category: 'Personal Project',
         },
     ];
 
     useEffect(() => {
         const checkScreenSize = () => {
-            const isMobileScreen = window.innerWidth < 768; // md breakpoint
+            const isMobileScreen = window.innerWidth < 768;
             setIsMobile(isMobileScreen);
 
-            // Force grid view on mobile
             if (isMobileScreen) {
                 setViewMode('grid');
             }
         };
 
-        // Check on mount
         checkScreenSize();
-
-        // Add resize listener
         window.addEventListener('resize', checkScreenSize);
 
         return () => window.removeEventListener('resize', checkScreenSize);
@@ -95,16 +135,14 @@ export const FeaturedProjects = () => {
         <section
             id="project"
             ref={sectionRef}
-            className="relative px-6 py-16 w-full"
+            className="relative w-full px-6 py-12"
         >
-            {/* Background decoration */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="top-1/3 -right-32 absolute bg-blue-500/5 blur-3xl rounded-full w-96 h-96" />
-                <div className="bottom-1/3 -left-32 absolute bg-primary/5 blur-3xl rounded-full w-96 h-96" />
+            <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                <div className="absolute top-1/3 -right-32 h-96 w-96 rounded-full bg-blue-500/5 blur-3xl" />
+                <div className="absolute bottom-1/3 -left-32 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
             </div>
 
-            <div className="relative mx-auto max-w-7xl">
-                {/* Section Header with animation */}
+            <div className="relative mx-auto max-w-5xl">
                 <div
                     className={`transition-all duration-700 ${
                         isVisible
@@ -115,12 +153,11 @@ export const FeaturedProjects = () => {
                     <SectionHeader
                         mainDivClassName="mb-6"
                         title="Featured Projects"
-                        subtitle="Showcasing my best work and personal projects"
+                        subtitle="A selection of real-world systems, client projects, and applications I have built end-to-end"
                         icon={Code2}
                     />
                 </div>
 
-                {/* View Mode Toggle - Hidden on mobile (< md) */}
                 <div
                     className={`mb-6 hidden justify-start transition-all duration-700 md:flex ${
                         isVisible
@@ -129,7 +166,7 @@ export const FeaturedProjects = () => {
                     }`}
                     style={{ transitionDelay: '100ms' }}
                 >
-                    <div className="flex items-center gap-2 bg-gray-100 p-1 rounded-lg">
+                    <div className="flex items-center gap-2 rounded-lg bg-gray-100 p-1">
                         <button
                             onClick={() => setViewMode('grid')}
                             className={`flex items-center gap-2 rounded-md px-4 py-2 transition-all duration-300 ${
@@ -139,8 +176,8 @@ export const FeaturedProjects = () => {
                             }`}
                             aria-label="Grid view"
                         >
-                            <LayoutGrid className="w-4 h-4" />
-                            <span className="font-medium text-sm">Grid</span>
+                            <LayoutGrid className="h-4 w-4" />
+                            <span className="text-sm font-medium">Grid</span>
                         </button>
                         <button
                             onClick={() => setViewMode('list')}
@@ -151,20 +188,18 @@ export const FeaturedProjects = () => {
                             }`}
                             aria-label="List view"
                         >
-                            <Grid3x3 className="w-4 h-4" />
-                            <span className="font-medium text-sm">List</span>
+                            <Grid3x3 className="h-4 w-4" />
+                            <span className="text-sm font-medium">List</span>
                         </button>
                     </div>
                 </div>
 
-                {/* Projects Grid/List with animation */}
                 <div
-                    className={`gap-6 ${
-                        // Always use grid on mobile, respect viewMode on desktop
+                    className={`gap-6 transition-all duration-500 ${
                         isMobile || viewMode === 'grid'
                             ? 'grid md:grid-cols-2'
                             : 'flex flex-col'
-                    } transition-all duration-500`}
+                    }`}
                 >
                     {projects.map((project, index) => (
                         <div

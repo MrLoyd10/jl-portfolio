@@ -83,14 +83,14 @@ export const Header = () => {
                     <div className="flex items-center justify-between">
                         {/* Left: Logo */}
                         <div
-                            className="group flex cursor-pointer items-center gap-3"
+                            className="group flex cursor-pointer items-center justify-center gap-3"
                             onClick={() => scrollToSection('home')}
                         >
-                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/50 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">
-                                <span className="text-lg font-bold text-white">
-                                    ML
-                                </span>
-                            </div>
+                            <img
+                                src="/assets/icon.png"
+                                alt="MrLoyd icon"
+                                className="h-8 w-8 shrink-0 object-contain"
+                            />
                             <span className="text-xl font-semibold text-gray-800 transition-colors group-hover:text-primary">
                                 MrLoyd
                             </span>

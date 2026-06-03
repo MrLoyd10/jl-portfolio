@@ -23,6 +23,16 @@ export const Achievements = () => {
             buttonLabel: 'View Certificate',
         },
         {
+            title: 'Academic & Professional Awards',
+            issuer: 'College of Saint Lawrence & ZAP I.T. Services',
+            date: 'Year 2024',
+            description:
+                'Departmental Awardee - Recognized for outstanding academic performance and contributions within the Computer Science department. Leadership Awardee - Awarded for demonstrating exceptional leadership qualities and positive influence among peers. Best in Internship - Recognized as the top-performing intern at ZAP I.T. Services during OJT period.',
+            image: '/certificates/college-award.png',
+            link: '/certificates/college-award.png',
+            buttonLabel: 'View Photo',
+        },
+        {
             title: 'Agile Scrum Foundation',
             issuer: 'Simplilearn',
             date: 'April 2024',
@@ -52,16 +62,6 @@ export const Achievements = () => {
         //     link: '#',
         //     buttonLabel: 'View Certificate',
         // },
-        {
-            title: 'Academic & Professional Awards',
-            issuer: 'College of Saint Lawrence & ZAP I.T. Services',
-            date: 'Year 2024',
-            description:
-                'Departmental Awardee - Recognized for outstanding academic performance and contributions within the Computer Science department. Leadership Awardee - Awarded for demonstrating exceptional leadership qualities and positive influence among peers. Best in Internship - Recognized as the top-performing intern at ZAP I.T. Services during OJT period.',
-            image: '/certificates/college-award.png',
-            link: '/certificates/college-award.png',
-            buttonLabel: 'View Photo',
-        },
     ];
 
     useEffect(() => {
@@ -87,7 +87,7 @@ export const Achievements = () => {
         <section
             id="awards"
             ref={sectionRef}
-            className="relative w-full px-6 py-16"
+            className="relative w-full px-6 py-12"
         >
             {/* Background decoration - using your theme colors */}
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -95,7 +95,7 @@ export const Achievements = () => {
                 <div className="absolute bottom-1/3 -left-32 h-96 w-96 rounded-full bg-blue-500/5 blur-3xl" />
             </div>
 
-            <div className="relative mx-auto max-w-7xl">
+            <div className="relative mx-auto max-w-5xl">
                 {/* Section Header */}
                 <div
                     className={`transition-all duration-700 ${
