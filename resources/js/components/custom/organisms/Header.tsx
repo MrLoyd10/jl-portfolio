@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { env } from '@/lib/env';
 import { Download, Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
@@ -64,8 +65,10 @@ export const Header = ({ hideNav = false }: HeaderProps) => {
 
     const handleDownloadResume = () => {
         const link = document.createElement('a');
-        link.href = '/resume.pdf';
+        link.href = env.resumeUrl;
         link.download = 'MrLoyd_Resume.pdf';
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

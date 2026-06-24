@@ -9,6 +9,10 @@ const normalizePhoneHref = (phone: string) =>
 
 export const env = {
     appName: getEnv('VITE_APP_NAME', 'Laravel'),
+    resumeUrl: getEnv(
+        'VITE_RESUME_DOWNLOAD_URL',
+        'https://drive.google.com/uc?export=download&id=11t7Bk8HAh2jnpJ-1KWeYwr-TQdmnvBcm',
+    ),
     profile: {
         name: getEnv('VITE_PROFILE_NAME', 'Jhon Loyd Ocoy'),
         address: getEnv('VITE_PROFILE_ADDRESS', 'Parañaque City, Philippines'),
