@@ -1,3 +1,4 @@
+import { ProjectCardProps } from '@/components/custom/molecules/ProjectCards';
 import { Achievements } from '@/components/custom/organisms/Achievements';
 import { ContactMe } from '@/components/custom/organisms/ContactMe';
 import { EducationJourney } from '@/components/custom/organisms/EducationJourney';
@@ -7,16 +8,9 @@ import { Header } from '@/components/custom/organisms/Header';
 import { ProfileSummary } from '@/components/custom/organisms/ProfileSummary';
 import { TechArsenal } from '@/components/custom/organisms/TechArsenal';
 import { WorkExperience } from '@/components/custom/organisms/WorkExperience';
-import { type SharedData } from '@/types';
-import { Head, usePage } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 
-export default function Home({
-    canRegister = true,
-}: {
-    canRegister?: boolean;
-}) {
-    const { auth } = usePage<SharedData>().props;
-
+export default function Home({ projects }: { projects: ProjectCardProps[] }) {
     return (
         <>
             <Head title="Home" />
@@ -25,7 +19,7 @@ export default function Home({
                 <div className="flex w-full flex-1 flex-col">
                     <ProfileSummary />
                     <WorkExperience />
-                    <FeaturedProjects />
+                    <FeaturedProjects projects={projects} />
                     <TechArsenal />
                     <Achievements />
                     <EducationJourney />

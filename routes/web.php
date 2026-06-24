@@ -1,14 +1,17 @@
 <?php
 
+use App\Data\Projects;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use Laravel\Fortify\Features;
 
 Route::get('/', function () {
   return Inertia::render('home', [
-    'canRegister' => Features::enabled(Features::registration()),
+    'projects' => Projects::summaries(),
   ]);
 })->name('home');
+
+Route::get('/projects/{slug}', [ProjectController::class, 'show'])->name('projects.show');
 
 // ! Disable dashboard for now, we don't have anything to show there
 // Route::middleware(['auth', 'verified'])->group(function () {

@@ -2,7 +2,11 @@ import { Button } from '@/components/ui/button';
 import { Download, Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-export const Header = () => {
+interface HeaderProps {
+    hideNav?: boolean;
+}
+
+export const Header = ({ hideNav = false }: HeaderProps) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
     const [isScrolled, setIsScrolled] = useState(false);
@@ -17,25 +21,22 @@ export const Header = () => {
         { id: 'contact', label: 'Contact' },
     ];
 
-    // Track scroll position for header background
     useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
-        };
+        const handleScroll = () => setIsScrolled(window.scrollY > 20);
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Track active section based on scroll position
+    // Only track active section when nav is visible (i.e. on the homepage)
     useEffect(() => {
+        if (hideNav) return;
+
         const handleScroll = () => {
             const sections = navItems.map((item) => ({
                 id: item.id,
                 element: document.getElementById(item.id),
             }));
-
             const scrollPosition = window.scrollY + 100;
-
             for (let i = sections.length - 1; i >= 0; i--) {
                 const section = sections[i];
                 if (
@@ -49,9 +50,9 @@ export const Header = () => {
         };
 
         window.addEventListener('scroll', handleScroll);
-        handleScroll(); // Call once on mount
+        handleScroll();
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [hideNav]);
 
     const scrollToSection = (sectionId: string) => {
         const element = document.getElementById(sectionId);
@@ -81,7 +82,7 @@ export const Header = () => {
             >
                 <div className="container mx-auto px-6 py-4">
                     <div className="flex items-center justify-between">
-                        {/* Left: Logo */}
+                        {/* Logo */}
                         <div
                             className="group flex cursor-pointer items-center justify-center gap-3"
                             onClick={() => scrollToSection('home')}
@@ -96,27 +97,29 @@ export const Header = () => {
                             </span>
                         </div>
 
-                        {/* Center: Navigation (Desktop) */}
-                        <nav className="hidden items-center gap-1 lg:flex">
-                            {navItems.map((item) => (
-                                <button
-                                    key={item.id}
-                                    onClick={() => scrollToSection(item.id)}
-                                    className={`relative rounded-md px-4 py-2 text-sm font-medium transition-all duration-300 ${
-                                        activeSection === item.id
-                                            ? 'text-primary'
-                                            : 'text-gray-600 hover:text-gray-900'
-                                    }`}
-                                >
-                                    {item.label}
-                                    {activeSection === item.id && (
-                                        <span className="absolute bottom-0 left-1/2 h-1.5 w-1.5 -translate-x-1/2 animate-pulse rounded-full bg-primary" />
-                                    )}
-                                </button>
-                            ))}
-                        </nav>
+                        {/* Desktop nav — hidden when hideNav is true */}
+                        {!hideNav && (
+                            <nav className="hidden items-center gap-1 lg:flex">
+                                {navItems.map((item) => (
+                                    <button
+                                        key={item.id}
+                                        onClick={() => scrollToSection(item.id)}
+                                        className={`relative rounded-md px-4 py-2 text-sm font-medium transition-all duration-300 ${
+                                            activeSection === item.id
+                                                ? 'text-primary'
+                                                : 'text-gray-600 hover:text-gray-900'
+                                        }`}
+                                    >
+                                        {item.label}
+                                        {activeSection === item.id && (
+                                            <span className="absolute bottom-0 left-1/2 h-1.5 w-1.5 -translate-x-1/2 animate-pulse rounded-full bg-primary" />
+                                        )}
+                                    </button>
+                                ))}
+                            </nav>
+                        )}
 
-                        {/* Right: Resume Button & Mobile Menu Toggle */}
+                        {/* Right side */}
                         <div className="flex items-center gap-3">
                             <Button
                                 onClick={handleDownloadResume}
@@ -126,66 +129,72 @@ export const Header = () => {
                                 <span className="hidden lg:inline">Resume</span>
                             </Button>
 
-                            {/* Mobile Menu Button */}
-                            <button
-                                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                                className="rounded-md p-2 text-gray-600 transition-all duration-300 hover:bg-gray-100 hover:text-gray-900 lg:hidden"
-                            >
-                                {isMenuOpen ? (
-                                    <X className="h-6 w-6 rotate-90 transition-transform duration-300" />
-                                ) : (
-                                    <Menu className="h-6 w-6 transition-transform duration-300" />
-                                )}
-                            </button>
+                            {/* Mobile menu toggle — hidden when hideNav is true */}
+                            {!hideNav && (
+                                <button
+                                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                    className="rounded-md p-2 text-gray-600 transition-all duration-300 hover:bg-gray-100 hover:text-gray-900 lg:hidden"
+                                >
+                                    {isMenuOpen ? (
+                                        <X className="h-6 w-6 rotate-90 transition-transform duration-300" />
+                                    ) : (
+                                        <Menu className="h-6 w-6 transition-transform duration-300" />
+                                    )}
+                                </button>
+                            )}
                         </div>
                     </div>
                 </div>
 
-                {/* Mobile Navigation Menu */}
-                <div
-                    className={`overflow-hidden border-t border-gray-200 bg-white/95 backdrop-blur-md transition-all duration-300 ease-in-out lg:hidden ${
-                        isMenuOpen
-                            ? 'max-h-96 opacity-100'
-                            : 'max-h-0 opacity-0'
-                    }`}
-                >
-                    <nav className="container mx-auto px-6 py-4">
-                        <div className="flex flex-col gap-1">
-                            {navItems.map((item, index) => (
-                                <button
-                                    key={item.id}
-                                    onClick={() => scrollToSection(item.id)}
-                                    className={`relative rounded-md px-4 py-3 text-left text-sm font-medium transition-all duration-300 ${
-                                        activeSection === item.id
-                                            ? 'bg-primary/10 text-primary'
-                                            : 'text-gray-600 hover:bg-primary/5 hover:text-gray-900'
-                                    }`}
-                                    style={{
-                                        transitionDelay: isMenuOpen
-                                            ? `${index * 50}ms`
-                                            : '0ms',
-                                    }}
-                                >
-                                    {item.label}
-                                    {activeSection === item.id && (
-                                        <span className="absolute top-1/2 left-0 h-8 w-1 -translate-y-1/2 rounded-r-full bg-primary" />
-                                    )}
-                                </button>
-                            ))}
-                        </div>
-                    </nav>
-                </div>
+                {/* Mobile nav menu — hidden when hideNav is true */}
+                {!hideNav && (
+                    <div
+                        className={`overflow-hidden border-t border-gray-200 bg-white/95 backdrop-blur-md transition-all duration-300 ease-in-out lg:hidden ${
+                            isMenuOpen
+                                ? 'max-h-96 opacity-100'
+                                : 'max-h-0 opacity-0'
+                        }`}
+                    >
+                        <nav className="container mx-auto px-6 py-4">
+                            <div className="flex flex-col gap-1">
+                                {navItems.map((item, index) => (
+                                    <button
+                                        key={item.id}
+                                        onClick={() => scrollToSection(item.id)}
+                                        className={`relative rounded-md px-4 py-3 text-left text-sm font-medium transition-all duration-300 ${
+                                            activeSection === item.id
+                                                ? 'bg-primary/10 text-primary'
+                                                : 'text-gray-600 hover:bg-primary/5 hover:text-gray-900'
+                                        }`}
+                                        style={{
+                                            transitionDelay: isMenuOpen
+                                                ? `${index * 50}ms`
+                                                : '0ms',
+                                        }}
+                                    >
+                                        {item.label}
+                                        {activeSection === item.id && (
+                                            <span className="absolute top-1/2 left-0 h-8 w-1 -translate-y-1/2 rounded-r-full bg-primary" />
+                                        )}
+                                    </button>
+                                ))}
+                            </div>
+                        </nav>
+                    </div>
+                )}
             </header>
 
-            {/* Backdrop overlay when menu is open */}
-            <div
-                className={`fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 lg:hidden ${
-                    isMenuOpen
-                        ? 'pointer-events-auto opacity-100'
-                        : 'pointer-events-none opacity-0'
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-            />
+            {/* Mobile backdrop */}
+            {!hideNav && (
+                <div
+                    className={`fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 lg:hidden ${
+                        isMenuOpen
+                            ? 'pointer-events-auto opacity-100'
+                            : 'pointer-events-none opacity-0'
+                    }`}
+                    onClick={() => setIsMenuOpen(false)}
+                />
+            )}
         </>
     );
 };

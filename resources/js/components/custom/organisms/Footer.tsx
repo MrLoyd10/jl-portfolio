@@ -31,39 +31,15 @@ export function Footer() {
     ];
 
     const socialLinks = [
-        {
-            name: 'GitHub',
-            icon: Github,
-            href: socials.githubUrl,
-        },
-        {
-            name: 'Instagram',
-            icon: Instagram,
-            href: socials.instagramUrl,
-        },
-        {
-            name: 'Facebook',
-            icon: Facebook,
-            href: socials.facebookUrl,
-        },
+        { name: 'GitHub', icon: Github, href: socials.githubUrl },
+        { name: 'Instagram', icon: Instagram, href: socials.instagramUrl },
+        { name: 'Facebook', icon: Facebook, href: socials.facebookUrl },
     ];
 
     const contactSnippet = [
-        {
-            icon: Mail,
-            text: contact.email,
-            href: contactLinks.emailHref,
-        },
-        {
-            icon: Phone,
-            text: contact.phone,
-            href: contactLinks.phoneHref,
-        },
-        {
-            icon: MapPin,
-            text: contact.location,
-            href: null,
-        },
+        { icon: Mail, text: contact.email, href: contactLinks.emailHref },
+        { icon: Phone, text: contact.phone, href: contactLinks.phoneHref },
+        { icon: MapPin, text: contact.location, href: null },
     ];
 
     useEffect(() => {
@@ -78,10 +54,15 @@ export function Footer() {
 
     const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    const scrollToSection = (id: string) => {
-        document
-            .getElementById(id)
-            ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // If the section exists on the current page, smooth-scroll to it.
+    // Otherwise redirect to the homepage with the hash so it works from any page.
+    const navigateToSection = (id: string) => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+            window.location.href = `/#${id}`;
+        }
     };
 
     return (
@@ -100,7 +81,6 @@ export function Footer() {
                 <div className="h-0.5 w-full bg-gradient-to-r from-primary via-blue-500/70 to-primary" />
 
                 <div className="mx-auto max-w-5xl px-6 py-12">
-                    {/* Main grid — 3 cols */}
                     <div
                         className={`grid gap-10 transition-all duration-700 md:grid-cols-3 ${
                             isVisible
@@ -113,7 +93,6 @@ export function Footer() {
                             className="space-y-5 transition-all duration-700"
                             style={{ transitionDelay: '100ms' }}
                         >
-                            {/* Logo */}
                             <div className="flex items-center gap-3">
                                 <img
                                     src="/assets/icon.png"
@@ -134,7 +113,6 @@ export function Footer() {
                                 {footer.brandDescription}
                             </p>
 
-                            {/* Socials */}
                             <div className="flex items-center gap-2">
                                 {socialLinks.map((social) => {
                                     const Icon = social.icon;
@@ -153,7 +131,6 @@ export function Footer() {
                                 })}
                             </div>
 
-                            {/* Built with */}
                             <div className="flex items-center gap-1.5 text-xs text-gray-300">
                                 <Code2 className="h-3.5 w-3.5 text-primary/60" />
                                 <span>{footer.builtWith}</span>
@@ -173,7 +150,7 @@ export function Footer() {
                                     <li key={link.id}>
                                         <button
                                             onClick={() =>
-                                                scrollToSection(link.id)
+                                                navigateToSection(link.id)
                                             }
                                             onMouseEnter={() =>
                                                 setHoveredLink(link.id)
@@ -200,7 +177,7 @@ export function Footer() {
                             </ul>
                         </div>
 
-                        {/* Col 3 — Contact snippet */}
+                        {/* Col 3 — Contact */}
                         <div
                             className="space-y-4 transition-all duration-700"
                             style={{ transitionDelay: '300ms' }}
@@ -238,7 +215,6 @@ export function Footer() {
                                 })}
                             </ul>
 
-                            {/* Availability pill */}
                             <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-green-800/60 bg-green-900/30 px-3 py-1.5">
                                 <span className="relative flex h-1.5 w-1.5">
                                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />

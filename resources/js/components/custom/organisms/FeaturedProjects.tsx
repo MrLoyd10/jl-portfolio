@@ -3,98 +3,15 @@ import { useEffect, useRef, useState } from 'react';
 import { SectionHeader } from '../atoms/SectionHeader';
 import { ProjectCard, ProjectCardProps } from '../molecules/ProjectCards';
 
-export const FeaturedProjects = () => {
+interface FeaturedProjectsProps {
+    projects: ProjectCardProps[];
+}
+
+export const FeaturedProjects = ({ projects }: FeaturedProjectsProps) => {
     const [isVisible, setIsVisible] = useState(false);
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
     const [isMobile, setIsMobile] = useState(false);
     const sectionRef = useRef<HTMLDivElement>(null);
-
-    const projects: ProjectCardProps[] = [
-        {
-            title: 'Project: Atlas',
-            systemType: 'Industrial Control System',
-            highlight:
-                'Real-time device monitoring and control via HTTP and WebSockets',
-            description:
-                'A real-time industrial control platform that allows users to monitor and manage devices such as CCTV, lights, and relays. Built for hardware-integrated environments with live system feedback and operational control.',
-            technologies: [
-                'React',
-                'Laravel',
-                'MySQL',
-                'WebSockets',
-                'Tailwind CSS',
-            ],
-            image: 'https://picsum.photos/seed/atlas/800/500',
-            liveUrl: '#',
-            githubUrl: '#',
-            category: 'Freelance Project',
-        },
-        {
-            title: 'Document Stamp Management System',
-            systemType: 'Document Workflow System',
-            highlight:
-                'Electronic document stamp releasing with secure file storage',
-            description:
-                'A document processing platform for managing and releasing electronic document stamps. Designed to support workflow handling, record tracking, and secure file storage using AWS S3.',
-            technologies: ['Laravel', 'React', 'MySQL', 'AWS S3', 'Inertia.js'],
-            image: 'https://picsum.photos/seed/docstamp/800/500',
-            liveUrl: '#',
-            githubUrl: '#',
-            category: 'Professional',
-        },
-        {
-            title: 'ESkywardPay',
-            systemType: 'Payment Integration System',
-            highlight:
-                'Integrated secure online payment workflows into business platforms',
-            description:
-                'An online payment integration system built to handle transaction workflows inside business applications. Focused on secure processing, backend transaction handling, and smooth user payment experiences.',
-            technologies: ['Laravel', 'React', 'MySQL', 'Payment Integration'],
-            image: 'https://picsum.photos/seed/payment/800/500',
-            liveUrl: '#',
-            githubUrl: '#',
-            category: 'Professional',
-        },
-        {
-            title: 'Delivery Booking Systems',
-            systemType: 'Booking & Logistics Platform',
-            highlight:
-                'Supported booking flows, delivery operations, and dashboard management',
-            description:
-                'Delivery and booking management platforms built for handling logistics workflows, order processing, dashboard tracking, and day-to-day operational visibility.',
-            technologies: ['Laravel', 'Vue', 'MySQL'],
-            image: 'https://picsum.photos/seed/delivery/800/500',
-            liveUrl: '#',
-            githubUrl: '#',
-            category: 'Professional',
-        },
-        {
-            title: 'Homeowners Association Management System',
-            systemType: 'Management Platform',
-            highlight:
-                'Centralized records, payments, and admin workflows for communities',
-            description:
-                'A management platform for residential communities that handles member records, payment-related workflows, and administrative operations in one organized system.',
-            technologies: ['Next.js', 'Laravel API', 'MySQL', 'Tailwind CSS'],
-            image: 'https://picsum.photos/seed/homeowners/800/500',
-            liveUrl: '#',
-            githubUrl: '#',
-            category: 'Personal Project',
-        },
-        {
-            title: 'Quiz Management Web App',
-            systemType: 'Assessment Platform',
-            highlight:
-                'Dynamic quizzes, scoring logic, and interactive web-based assessment flow',
-            description:
-                'A web-based quiz management application with dynamic question handling, scoring logic, and interactive user flows. Built with a modern frontend and Laravel API backend.',
-            technologies: ['Nuxt', 'Laravel API', 'SQLite', 'Tailwind CSS'],
-            image: 'https://picsum.photos/seed/quiz/800/500',
-            liveUrl: '#',
-            githubUrl: '#',
-            category: 'Personal Project',
-        },
-    ];
 
     useEffect(() => {
         const checkScreenSize = () => {
@@ -203,7 +120,7 @@ export const FeaturedProjects = () => {
                 >
                     {projects.map((project, index) => (
                         <div
-                            key={index}
+                            key={project.slug ?? index}
                             className={`transition-all duration-700 ${
                                 isVisible
                                     ? 'translate-y-0 opacity-100'

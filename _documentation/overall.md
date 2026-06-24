@@ -1,11 +1,13 @@
-npm run dev
-php artisan serve
+Commands:
 
-.env base approach
+- npm run dev
+- php artisan serve
 
-- name
-- contact
-- stats
-- photos
-- files
-- etc.
+Custom Commands:
+
+- php artisan screenshots:generate
+
+Read:
+
+- .env
+- app/Data/Projects.php
