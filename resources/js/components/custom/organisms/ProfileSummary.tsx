@@ -18,19 +18,19 @@ export const ProfileSummary = () => {
             icon: Github,
             href: socials.githubUrl,
             label: 'GitHub',
-            color: 'hover:bg-gray-900 hover:text-white',
+            color: 'hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900',
         },
         {
             icon: Instagram,
             href: socials.instagramUrl,
             label: 'Instagram',
-            color: 'hover:bg-gradient-to-tr hover:from-purple-600 hover:via-pink-600 hover:to-orange-500 hover:text-white',
+            color: 'hover:bg-gradient-to-tr hover:from-purple-600 hover:via-pink-600 hover:to-orange-500 hover:text-white dark:hover:from-purple-500 dark:hover:via-pink-500 dark:hover:to-orange-400',
         },
         {
             icon: Facebook,
             href: socials.facebookUrl,
             label: 'Facebook',
-            color: 'hover:bg-blue-600 hover:text-white',
+            color: 'hover:bg-blue-600 hover:text-white dark:hover:bg-blue-500',
         },
     ];
 
@@ -81,7 +81,7 @@ export const ProfileSummary = () => {
                             <div className="group relative">
                                 <div className="animate-spin-slow absolute inset-0 rounded-full bg-gradient-to-tr from-primary via-blue-500 to-purple-500 opacity-75 blur-sm transition-all duration-500 group-hover:opacity-100" />
 
-                                <div className="relative h-64 w-64 overflow-hidden rounded-full border-4 border-white shadow-xl transition-transform duration-500 group-hover:scale-105">
+                                <div className="relative h-64 w-64 overflow-hidden rounded-full border-4 border-white shadow-xl transition-transform duration-500 group-hover:scale-105 dark:border-gray-800">
                                     <img
                                         src={profile.imageUrl}
                                         alt={profile.name}
@@ -90,22 +90,22 @@ export const ProfileSummary = () => {
                                     <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                                 </div>
 
-                                <div className="animate-bounce-slow absolute right-4 bottom-4 flex items-center gap-2 rounded-full border border-green-200 bg-white px-3 py-1.5 shadow-lg">
+                                <div className="animate-bounce-slow absolute right-4 bottom-4 flex items-center gap-2 rounded-full border border-green-200 bg-white px-3 py-1.5 shadow-lg dark:border-green-800 dark:bg-gray-800">
                                     <span className="relative flex h-3 w-3">
                                         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
                                         <span className="relative inline-flex h-3 w-3 rounded-full bg-green-500" />
                                     </span>
-                                    <span className="text-xs font-medium text-green-700">
+                                    <span className="text-xs font-medium text-green-700 dark:text-green-400">
                                         Open to Work
                                     </span>
                                 </div>
                             </div>
 
                             <div
-                                className={`flex items-center gap-2 text-gray-800 transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
+                                className={`flex items-center gap-2 text-gray-800 transition-all duration-700 dark:text-gray-100 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
                                 style={{ transitionDelay: '200ms' }}
                             >
-                                <MapPin className="h-5 w-5 animate-pulse text-primary" />
+                                <MapPin className="h-5 w-5 animate-pulse text-primary dark:brightness-150" />
                                 <span className="font-medium">
                                     {profile.address}
                                 </span>
@@ -118,7 +118,7 @@ export const ProfileSummary = () => {
                                         href={social.href}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className={`rounded-full border border-gray-300 bg-gray-100 p-3 transition-all duration-300 hover:scale-110 hover:border-transparent hover:shadow-lg ${social.color} ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
+                                        className={`rounded-full border border-gray-300 bg-gray-100 p-3 transition-all duration-300 hover:scale-110 hover:border-transparent hover:shadow-lg dark:border-gray-600 dark:bg-gray-800 dark:hover:shadow-black/40 ${social.color} ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
                                         style={{ transitionDelay: '30ms' }}
                                         aria-label={social.label}
                                     >
@@ -158,7 +158,7 @@ export const ProfileSummary = () => {
                             {titles.map((title, index) => (
                                 <p
                                     key={index}
-                                    className={`absolute inset-0 text-lg font-medium text-gray-800 transition-all duration-500 md:text-xl ${
+                                    className={`absolute inset-0 text-lg font-medium text-gray-800 transition-all duration-500 md:text-xl dark:text-gray-100 ${
                                         currentTitle === index
                                             ? 'translate-y-0 opacity-100'
                                             : '-translate-y-full opacity-0'
@@ -173,11 +173,11 @@ export const ProfileSummary = () => {
                             className="transition-all duration-700"
                             style={{ transitionDelay: '400ms' }}
                         >
-                            <p className="group relative max-w-2xl leading-relaxed text-gray-600">
+                            <p className="group relative max-w-2xl leading-relaxed text-gray-600 dark:text-gray-300">
                                 <span className="relative z-10">
                                     I build scalable web applications and
                                     business systems using
-                                    <span className="font-semibold text-primary">
+                                    <span className="font-semibold text-primary dark:brightness-150">
                                         {' '}
                                         Laravel, React, and TypeScript
                                     </span>
@@ -186,7 +186,7 @@ export const ProfileSummary = () => {
                                     operational tools that streamline workflows
                                     and improve system efficiency. I focus on
                                     delivering
-                                    <span className="font-semibold text-primary">
+                                    <span className="font-semibold text-primary dark:brightness-150">
                                         {' '}
                                         clean, maintainable, and
                                         production-ready solutions
@@ -201,28 +201,28 @@ export const ProfileSummary = () => {
                             style={{ transitionDelay: '500ms' }}
                         >
                             <div className="group cursor-default text-center">
-                                <div className="text-2xl font-bold text-primary transition-transform duration-300 group-hover:scale-110">
+                                <div className="text-2xl font-bold text-primary transition-transform duration-300 group-hover:scale-110 dark:brightness-150">
                                     {profile.yearsExperience}
                                 </div>
-                                <div className="text-sm text-gray-600">
+                                <div className="text-sm text-gray-600 dark:text-gray-300">
                                     Years Experience
                                 </div>
                             </div>
-                            <div className="border-l border-gray-300" />
+                            <div className="border-l border-gray-300 dark:border-gray-600" />
                             <div className="group cursor-default text-center">
-                                <div className="text-2xl font-bold text-primary transition-transform duration-300 group-hover:scale-110">
+                                <div className="text-2xl font-bold text-primary transition-transform duration-300 group-hover:scale-110 dark:brightness-150">
                                     {profile.systemsProjects}
                                 </div>
-                                <div className="text-sm text-gray-600">
+                                <div className="text-sm text-gray-600 dark:text-gray-300">
                                     Systems & Projects
                                 </div>
                             </div>
-                            <div className="border-l border-gray-300" />
+                            <div className="border-l border-gray-300 dark:border-gray-600" />
                             <div className="group cursor-default text-center">
-                                <div className="text-2xl font-bold text-primary transition-transform duration-300 group-hover:scale-110">
+                                <div className="text-2xl font-bold text-primary transition-transform duration-300 group-hover:scale-110 dark:brightness-150">
                                     {profile.coreStack}
                                 </div>
-                                <div className="text-sm text-gray-600">
+                                <div className="text-sm text-gray-600 dark:text-gray-300">
                                     Core Stack
                                 </div>
                             </div>

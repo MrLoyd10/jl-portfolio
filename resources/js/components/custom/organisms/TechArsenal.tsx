@@ -13,20 +13,20 @@ const LEVEL_CONFIG = {
     Advanced: {
         dot: 'bg-emerald-500',
         ring: 'shadow-emerald-100',
-        badge: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+        badge: 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800',
         ping: 'bg-emerald-400',
     },
     Intermediate: {
         dot: 'bg-amber-400',
         ring: 'shadow-amber-100',
-        badge: 'bg-amber-50 text-amber-700 border-amber-200',
+        badge: 'bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-800',
         ping: 'bg-amber-300',
     },
     Beginner: {
         dot: 'bg-gray-400',
         ring: 'shadow-gray-100',
-        badge: 'bg-gray-50 text-gray-500 border-gray-200',
-        ping: 'bg-gray-300',
+        badge: 'bg-gray-50 dark:bg-gray-800 text-gray-500 dark:text-gray-300 border-gray-200 dark:border-gray-700',
+        ping: 'bg-gray-300 dark:bg-gray-600',
     },
 } as const;
 
@@ -330,7 +330,7 @@ export function TechArsenal() {
                                         className={`relative inline-flex h-2.5 w-2.5 rounded-full ${cfg.dot}`}
                                     />
                                 </span>
-                                <span className="text-xs font-medium text-gray-500">
+                                <span className="text-xs font-medium text-gray-500 dark:text-gray-300">
                                     {label}
                                 </span>
                             </div>
@@ -338,9 +338,9 @@ export function TechArsenal() {
                     </div>
 
                     {/* Count badge */}
-                    <div className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-1.5 shadow-sm">
-                        <Layers className="h-3.5 w-3.5 text-primary" />
-                        <span className="text-xs font-medium text-gray-600">
+                    <div className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-1.5 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                        <Layers className="h-3.5 w-3.5 text-primary dark:brightness-150" />
+                        <span className="text-xs font-medium text-gray-600 dark:text-gray-300">
                             {technologies.length} technologies
                         </span>
                     </div>
@@ -363,7 +363,7 @@ export function TechArsenal() {
                             className={`rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-300 ${
                                 selectedCategory === category
                                     ? 'scale-105 bg-primary text-white shadow-md shadow-primary/20'
-                                    : 'border border-gray-200 bg-white text-gray-600 hover:scale-105 hover:border-primary/40 hover:bg-primary/5 hover:text-primary hover:shadow-sm'
+                                    : 'border border-gray-200 bg-white text-gray-600 hover:scale-105 hover:border-primary/40 hover:bg-primary/5 hover:text-primary hover:shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300'
                             }`}
                         >
                             {category}
@@ -404,7 +404,7 @@ export function TechArsenal() {
                             />
                         ))}
                         {masteryTechs.length === 0 && (
-                            <p className="col-span-full py-6 text-center text-sm text-gray-400">
+                            <p className="col-span-full py-6 text-center text-sm text-gray-400 dark:text-gray-500">
                                 No advanced technologies in this category.
                             </p>
                         )}
@@ -485,14 +485,14 @@ function CollapsibleSectionDivider({
                 className={`group flex shrink-0 items-center gap-2 rounded-full border px-3 py-1 transition-all duration-300 ${
                     isOpen
                         ? 'border-primary/20 shadow-sm'
-                        : 'border-gray-300 bg-white hover:border-primary/30 hover:bg-primary/5 hover:shadow-sm'
+                        : 'border-gray-300 bg-white hover:border-primary/30 hover:bg-primary/5 hover:shadow-sm dark:border-gray-600 dark:bg-gray-800'
                 }`}
             >
                 <span
                     className={`text-xs font-semibold tracking-widest uppercase transition-colors duration-200 ${
                         isOpen
-                            ? 'text-primary/70'
-                            : 'text-gray-500 group-hover:text-primary'
+                            ? 'text-primary/70 dark:brightness-200'
+                            : 'text-gray-500 group-hover:text-primary dark:text-gray-300'
                     }`}
                 >
                     {label}
@@ -501,8 +501,8 @@ function CollapsibleSectionDivider({
                     <span
                         className={`rounded-full px-2 py-0.5 text-[10px] font-medium transition-colors duration-200 ${
                             isOpen
-                                ? 'bg-primary/10 text-primary/70'
-                                : 'bg-gray-100 text-gray-600 group-hover:bg-primary/10 group-hover:text-primary'
+                                ? 'bg-primary/10 text-primary/70 dark:brightness-200'
+                                : 'bg-gray-100 text-gray-600 group-hover:bg-primary/10 group-hover:text-primary dark:bg-gray-800 dark:text-gray-300'
                         }`}
                     >
                         {count}
@@ -511,12 +511,12 @@ function CollapsibleSectionDivider({
                 <ChevronDown
                     className={`h-3.5 w-3.5 shrink-0 transition-all duration-300 ${
                         isOpen
-                            ? 'rotate-180 text-primary/80'
-                            : 'text-gray-400 group-hover:text-primary'
+                            ? 'rotate-180 text-primary/80 dark:brightness-200'
+                            : 'text-gray-400 group-hover:text-primary dark:text-gray-500'
                     }`}
                 />
             </button>
-            <div className="h-px flex-1 bg-gradient-to-r from-gray-400 to-transparent" />
+            <div className="h-px flex-1 bg-gradient-to-r from-gray-400 to-transparent dark:from-gray-600" />
         </div>
     );
 }
@@ -538,17 +538,19 @@ function SectionDivider({
             )}
             <span
                 className={`text-xs font-semibold tracking-widest uppercase ${
-                    accent ? 'text-primary' : 'text-gray-600'
+                    accent
+                        ? 'text-primary dark:brightness-150'
+                        : 'text-gray-600 dark:text-gray-300'
                 }`}
             >
                 {label}
             </span>
             {count !== undefined && (
-                <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-medium text-gray-600">
+                <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-medium text-gray-600 dark:bg-gray-800 dark:text-gray-300">
                     {count}
                 </span>
             )}
-            <div className="h-px flex-1 bg-gradient-to-r from-gray-300 to-transparent" />
+            <div className="h-px flex-1 bg-gradient-to-r from-gray-300 to-transparent dark:from-gray-600" />
         </div>
     );
 }
@@ -590,10 +592,10 @@ function TechCard({
                 />
 
                 <div
-                    className={`relative flex flex-col items-center gap-2 overflow-hidden rounded-xl border bg-white p-3 transition-all duration-300 ${
+                    className={`relative flex flex-col items-center gap-2 overflow-hidden rounded-xl border bg-white p-3 transition-all duration-300 dark:bg-gray-800 ${
                         isHovered
                             ? '-translate-y-1.5 border-primary/30 shadow-lg shadow-primary/10'
-                            : 'border-gray-200 shadow-sm hover:shadow-md'
+                            : 'border-gray-200 shadow-sm hover:shadow-md dark:border-gray-700'
                     }`}
                 >
                     {/* Level indicator dot with ping */}
@@ -623,7 +625,7 @@ function TechCard({
                                 e.currentTarget.style.display = 'none';
                                 const parent = e.currentTarget.parentElement;
                                 if (parent) {
-                                    parent.innerHTML = `<div class="flex items-center justify-center rounded-lg bg-gray-100 w-9 h-9"><span class="text-xs font-bold text-gray-500">${name.substring(0, 2).toUpperCase()}</span></div>`;
+                                    parent.innerHTML = `<div class="flex items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800 w-9 h-9"><span class="text-xs font-bold text-gray-500 dark:text-gray-300">${name.substring(0, 2).toUpperCase()}</span></div>`;
                                 }
                             }}
                         />
@@ -632,14 +634,16 @@ function TechCard({
                     {/* Name */}
                     <span
                         className={`w-full text-center text-[11px] leading-tight font-medium transition-colors duration-200 ${
-                            isHovered ? 'text-primary' : 'text-gray-700'
+                            isHovered
+                                ? 'text-primary dark:brightness-150'
+                                : 'text-gray-700 dark:text-gray-300'
                         }`}
                     >
                         {name}
                     </span>
 
                     {/* Bottom bar — slides in on hover */}
-                    <div className="absolute right-0 bottom-0 left-0 h-0.5 overflow-hidden rounded-b-xl bg-gray-100">
+                    <div className="absolute right-0 bottom-0 left-0 h-0.5 overflow-hidden rounded-b-xl bg-gray-100 dark:bg-gray-800">
                         <div
                             className={`h-full bg-gradient-to-r from-primary via-blue-500 to-purple-500 transition-all duration-500 ${
                                 isHovered ? 'w-full' : 'w-0'

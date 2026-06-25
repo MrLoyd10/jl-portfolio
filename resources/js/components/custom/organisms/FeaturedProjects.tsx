@@ -83,13 +83,13 @@ export const FeaturedProjects = ({ projects }: FeaturedProjectsProps) => {
                     }`}
                     style={{ transitionDelay: '100ms' }}
                 >
-                    <div className="flex items-center gap-2 rounded-lg bg-gray-100 p-1">
+                    <div className="flex items-center gap-2 rounded-lg bg-gray-100 p-1 dark:bg-gray-800">
                         <button
                             onClick={() => setViewMode('grid')}
                             className={`flex items-center gap-2 rounded-md px-4 py-2 transition-all duration-300 ${
                                 viewMode === 'grid'
-                                    ? 'bg-white text-primary shadow-sm'
-                                    : 'text-gray-600 hover:text-gray-900'
+                                    ? 'bg-white text-primary shadow-sm dark:bg-gray-900 dark:brightness-200'
+                                    : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100'
                             }`}
                             aria-label="Grid view"
                         >
@@ -100,8 +100,8 @@ export const FeaturedProjects = ({ projects }: FeaturedProjectsProps) => {
                             onClick={() => setViewMode('list')}
                             className={`flex items-center gap-2 rounded-md px-4 py-2 transition-all duration-300 ${
                                 viewMode === 'list'
-                                    ? 'bg-white text-primary shadow-sm'
-                                    : 'text-gray-600 hover:text-gray-900'
+                                    ? 'bg-white text-primary shadow-sm dark:bg-gray-900 dark:brightness-200'
+                                    : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100'
                             }`}
                             aria-label="List view"
                         >

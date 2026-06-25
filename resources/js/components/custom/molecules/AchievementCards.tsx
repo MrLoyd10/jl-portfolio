@@ -41,18 +41,18 @@ export const AchievementCard = ({
             {/* Outer glow */}
             <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-br from-primary via-blue-500 to-purple-500 opacity-0 blur transition-opacity duration-500 group-hover:opacity-20" />
 
-            <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-primary/30 group-hover:shadow-xl">
+            <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-primary/30 group-hover:shadow-xl dark:border-gray-700 dark:bg-gray-800">
                 {/* Image */}
-                <div className="relative h-36 w-full overflow-hidden bg-gradient-to-br from-gray-100 to-gray-50">
+                <div className="relative h-36 w-full overflow-hidden bg-gradient-to-br from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-700">
                     {!imageLoaded && (
-                        <div className="absolute inset-0 animate-pulse bg-gray-200" />
+                        <div className="absolute inset-0 animate-pulse bg-gray-200 dark:bg-gray-700" />
                     )}
 
                     {/* Verified badge */}
                     <div className="absolute top-2 left-2 z-10">
-                        <div className="flex items-center gap-1 rounded-full border border-green-200 bg-white/95 px-2 py-0.5 shadow-sm backdrop-blur-sm">
-                            <Shield className="h-3 w-3 text-green-600" />
-                            <span className="text-[10px] font-bold text-green-700">
+                        <div className="flex items-center gap-1 rounded-full border border-green-200 bg-white/95 px-2 py-0.5 shadow-sm backdrop-blur-sm dark:border-green-800 dark:bg-gray-800/95">
+                            <Shield className="h-3 w-3 text-green-600 dark:text-green-400" />
+                            <span className="text-[10px] font-bold text-green-700 dark:text-green-400">
                                 Certified
                             </span>
                         </div>
@@ -91,28 +91,28 @@ export const AchievementCard = ({
                 <div className="flex flex-1 flex-col gap-2.5 p-4">
                     {/* Title */}
                     <div className="flex items-center gap-2">
-                        <div className="mt-0.5 shrink-0 rounded-lg bg-primary/10 p-1.5 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 group-hover:bg-primary/20">
-                            <Award className="h-3.5 w-3.5 text-primary" />
+                        <div className="mt-0.5 shrink-0 rounded-lg bg-primary/10 p-1.5 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 group-hover:bg-primary/20 dark:brightness-125">
+                            <Award className="h-3.5 w-3.5 text-primary dark:brightness-150" />
                         </div>
-                        <h3 className="text-sm leading-snug font-semibold text-gray-900 transition-colors duration-300 group-hover:text-primary">
+                        <h3 className="text-sm leading-snug font-semibold text-gray-900 transition-colors duration-300 group-hover:text-primary dark:text-gray-100">
                             {title}
                         </h3>
                     </div>
 
                     {/* Issuer + Date tags */}
                     <div className="flex flex-wrap gap-1.5">
-                        <div className="flex items-center gap-1 rounded-md bg-gray-50 px-2 py-1 text-[11px] text-gray-600 transition-colors duration-300 group-hover:bg-primary/5 group-hover:text-primary/80">
-                            <Building2 className="h-2.5 w-2.5 shrink-0 text-primary/50" />
+                        <div className="flex items-center gap-1 rounded-md bg-gray-50 px-2 py-1 text-[11px] text-gray-600 transition-colors duration-300 group-hover:bg-primary/5 group-hover:text-primary/80 dark:bg-gray-700 dark:text-gray-300">
+                            <Building2 className="h-2.5 w-2.5 shrink-0 text-primary/50 dark:brightness-200" />
                             <span className="font-medium">{issuer}</span>
                         </div>
-                        <div className="flex items-center gap-1 rounded-md bg-gray-50 px-2 py-1 text-[11px] text-gray-600 transition-colors duration-300 group-hover:bg-primary/5">
-                            <Calendar className="h-2.5 w-2.5 shrink-0 text-primary/50" />
+                        <div className="flex items-center gap-1 rounded-md bg-gray-50 px-2 py-1 text-[11px] text-gray-600 transition-colors duration-300 group-hover:bg-primary/5 dark:bg-gray-700 dark:text-gray-300">
+                            <Calendar className="h-2.5 w-2.5 shrink-0 text-primary/50 dark:brightness-200" />
                             <span className="font-medium">{date}</span>
                         </div>
                     </div>
 
                     {/* Description */}
-                    <p className="line-clamp-2 flex-1 text-[11px] leading-relaxed text-gray-700">
+                    <p className="line-clamp-2 flex-1 text-[11px] leading-relaxed text-gray-700 dark:text-gray-300">
                         {description}
                     </p>
 
@@ -122,7 +122,7 @@ export const AchievementCard = ({
                             href={link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group/btn mt-2 flex items-center justify-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-[11px] font-medium text-gray-700 shadow-sm transition-all duration-300 hover:border-primary/40 hover:bg-primary/5 hover:text-primary hover:shadow-md active:scale-95"
+                            className="group/btn mt-2 flex items-center justify-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-[11px] font-medium text-gray-700 shadow-sm transition-all duration-300 hover:border-primary/40 hover:bg-primary/5 hover:text-primary hover:shadow-md active:scale-95 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300"
                         >
                             {buttonLabel || 'View Certificate'}
                             <ExternalLink className="h-3 w-3 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />

@@ -15,11 +15,15 @@ export const SectionHeader = ({
 }) => {
     return (
         <div className={cn('mb-4', mainDivClassName)}>
-            <h2 className="mb-2 flex items-center gap-2 text-xl font-bold text-primary/80">
+            <h2 className="mb-2 flex items-center gap-2 text-xl font-bold text-primary/80 dark:brightness-150">
                 {Icon && <Icon className={cn('h-6 w-6', iconClassName)} />}
                 {title}
             </h2>
-            {subtitle && <p className="text-base text-gray-800">{subtitle}</p>}
+            {subtitle && (
+                <p className="text-base text-gray-800 dark:text-gray-200">
+                    {subtitle}
+                </p>
+            )}
         </div>
     );
 };

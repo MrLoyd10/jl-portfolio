@@ -1,12 +1,5 @@
 import { Badge } from '@/components/ui/badge';
-import {
-    Award,
-    BookOpen,
-    Calendar,
-    GraduationCap,
-    School,
-    Sparkles,
-} from 'lucide-react';
+import { Award, BookOpen, Calendar, GraduationCap, School } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 import { SectionHeader } from '../atoms/SectionHeader';
 
@@ -26,34 +19,34 @@ interface EducationItemProps {
 const COLOR_CONFIGS = [
     {
         dot: 'from-slate-400 to-slate-500',
-        badge: 'bg-slate-50 text-slate-600 border-slate-200',
+        badge: 'bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700',
         accent: 'bg-slate-400',
-        light: 'bg-slate-50',
-        text: 'text-slate-500',
+        light: 'bg-slate-50 dark:bg-slate-800',
+        text: 'text-slate-500 dark:text-slate-400',
         bar: 'from-slate-400 to-slate-500',
     },
     {
         dot: 'from-indigo-300 to-indigo-400',
-        badge: 'bg-indigo-50 text-indigo-500 border-indigo-100',
+        badge: 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-500 dark:text-indigo-400 border-indigo-100 dark:border-indigo-800',
         accent: 'bg-indigo-300',
-        light: 'bg-indigo-50/60',
-        text: 'text-indigo-400',
+        light: 'bg-indigo-50/60 dark:bg-indigo-900/30',
+        text: 'text-indigo-400 dark:text-indigo-300',
         bar: 'from-indigo-300 to-indigo-400',
     },
     {
         dot: 'from-emerald-400 to-emerald-500',
-        badge: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+        badge: 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800',
         accent: 'bg-emerald-500',
-        light: 'bg-emerald-50',
-        text: 'text-emerald-600',
+        light: 'bg-emerald-50 dark:bg-emerald-900/30',
+        text: 'text-emerald-600 dark:text-emerald-400',
         bar: 'from-emerald-500 to-emerald-600',
     },
     {
         dot: 'from-primary to-blue-600',
-        badge: 'bg-primary/10 text-primary border-primary/20',
+        badge: 'bg-primary/10 text-primary border-primary/20 dark:brightness-200',
         accent: 'bg-primary',
         light: 'bg-primary/5',
-        text: 'text-primary',
+        text: 'text-primary dark:brightness-200',
         bar: 'from-primary to-blue-600',
     },
 ] as const;
@@ -186,7 +179,7 @@ export function EducationJourney() {
                 <div className="relative mt-8">
                     {/* Vertical line */}
                     <div className="absolute top-3 bottom-3 left-[15px] w-0.5 md:left-[19px]">
-                        <div className="h-full w-full rounded-full bg-gray-200" />
+                        <div className="h-full w-full rounded-full bg-gray-200 dark:bg-gray-700" />
                         <div
                             className={`absolute top-0 left-0 w-full rounded-full bg-gradient-to-b from-primary/70 to-blue-500/70 transition-all duration-[1800ms] ease-out ${
                                 isVisible ? 'h-full' : 'h-0'
@@ -264,10 +257,10 @@ const EducationItem = ({
             {/* Card */}
             <div className="group relative min-w-0 flex-1 pb-1">
                 <div
-                    className={`relative overflow-hidden rounded-xl border bg-white shadow-sm transition-all duration-300 ${
+                    className={`relative overflow-hidden rounded-xl border bg-white shadow-sm transition-all duration-300 dark:bg-gray-800 ${
                         isActive
-                            ? 'border-gray-300 shadow-md'
-                            : 'border-gray-200 hover:border-gray-300 hover:shadow-md'
+                            ? 'border-gray-300 shadow-md dark:border-gray-600'
+                            : 'border-gray-200 hover:border-gray-300 hover:shadow-md dark:border-gray-600'
                     }`}
                 >
                     {/* Top accent */}
@@ -285,31 +278,28 @@ const EducationItem = ({
                             <div className="min-w-0 flex-1">
                                 <div className="flex flex-wrap items-center gap-2">
                                     <h3
-                                        className={`text-base leading-snug font-bold text-gray-900 transition-colors duration-200 ${
+                                        className={`text-base leading-snug font-bold text-gray-900 transition-colors duration-200 dark:text-gray-100 ${
                                             isActive
                                                 ? cfg.text
-                                                : 'group-hover:text-gray-700'
+                                                : 'group-hover:text-gray-700 dark:text-gray-300'
                                         }`}
                                     >
                                         {degree}
                                     </h3>
                                     {status === 'ongoing' && (
-                                        <div className="flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-2 py-0.5">
+                                        <div className="flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-2 py-0.5 dark:border-green-800 dark:bg-green-900/30">
                                             <span className="relative flex h-1.5 w-1.5">
                                                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
                                                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-green-500" />
                                             </span>
-                                            <span className="text-[10px] font-semibold text-green-700">
+                                            <span className="text-[10px] font-semibold text-green-700 dark:text-green-400">
                                                 In Progress
                                             </span>
                                         </div>
                                     )}
-                                    {isActive && hasDetails && (
-                                        <Sparkles className="h-3.5 w-3.5 animate-pulse fill-yellow-400 text-yellow-400" />
-                                    )}
                                 </div>
 
-                                <p className="mt-0.5 flex items-center gap-1.5 text-sm text-gray-500">
+                                <p className="mt-0.5 flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-300">
                                     <GraduationCap
                                         className={`h-3.5 w-3.5 flex-shrink-0 ${cfg.text}`}
                                     />
@@ -321,7 +311,7 @@ const EducationItem = ({
                             <div className="flex flex-wrap items-center gap-1.5">
                                 <Badge
                                     variant="outline"
-                                    className="border-gray-200 bg-gray-50 text-xs text-gray-500"
+                                    className="border-gray-200 bg-gray-50 text-xs text-gray-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300"
                                 >
                                     <Calendar className="mr-1 h-3 w-3" />
                                     {period}
@@ -337,7 +327,7 @@ const EducationItem = ({
                         </div>
 
                         {/* Description */}
-                        <p className="mt-2.5 text-sm leading-relaxed text-gray-500">
+                        <p className="mt-2.5 text-sm leading-relaxed text-gray-500 dark:text-gray-300">
                             {description}
                         </p>
 
@@ -359,14 +349,16 @@ const EducationItem = ({
                         {achievements.length > 0 && (
                             <div
                                 className={`mt-3 rounded-lg p-3 transition-colors duration-300 ${
-                                    isActive ? cfg.light : 'bg-gray-50'
+                                    isActive
+                                        ? cfg.light
+                                        : 'bg-gray-50 dark:bg-gray-800'
                                 }`}
                             >
                                 <div className="mb-2 flex items-center gap-1.5">
                                     <Award
                                         className={`h-3.5 w-3.5 ${cfg.text}`}
                                     />
-                                    <span className="text-xs font-semibold text-gray-700">
+                                    <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">
                                         Key Highlights
                                     </span>
                                 </div>
@@ -374,7 +366,7 @@ const EducationItem = ({
                                     {achievements.map((achievement, idx) => (
                                         <li
                                             key={idx}
-                                            className="flex items-start gap-2 text-xs text-gray-600"
+                                            className="flex items-start gap-2 text-xs text-gray-600 dark:text-gray-300"
                                         >
                                             <div
                                                 className={`mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full ${cfg.accent}`}

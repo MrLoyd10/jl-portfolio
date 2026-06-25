@@ -123,14 +123,14 @@ const HeroScreenshots = ({ screenshots }: { screenshots: Screenshot[] }) => {
 
     return (
         <>
-            <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+            <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
                 {/* Header */}
-                <div className="flex items-center gap-2 border-b border-gray-100 px-4 py-2.5 sm:px-5">
-                    <ImageIcon className="h-3.5 w-3.5 text-gray-600" />
-                    <span className="text-[11px] font-semibold tracking-widest text-gray-600 uppercase">
+                <div className="flex items-center gap-2 border-b border-gray-100 px-4 py-2.5 sm:px-5 dark:border-gray-700">
+                    <ImageIcon className="h-3.5 w-3.5 text-gray-600 dark:text-gray-400" />
+                    <span className="text-[11px] font-semibold tracking-widest text-gray-600 uppercase dark:text-gray-400">
                         Screenshots
                     </span>
-                    <span className="ml-auto text-[11px] text-gray-600">
+                    <span className="ml-auto text-[11px] text-gray-600 dark:text-gray-400">
                         {screenshots.length} image
                         {screenshots.length !== 1 ? 's' : ''}
                     </span>
@@ -141,20 +141,20 @@ const HeroScreenshots = ({ screenshots }: { screenshots: Screenshot[] }) => {
                     {canScrollLeft && (
                         <button
                             onClick={() => scroll('left')}
-                            className="absolute top-1/2 left-1.5 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-gray-200 transition-all hover:bg-gray-50 hover:shadow-lg active:scale-95"
+                            className="absolute top-1/2 left-1.5 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-gray-200 transition-all hover:bg-gray-50 hover:shadow-lg active:scale-95 dark:bg-gray-700 dark:ring-gray-600 dark:hover:bg-gray-600"
                             aria-label="Scroll left"
                         >
-                            <ChevronLeft className="h-4 w-4 text-gray-600" />
+                            <ChevronLeft className="h-4 w-4 text-gray-600 dark:text-gray-400" />
                         </button>
                     )}
 
                     {canScrollRight && (
                         <button
                             onClick={() => scroll('right')}
-                            className="absolute top-1/2 right-1.5 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-gray-200 transition-all hover:bg-gray-50 hover:shadow-lg active:scale-95"
+                            className="absolute top-1/2 right-1.5 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-gray-200 transition-all hover:bg-gray-50 hover:shadow-lg active:scale-95 dark:bg-gray-700 dark:ring-gray-600 dark:hover:bg-gray-600"
                             aria-label="Scroll right"
                         >
-                            <ChevronRight className="h-4 w-4 text-gray-600" />
+                            <ChevronRight className="h-4 w-4 text-gray-600 dark:text-gray-400" />
                         </button>
                     )}
 
@@ -183,9 +183,9 @@ const HeroScreenshots = ({ screenshots }: { screenshots: Screenshot[] }) => {
                                     className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.04]"
                                 />
                                 <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-all duration-200 group-hover:bg-black/30">
-                                    <div className="flex items-center gap-1 rounded-full bg-white/0 px-2.5 py-1 opacity-0 backdrop-blur-sm transition-all duration-200 group-hover:bg-white/90 group-hover:opacity-100">
-                                        <Maximize2 className="h-3 w-3 text-gray-700" />
-                                        <span className="text-[11px] font-medium text-gray-700">
+                                    <div className="flex items-center gap-1 rounded-full bg-white/0 px-2.5 py-1 opacity-0 backdrop-blur-sm transition-all duration-200 group-hover:bg-white/90 group-hover:opacity-100 dark:group-hover:bg-gray-800/90">
+                                        <Maximize2 className="h-3 w-3 text-gray-700 dark:text-gray-300" />
+                                        <span className="text-[11px] font-medium text-gray-700 dark:text-gray-300">
                                             View
                                         </span>
                                     </div>
@@ -221,20 +221,20 @@ const ProjectFiles = ({ files }: { files: ProjectFile[] }) => {
     if (!files.length) return null;
 
     return (
-        <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+        <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
             {/* Header — matches Screenshots strip exactly */}
-            <div className="flex items-center gap-2 border-b border-gray-100 px-4 py-2.5 sm:px-5">
-                <FileText className="h-3.5 w-3.5 text-gray-600" />
-                <span className="text-[11px] font-semibold tracking-widest text-gray-600 uppercase">
+            <div className="flex items-center gap-2 border-b border-gray-100 px-4 py-2.5 sm:px-5 dark:border-gray-700">
+                <FileText className="h-3.5 w-3.5 text-gray-600 dark:text-gray-400" />
+                <span className="text-[11px] font-semibold tracking-widest text-gray-600 uppercase dark:text-gray-400">
                     Project Files
                 </span>
-                <span className="ml-auto text-[11px] text-gray-600">
+                <span className="ml-auto text-[11px] text-gray-600 dark:text-gray-400">
                     {files.length} file{files.length !== 1 ? 's' : ''}
                 </span>
             </div>
 
             {/* File list */}
-            <ul className="divide-y divide-gray-50 px-3 py-1">
+            <ul className="divide-y divide-gray-50 px-3 py-1 dark:divide-gray-700">
                 {files.map((file, i) => (
                     <li key={i}>
                         <a
@@ -244,24 +244,24 @@ const ProjectFiles = ({ files }: { files: ProjectFile[] }) => {
                             className="group flex items-center gap-3 rounded-xl px-2 py-2 transition-all duration-200 hover:bg-primary/5"
                         >
                             {/* PDF icon pill */}
-                            <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg border border-gray-100 bg-gray-50 transition-colors duration-200 group-hover:border-primary/20 group-hover:bg-primary/8">
-                                <FileText className="h-4 w-4 text-gray-400 transition-colors duration-200 group-hover:text-primary" />
+                            <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg border border-gray-100 bg-gray-50 transition-colors duration-200 group-hover:border-primary/20 group-hover:bg-primary/8 dark:border-gray-600 dark:bg-gray-700/50">
+                                <FileText className="h-4 w-4 text-gray-400 transition-colors duration-200 group-hover:text-primary dark:text-gray-400" />
                             </div>
 
                             {/* Label + description */}
                             <div className="min-w-0 flex-1">
-                                <p className="truncate text-sm font-medium text-gray-800 transition-colors duration-200 group-hover:text-primary">
+                                <p className="truncate text-sm font-medium text-gray-800 transition-colors duration-200 group-hover:text-primary dark:text-gray-100">
                                     {file.label}
                                 </p>
                                 {file.description && (
-                                    <p className="truncate text-[11px] text-gray-400">
+                                    <p className="truncate text-[11px] text-gray-400 dark:text-gray-500">
                                         {file.description}
                                     </p>
                                 )}
                             </div>
 
                             {/* Open button */}
-                            <div className="flex flex-shrink-0 items-center gap-1 rounded-lg border border-gray-200 bg-white px-2.5 py-1.5 text-[11px] font-semibold text-gray-500 shadow-sm transition-all duration-200 group-hover:border-primary/30 group-hover:bg-primary group-hover:text-white group-hover:shadow-md">
+                            <div className="flex flex-shrink-0 items-center gap-1 rounded-lg border border-gray-200 bg-white px-2.5 py-1.5 text-[11px] font-semibold text-gray-500 shadow-sm transition-all duration-200 group-hover:border-primary/30 group-hover:bg-primary group-hover:text-white group-hover:shadow-md dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300">
                                 <ExternalLink className="h-3 w-3" />
                                 Open
                             </div>
@@ -330,16 +330,17 @@ const SectionHeading = ({
     iconVariant?: 'default' | 'primary' | 'amber' | 'outcome';
 }) => {
     const iconStyles = {
-        default: 'bg-gray-100 ring-1 ring-gray-200',
+        default:
+            'bg-gray-100 dark:bg-gray-700 ring-1 ring-gray-200 dark:ring-gray-600',
         primary: 'bg-primary/8 ring-1 ring-primary/15',
-        amber: 'bg-amber-50 ring-1 ring-amber-200',
+        amber: 'bg-amber-50 dark:bg-amber-900/30 ring-1 ring-amber-200 dark:ring-amber-800',
         outcome: 'bg-primary/8 ring-1 ring-primary/15',
     };
     const iconColorStyles = {
-        default: 'text-gray-500',
-        primary: 'text-primary',
-        amber: 'text-amber-600',
-        outcome: 'text-primary',
+        default: 'text-gray-500 dark:text-gray-400',
+        primary: 'text-primary dark:brightness-150',
+        amber: 'text-amber-600 dark:text-amber-400',
+        outcome: 'text-primary dark:brightness-150',
     };
 
     return (
@@ -351,23 +352,23 @@ const SectionHeading = ({
             </div>
             <div className="min-w-0">
                 {accent && (
-                    <p className="text-[10px] font-semibold tracking-widest text-gray-500 uppercase">
+                    <p className="text-[10px] font-semibold tracking-widest text-gray-500 uppercase dark:text-gray-400">
                         {accent}
                     </p>
                 )}
                 <div className="flex flex-wrap items-center gap-2">
-                    <h2 className="text-base font-semibold text-gray-900">
+                    <h2 className="text-base font-semibold text-gray-900 dark:text-gray-100">
                         {label}
                     </h2>
                     {mustRead && (
-                        <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-[10px] font-semibold text-amber-700 ring-1 ring-amber-200">
+                        <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-[10px] font-semibold text-amber-700 ring-1 ring-amber-200 dark:bg-amber-900/30 dark:text-amber-400 dark:ring-amber-800">
                             <Star className="h-2.5 w-2.5 fill-amber-400 text-amber-400" />
                             Must read
                         </span>
                     )}
                 </div>
             </div>
-            <div className="hidden h-px flex-1 bg-gradient-to-r from-gray-100 to-transparent sm:block" />
+            <div className="hidden h-px flex-1 bg-gradient-to-r from-gray-100 to-transparent sm:block dark:from-gray-700" />
         </div>
     );
 };
@@ -401,7 +402,7 @@ const SidebarNav = ({ sections }: { sections: typeof SECTIONS }) => {
 
     return (
         <nav className="sticky top-28">
-            <p className="mb-3 text-[10px] font-semibold tracking-widest text-gray-500 uppercase">
+            <p className="mb-3 text-[10px] font-semibold tracking-widest text-gray-500 uppercase dark:text-gray-400">
                 On this page
             </p>
             <ul className="space-y-0.5">
@@ -411,15 +412,15 @@ const SidebarNav = ({ sections }: { sections: typeof SECTIONS }) => {
                             onClick={() => scrollTo(id)}
                             className={`group flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left text-sm transition-all duration-200 ${
                                 active === id
-                                    ? 'bg-primary/8 font-semibold text-primary'
-                                    : 'text-gray-500 hover:bg-gray-50 hover:text-gray-800'
+                                    ? 'bg-primary/8 font-semibold text-primary dark:brightness-150'
+                                    : 'text-gray-500 hover:bg-gray-50 hover:text-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-100'
                             }`}
                         >
                             <span
                                 className={`h-1.5 w-1.5 flex-shrink-0 rounded-full transition-all duration-200 ${
                                     active === id
                                         ? 'scale-125 bg-primary/80'
-                                        : 'bg-gray-300 group-hover:bg-gray-400'
+                                        : 'bg-gray-300 group-hover:bg-gray-400 dark:bg-gray-600'
                                 }`}
                             />
                             <span className="flex-1">{label}</span>
@@ -431,10 +432,10 @@ const SidebarNav = ({ sections }: { sections: typeof SECTIONS }) => {
                 ))}
             </ul>
 
-            <div className="mt-5 rounded-xl border border-amber-100 bg-amber-50 p-3">
+            <div className="mt-5 rounded-xl border border-amber-100 bg-amber-50 p-3 dark:border-amber-800 dark:bg-amber-900/30">
                 <div className="flex items-start gap-2">
                     <Star className="mt-0.5 h-3 w-3 flex-shrink-0 fill-amber-400 text-amber-400" />
-                    <p className="text-[11px] leading-relaxed text-amber-700">
+                    <p className="text-[11px] leading-relaxed text-amber-700 dark:text-amber-400">
                         <span className="font-semibold">Short on time?</span>{' '}
                         Start with the starred sections.
                     </p>
@@ -460,26 +461,26 @@ const MobileNav = ({ sections }: { sections: typeof SECTIONS }) => {
         <div className="mb-6 xl:hidden">
             <button
                 onClick={() => setOpen((v) => !v)}
-                className="flex w-full items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-sm"
+                className="flex w-full items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300"
             >
                 <div className="flex items-center gap-2">
-                    <BookOpen className="h-4 w-4 text-primary" />
+                    <BookOpen className="h-4 w-4 text-primary dark:brightness-150" />
                     Jump to section
                 </div>
                 <ChevronRight
-                    className={`h-4 w-4 text-gray-500 transition-transform duration-200 ${open ? 'rotate-90' : ''}`}
+                    className={`h-4 w-4 text-gray-500 transition-transform duration-200 dark:text-gray-300 ${open ? 'rotate-90' : ''}`}
                 />
             </button>
 
             {open && (
-                <div className="mt-2 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md">
+                <div className="mt-2 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800">
                     {sections.map(({ id, label, mustRead }) => (
                         <button
                             key={id}
                             onClick={() => scrollTo(id)}
-                            className="flex w-full items-center gap-3 border-b border-gray-50 px-4 py-3 text-left text-sm text-gray-700 transition-colors last:border-0 hover:bg-gray-50"
+                            className="flex w-full items-center gap-3 border-b border-gray-50 px-4 py-3 text-left text-sm text-gray-700 transition-colors last:border-0 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700"
                         >
-                            <ChevronRight className="h-3.5 w-3.5 flex-shrink-0 text-primary/60" />
+                            <ChevronRight className="h-3.5 w-3.5 flex-shrink-0 text-primary/60 dark:brightness-150" />
                             <span className="flex-1">{label}</span>
                             {mustRead && (
                                 <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
@@ -520,7 +521,7 @@ export default function ProjectDetail({ project }: Props) {
             <Head title={`${title} — Case Study`} />
             <Header hideNav />
 
-            <div className="relative min-h-screen w-full bg-gray-50/60 pt-20">
+            <div className="relative min-h-screen w-full bg-gray-50/60 pt-20 dark:bg-gray-950/60">
                 {/* Ambient blobs */}
                 <div className="pointer-events-none fixed inset-0 overflow-hidden">
                     <div className="absolute top-1/4 -right-40 h-[500px] w-[500px] rounded-full bg-primary/[0.03] blur-3xl" />
@@ -530,7 +531,7 @@ export default function ProjectDetail({ project }: Props) {
                 <div className="relative mx-auto max-w-6xl px-4 pt-2 pb-8 sm:px-6">
                     {/* ── Hero card ─────────────────────────────────────── */}
                     <AnimatedSection delay={60}>
-                        <div className="mb-4 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+                        <div className="mb-4 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
                             {/* Hero image */}
                             <div className="relative h-52 w-full overflow-hidden sm:h-72 md:h-[22rem]">
                                 <img
@@ -552,22 +553,22 @@ export default function ProjectDetail({ project }: Props) {
                                 {/* Badges */}
                                 <div className="absolute top-3 right-3 flex flex-wrap gap-1.5 sm:top-4 sm:right-4">
                                     {category && (
-                                        <Badge className="border-primary/20 bg-white/95 shadow-sm backdrop-blur-sm">
-                                            <Sparkles className="mr-1 h-3 w-3 text-primary" />
-                                            <span className="text-[11px] font-semibold text-primary">
+                                        <Badge className="border-primary/20 bg-white/95 shadow-sm backdrop-blur-sm dark:border-primary dark:bg-gray-800/95">
+                                            <Sparkles className="mr-1 h-3 w-3 text-primary dark:brightness-200" />
+                                            <span className="text-[11px] font-semibold text-primary dark:brightness-200">
                                                 {category}
                                             </span>
                                         </Badge>
                                     )}
                                     {status && (
                                         <Badge
-                                            className={`shadow-sm backdrop-blur-sm ${isActiveStatus ? 'border-green-200/60 bg-white/95' : 'border-gray-200 bg-white/95'}`}
+                                            className={`shadow-sm backdrop-blur-sm ${isActiveStatus ? 'border-green-200/60 bg-white/95 dark:bg-gray-800/95' : 'border-gray-200 bg-white/95 dark:border-gray-700 dark:bg-gray-800/95'}`}
                                         >
                                             <span
                                                 className={`mr-1.5 inline-block h-1.5 w-1.5 rounded-full ${isActiveStatus ? 'animate-pulse bg-green-500' : 'bg-gray-400'}`}
                                             />
                                             <span
-                                                className={`text-[11px] font-semibold ${isActiveStatus ? 'text-green-700' : 'text-gray-600'}`}
+                                                className={`text-[11px] font-semibold ${isActiveStatus ? 'text-green-700 dark:text-green-400' : 'text-gray-600 dark:text-gray-300'}`}
                                             >
                                                 {status}
                                             </span>
@@ -594,8 +595,8 @@ export default function ProjectDetail({ project }: Props) {
                             </div>
 
                             {/* Meta row */}
-                            <div className="flex flex-col gap-6 border-t border-gray-100 px-4 py-4 sm:px-6 sm:py-5 md:flex-row md:items-center md:px-8">
-                                <p className="flex-1 text-sm leading-relaxed text-gray-600">
+                            <div className="flex flex-col gap-6 border-t border-gray-100 px-4 py-4 sm:px-6 sm:py-5 md:flex-row md:items-center md:px-8 dark:border-gray-700">
+                                <p className="flex-1 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
                                     {description}
                                 </p>
                                 {(liveUrl || githubUrl) && (
@@ -616,7 +617,7 @@ export default function ProjectDetail({ project }: Props) {
                                                 href={githubUrl}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="flex items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm transition-all duration-200 hover:border-gray-300 hover:shadow-md"
+                                                className="flex items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm transition-all duration-200 hover:border-gray-300 hover:shadow-md dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300"
                                             >
                                                 <Github className="h-3.5 w-3.5" />
                                                 View Code
@@ -649,8 +650,8 @@ export default function ProjectDetail({ project }: Props) {
                     {/* ── Body ──────────────────────────────────────────── */}
                     {!caseStudy ? (
                         <AnimatedSection delay={100}>
-                            <div className="rounded-2xl border border-dashed border-gray-200 bg-white p-12 text-center shadow-sm">
-                                <p className="text-sm text-gray-400">
+                            <div className="rounded-2xl border border-dashed border-gray-200 bg-white p-12 text-center shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                                <p className="text-sm text-gray-400 dark:text-gray-500">
                                     A detailed case study for this project is
                                     coming soon.
                                 </p>
@@ -674,7 +675,7 @@ export default function ProjectDetail({ project }: Props) {
                                         delay={100}
                                         id="introduction"
                                     >
-                                        <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7">
+                                        <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7 dark:border-gray-700 dark:bg-gray-800">
                                             <SectionHeading
                                                 icon={Layers}
                                                 label="Introduction"
@@ -687,7 +688,7 @@ export default function ProjectDetail({ project }: Props) {
                                                     (p, i) => (
                                                         <p
                                                             key={i}
-                                                            className="text-sm leading-relaxed text-gray-600"
+                                                            className="text-sm leading-relaxed text-gray-600 dark:text-gray-300"
                                                         >
                                                             {p}
                                                         </p>
@@ -699,18 +700,18 @@ export default function ProjectDetail({ project }: Props) {
 
                                     {/* ── Challenge ─────────────────── */}
                                     <AnimatedSection delay={100} id="challenge">
-                                        <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7">
+                                        <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7 dark:border-gray-700 dark:bg-gray-800">
                                             <SectionHeading
                                                 icon={Target}
                                                 label="The Challenge"
                                                 accent="Problem"
                                                 iconVariant="default"
                                             />
-                                            <p className="mb-4 text-sm leading-relaxed text-gray-600">
+                                            <p className="mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
                                                 {caseStudy.challenge.intro}
                                             </p>
-                                            <div className="rounded-xl border border-gray-100 bg-gray-50/80 p-4 sm:p-5">
-                                                <p className="mb-3 text-[10px] font-semibold tracking-widest text-gray-500 uppercase">
+                                            <div className="rounded-xl border border-gray-100 bg-gray-50/80 p-4 sm:p-5 dark:border-gray-700 dark:bg-gray-700/40">
+                                                <p className="mb-3 text-[10px] font-semibold tracking-widest text-gray-500 uppercase dark:text-gray-300">
                                                     The system needed to
                                                 </p>
                                                 <ul className="space-y-2.5">
@@ -720,8 +721,8 @@ export default function ProjectDetail({ project }: Props) {
                                                                 key={i}
                                                                 className="flex items-start gap-3"
                                                             >
-                                                                <ChevronRight className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary/60" />
-                                                                <span className="text-sm text-gray-700">
+                                                                <ChevronRight className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary/60 dark:brightness-150" />
+                                                                <span className="text-sm text-gray-700 dark:text-gray-300">
                                                                     {point}
                                                                 </span>
                                                             </li>
@@ -734,7 +735,7 @@ export default function ProjectDetail({ project }: Props) {
 
                                     {/* ── Solution ──────────────────── */}
                                     <AnimatedSection delay={100} id="solution">
-                                        <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7">
+                                        <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7 dark:border-gray-700 dark:bg-gray-800">
                                             <SectionHeading
                                                 icon={Lightbulb}
                                                 label="The Solution"
@@ -746,7 +747,7 @@ export default function ProjectDetail({ project }: Props) {
                                                     (p, i) => (
                                                         <p
                                                             key={i}
-                                                            className="text-sm leading-relaxed text-gray-600"
+                                                            className="text-sm leading-relaxed text-gray-600 dark:text-gray-300"
                                                         >
                                                             {p}
                                                         </p>
@@ -761,7 +762,7 @@ export default function ProjectDetail({ project }: Props) {
                                         delay={100}
                                         id="tech-stack"
                                     >
-                                        <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7">
+                                        <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7 dark:border-gray-700 dark:bg-gray-800">
                                             <SectionHeading
                                                 icon={Code2}
                                                 label="Technology Stack"
@@ -773,9 +774,9 @@ export default function ProjectDetail({ project }: Props) {
                                                     (group, i) => (
                                                         <div
                                                             key={i}
-                                                            className="rounded-xl border border-gray-100 bg-gray-50/80 p-4 transition-all duration-200 hover:border-primary/20 hover:bg-primary/5"
+                                                            className="rounded-xl border border-gray-100 bg-gray-50/80 p-4 transition-all duration-200 hover:border-primary/20 hover:bg-primary/5 dark:border-gray-700 dark:bg-gray-700/40"
                                                         >
-                                                            <p className="mb-2.5 text-[10px] font-semibold tracking-widest text-gray-500 uppercase">
+                                                            <p className="mb-2.5 text-[10px] font-semibold tracking-widest text-gray-500 uppercase dark:text-gray-300">
                                                                 {group.label}
                                                             </p>
                                                             <div className="flex flex-wrap gap-1.5">
@@ -789,7 +790,7 @@ export default function ProjectDetail({ project }: Props) {
                                                                                 j
                                                                             }
                                                                             variant="outline"
-                                                                            className="cursor-default border-gray-200 bg-white text-xs text-gray-600 transition-colors hover:border-primary/30 hover:bg-primary/8 hover:text-primary"
+                                                                            className="cursor-default border-gray-200 bg-white text-xs text-gray-600 transition-colors hover:border-primary/30 hover:bg-primary/8 hover:text-primary dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300"
                                                                         >
                                                                             {
                                                                                 item
@@ -807,7 +808,7 @@ export default function ProjectDetail({ project }: Props) {
 
                                     {/* ── Key Features ──────────────── */}
                                     <AnimatedSection delay={100} id="features">
-                                        <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7">
+                                        <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7 dark:border-gray-700 dark:bg-gray-800">
                                             <SectionHeading
                                                 icon={CheckCircle2}
                                                 label="Key Features"
@@ -820,10 +821,10 @@ export default function ProjectDetail({ project }: Props) {
                                                     (feature, i) => (
                                                         <div
                                                             key={i}
-                                                            className="flex items-start gap-3 rounded-xl border border-gray-100 bg-gray-50/80 p-3.5 transition-all duration-200 hover:border-primary/20 hover:bg-primary/5"
+                                                            className="flex items-start gap-3 rounded-xl border border-gray-100 bg-gray-50/80 p-3.5 transition-all duration-200 hover:border-primary/20 hover:bg-primary/5 dark:border-gray-700 dark:bg-gray-700/40"
                                                         >
-                                                            <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
-                                                            <span className="text-sm text-gray-700">
+                                                            <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary dark:brightness-150" />
+                                                            <span className="text-sm text-gray-700 dark:text-gray-300">
                                                                 {feature}
                                                             </span>
                                                         </div>
@@ -835,7 +836,7 @@ export default function ProjectDetail({ project }: Props) {
 
                                     {/* ── My Role ───────────────────── */}
                                     <AnimatedSection delay={100} id="role">
-                                        <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7">
+                                        <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7 dark:border-gray-700 dark:bg-gray-800">
                                             <SectionHeading
                                                 icon={User}
                                                 label="My Role"
@@ -847,7 +848,7 @@ export default function ProjectDetail({ project }: Props) {
                                                 {caseStudy.role.map((p, i) => (
                                                     <p
                                                         key={i}
-                                                        className="text-sm leading-relaxed text-gray-600"
+                                                        className="text-sm leading-relaxed text-gray-600 dark:text-gray-300"
                                                     >
                                                         {p}
                                                     </p>
@@ -861,7 +862,7 @@ export default function ProjectDetail({ project }: Props) {
                                         delay={100}
                                         id="challenges"
                                     >
-                                        <div className="rounded-2xl border border-amber-100 bg-amber-50/50 p-5 shadow-sm sm:p-7">
+                                        <div className="rounded-2xl border border-amber-100 bg-amber-50/50 p-5 shadow-sm sm:p-7 dark:border-amber-800 dark:bg-amber-950/20">
                                             <SectionHeading
                                                 icon={AlertTriangle}
                                                 label="Technical Challenges"
@@ -873,7 +874,7 @@ export default function ProjectDetail({ project }: Props) {
                                                     (p, i) => (
                                                         <p
                                                             key={i}
-                                                            className="text-sm leading-relaxed text-gray-600"
+                                                            className="text-sm leading-relaxed text-gray-600 dark:text-gray-300"
                                                         >
                                                             {p}
                                                         </p>
@@ -887,7 +888,7 @@ export default function ProjectDetail({ project }: Props) {
                                     {(caseStudy.productionUsage ||
                                         caseStudy.projectOutcome) && (
                                         <AnimatedSection delay={100}>
-                                            <div className="rounded-2xl border border-primary/20 bg-primary/5 p-5 shadow-sm sm:p-7">
+                                            <div className="rounded-2xl border border-primary/20 bg-primary/5 p-5 shadow-sm sm:p-7 dark:border-primary/30 dark:bg-primary/10">
                                                 <SectionHeading
                                                     icon={
                                                         caseStudy.productionUsage
@@ -907,7 +908,7 @@ export default function ProjectDetail({ project }: Props) {
                                                     iconVariant="outcome"
                                                     mustRead
                                                 />
-                                                <p className="text-sm leading-relaxed text-gray-700">
+                                                <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300">
                                                     {caseStudy.productionUsage ??
                                                         caseStudy.projectOutcome}
                                                 </p>
@@ -917,13 +918,13 @@ export default function ProjectDetail({ project }: Props) {
 
                                     {/* ── Footer CTA ────────────────── */}
                                     <AnimatedSection delay={100}>
-                                        <div className="flex flex-col items-center gap-3 rounded-2xl border border-dashed border-gray-200 bg-white py-10 text-center shadow-sm">
-                                            <p className="text-sm text-gray-500">
+                                        <div className="flex flex-col items-center gap-3 rounded-2xl border border-dashed border-gray-200 bg-white py-10 text-center shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                                            <p className="text-sm text-gray-500 dark:text-gray-300">
                                                 Want to see more of my work?
                                             </p>
                                             <Link
                                                 href="/#project"
-                                                className="flex items-center gap-1.5 rounded-xl border border-gray-200 bg-gray-50 px-5 py-2.5 text-sm font-semibold text-gray-700 shadow-sm transition-all duration-200 hover:border-primary/30 hover:bg-white hover:text-primary hover:shadow-md"
+                                                className="flex items-center gap-1.5 rounded-xl border border-gray-200 bg-gray-50 px-5 py-2.5 text-sm font-semibold text-gray-700 shadow-sm transition-all duration-200 hover:border-primary/30 hover:bg-white hover:text-primary hover:shadow-md dark:border-gray-700 dark:bg-gray-700/50 dark:text-gray-300 dark:hover:bg-gray-700"
                                             >
                                                 <ArrowLeft className="h-3.5 w-3.5" />
                                                 Back to All Projects

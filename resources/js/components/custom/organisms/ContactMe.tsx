@@ -31,16 +31,16 @@ const CONTACT_COLORS = [
     },
     {
         dot: 'from-slate-500 to-slate-600',
-        light: 'bg-slate-100',
-        text: 'text-slate-600',
+        light: 'bg-slate-100 dark:bg-slate-800',
+        text: 'text-slate-600 dark:text-slate-300',
         border: 'hover:border-slate-400',
         bar: 'from-slate-500 to-slate-600',
     },
     {
         dot: 'from-emerald-400/80 to-emerald-500/80',
-        light: 'bg-emerald-50',
-        text: 'text-emerald-600',
-        border: 'hover:border-emerald-200',
+        light: 'bg-emerald-50 dark:bg-emerald-900/30',
+        text: 'text-emerald-600 dark:text-emerald-400',
+        border: 'hover:border-emerald-200 dark:border-emerald-800',
         bar: 'from-emerald-400/70 to-emerald-500/70',
     },
 ] as const;
@@ -176,7 +176,7 @@ function AvailabilityCard() {
 
     return (
         <div
-            className="group relative h-full overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:border-primary/30 hover:shadow-lg"
+            className="group relative h-full overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:border-primary/30 hover:shadow-lg dark:border-gray-700 dark:bg-gray-800"
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
         >
@@ -208,27 +208,27 @@ function AvailabilityCard() {
                         {/* Title + badge */}
                         <div className="flex-1">
                             <div className="mb-1.5 flex flex-wrap items-center gap-2">
-                                <h4 className="text-base font-bold text-gray-900">
+                                <h4 className="text-base font-bold text-gray-900 dark:text-gray-100">
                                     {contact.availabilityTitle}
                                 </h4>
-                                <div className="flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-2.5 py-0.5">
+                                <div className="flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-2.5 py-0.5 dark:border-green-800 dark:bg-green-900/30">
                                     <span className="relative flex h-1.5 w-1.5">
                                         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
                                         <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-green-500" />
                                     </span>
-                                    <span className="text-[10px] font-semibold text-green-700">
+                                    <span className="text-[10px] font-semibold text-green-700 dark:text-green-400">
                                         {contact.availabilityStatus}
                                     </span>
                                 </div>
                             </div>
-                            <p className="text-sm leading-relaxed text-gray-500">
+                            <p className="text-sm leading-relaxed text-gray-500 dark:text-gray-300">
                                 {contact.availabilityDescription}
                             </p>
                         </div>
                     </div>
 
                     {/* Divider */}
-                    <div className="mb-4 h-px w-full bg-gray-100" />
+                    <div className="mb-4 h-px w-full bg-gray-100 dark:bg-gray-800" />
 
                     {/* Interest tags */}
                     <div className="flex flex-wrap gap-2">
@@ -236,7 +236,7 @@ function AvailabilityCard() {
                             <Badge
                                 key={idx}
                                 variant="outline"
-                                className={`border-primary/20 bg-primary/5 text-xs text-primary transition-all duration-200 hover:scale-105 hover:bg-primary/10`}
+                                className={`border-primary/20 bg-primary/5 text-xs text-primary transition-all duration-200 hover:scale-105 hover:bg-primary/10 dark:brightness-200`}
                                 style={{ transitionDelay: `${idx * 40}ms` }}
                             >
                                 <Zap className="mr-1 h-3 w-3" />
@@ -247,8 +247,8 @@ function AvailabilityCard() {
                 </div>
 
                 {/* Bottom CTA strip */}
-                <div className="mt-6 rounded-xl border border-gray-100 bg-gray-50 px-4 py-3 transition-colors duration-300 group-hover:border-primary/20 group-hover:bg-primary/5">
-                    <p className="text-center text-xs font-medium text-gray-500 transition-colors duration-300 group-hover:text-primary">
+                <div className="mt-6 rounded-xl border border-gray-100 bg-gray-50 px-4 py-3 transition-colors duration-300 group-hover:border-primary/20 group-hover:bg-primary/5 dark:border-gray-700 dark:bg-gray-800">
+                    <p className="text-center text-xs font-medium text-gray-500 transition-colors duration-300 group-hover:text-primary dark:text-gray-300">
                         {contact.responseNote}
                     </p>
                 </div>
@@ -278,12 +278,12 @@ const ContactInfoItem = ({
 
     const card = (
         <div
-            className={`group relative overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:shadow-md ${colorConfig.border}`}
+            className={`group relative overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:shadow-md dark:border-gray-700 dark:bg-gray-800 ${colorConfig.border}`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
             {/* Top bar — slides in on hover */}
-            <div className="relative h-0.5 w-full overflow-hidden bg-gray-100">
+            <div className="relative h-0.5 w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
                 <div
                     className={`absolute top-0 left-0 h-full bg-gradient-to-r ${colorConfig.bar} transition-all duration-500 ${
                         isHovered ? 'w-full' : 'w-0'
@@ -303,11 +303,11 @@ const ContactInfoItem = ({
 
                 {/* Text */}
                 <div className="min-w-0 flex-1">
-                    <p className="text-[10px] font-semibold tracking-wider text-gray-400 uppercase">
+                    <p className="text-[10px] font-semibold tracking-wider text-gray-400 uppercase dark:text-gray-400">
                         {label}
                     </p>
                     <p
-                        className={`truncate text-sm font-semibold text-gray-800 transition-colors duration-200 ${
+                        className={`truncate text-sm font-semibold text-gray-800 transition-colors duration-200 dark:text-gray-100 ${
                             isHovered ? colorConfig.text : ''
                         }`}
                     >
@@ -324,8 +324,8 @@ const ContactInfoItem = ({
                         }}
                         className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg transition-all duration-200 ${
                             isCopied
-                                ? 'scale-110 bg-green-100 text-green-600'
-                                : `${colorConfig.light} text-gray-400 hover:scale-110 hover:text-gray-600`
+                                ? 'scale-110 bg-green-100 text-green-600 dark:text-green-400'
+                                : `${colorConfig.light} text-gray-400 hover:scale-110 hover:text-gray-600 dark:text-gray-300`
                         }`}
                         title="Copy to clipboard"
                     >

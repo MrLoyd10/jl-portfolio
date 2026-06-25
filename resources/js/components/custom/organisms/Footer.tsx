@@ -123,7 +123,7 @@ export function Footer() {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             title={social.name}
-                                            className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-700 bg-gray-800/80 text-gray-300 transition-all duration-200 hover:scale-105 hover:border-primary/50 hover:bg-gray-700 hover:text-primary"
+                                            className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-700 bg-gray-800/80 text-gray-300 transition-all duration-200 hover:scale-105 hover:border-primary/50 hover:bg-gray-700 hover:text-primary dark:hover:brightness-125"
                                         >
                                             <Icon className="h-4 w-4" />
                                         </a>
@@ -132,7 +132,7 @@ export function Footer() {
                             </div>
 
                             <div className="flex items-center gap-1.5 text-xs text-gray-300">
-                                <Code2 className="h-3.5 w-3.5 text-primary/60" />
+                                <Code2 className="h-3.5 w-3.5 text-primary/60 dark:brightness-200" />
                                 <span>{footer.builtWith}</span>
                             </div>
                         </div>
@@ -158,11 +158,11 @@ export function Footer() {
                                             onMouseLeave={() =>
                                                 setHoveredLink(null)
                                             }
-                                            className="group flex items-center gap-2.5 text-sm text-gray-300 transition-all duration-200 hover:text-primary"
+                                            className="group flex items-center gap-2.5 text-sm text-gray-300 transition-all duration-200 hover:text-primary dark:hover:brightness-200"
                                         >
                                             <span
                                                 aria-hidden="true"
-                                                className={`inline-flex shrink-0 justify-center text-primary transition-all duration-200 ${
+                                                className={`inline-flex shrink-0 justify-center text-primary transition-all duration-200 dark:brightness-150 ${
                                                     hoveredLink === link.id
                                                         ? 'w-5'
                                                         : 'w-3'
@@ -189,8 +189,8 @@ export function Footer() {
                                 {contactSnippet.map((item, index) => {
                                     const Icon = item.icon;
                                     const inner = (
-                                        <div className="group flex items-start gap-3 text-sm text-gray-300 transition-colors duration-200 hover:text-primary">
-                                            <div className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-gray-800 transition-all duration-200 group-hover:bg-primary/20">
+                                        <div className="group flex items-start gap-3 text-sm text-gray-300 hover:text-primary dark:hover:brightness-200">
+                                            <div className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-gray-800">
                                                 <Icon className="h-3.5 w-3.5" />
                                             </div>
                                             <span className="flex-1 leading-relaxed">

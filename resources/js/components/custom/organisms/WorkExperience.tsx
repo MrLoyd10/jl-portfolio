@@ -105,7 +105,7 @@ export function WorkExperience() {
                     />
                 </div>
 
-                <div className="absolute top-30 bottom-0 left-8 hidden w-0.5 bg-gradient-to-b from-primary/40 via-blue-500/40 to-primary/40 md:block" />
+                <div className="absolute top-30 bottom-0 left-8 hidden w-0.5 bg-gradient-to-b from-primary/40 via-blue-500/40 to-primary/40 md:block dark:brightness-150" />
 
                 <div className="relative space-y-8">
                     {experiences.map((experience, index) => (
@@ -133,65 +133,65 @@ export function WorkExperience() {
                             <div className="group relative md:ml-20">
                                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/5 to-blue-500/5 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
 
-                                <div className="relative rounded-2xl border border-gray-200 bg-white p-6 shadow-md transition-all duration-500 hover:border-primary/30 hover:shadow-xl">
+                                <div className="relative rounded-2xl border border-gray-200 bg-white p-6 shadow-md transition-all duration-500 hover:border-primary/30 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800">
                                     <div className="mb-4 flex flex-col items-start justify-between gap-4 md:flex-row">
                                         <div className="flex-1">
                                             <div className="mb-2 flex items-start gap-3">
                                                 <div className="flex items-center justify-center rounded-lg bg-primary/5 p-2 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 group-hover:bg-primary/10">
-                                                    <Briefcase className="h-5 w-5 text-primary transition-transform duration-300 group-hover:scale-110" />
+                                                    <Briefcase className="h-5 w-5 text-primary transition-transform duration-300 group-hover:scale-110 dark:brightness-150" />
                                                 </div>
                                                 <div>
-                                                    <h3 className="text-xl font-bold text-gray-900 transition-colors duration-300 group-hover:text-primary">
+                                                    <h3 className="text-xl font-bold text-gray-900 transition-colors duration-300 group-hover:text-primary dark:text-gray-100">
                                                         {experience.title}
                                                     </h3>
-                                                    <p className="text-lg font-semibold text-gray-700">
+                                                    <p className="text-lg font-semibold text-gray-700 dark:text-gray-300">
                                                         {experience.company}
                                                     </p>
                                                 </div>
                                             </div>
 
-                                            <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-gray-600">
+                                            <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-300">
                                                 <div className="flex items-center gap-1.5 transition-all duration-300 hover:text-primary">
-                                                    <MapPin className="h-4 w-4 text-primary transition-transform duration-300 hover:scale-125 hover:animate-bounce" />
+                                                    <MapPin className="h-4 w-4 text-primary transition-transform duration-300 hover:scale-125 hover:animate-bounce dark:brightness-150" />
                                                     <span>
                                                         {experience.location}
                                                     </span>
                                                 </div>
                                                 <div className="flex items-center gap-1.5 transition-all duration-300 hover:text-primary">
-                                                    <Calendar className="h-4 w-4 text-primary transition-transform duration-300 hover:scale-125 hover:rotate-12" />
+                                                    <Calendar className="h-4 w-4 text-primary transition-transform duration-300 hover:scale-125 hover:rotate-12 dark:brightness-150" />
                                                     <span>
                                                         {experience.period}
                                                     </span>
                                                 </div>
-                                                <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary transition-all duration-300 hover:scale-105 hover:bg-primary/20 hover:shadow-sm">
+                                                <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary transition-all duration-300 hover:scale-105 hover:bg-primary/20 hover:shadow-sm dark:brightness-200">
                                                     {experience.employmentType}
                                                 </span>
                                             </div>
                                         </div>
 
                                         {index === 0 && (
-                                            <div className="animate-pulse-subtle flex items-center gap-2 rounded-full border border-green-200 bg-green-50 px-3 py-1.5 shadow-sm">
+                                            <div className="animate-pulse-subtle flex items-center gap-2 rounded-full border border-green-200 bg-green-50 px-3 py-1.5 shadow-sm dark:border-green-800 dark:bg-green-900/30">
                                                 <span className="relative flex h-2 w-2">
                                                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
                                                     <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
                                                 </span>
-                                                <span className="text-xs font-semibold text-green-700">
+                                                <span className="text-xs font-semibold text-green-700 dark:text-green-400">
                                                     Current Role
                                                 </span>
                                             </div>
                                         )}
                                     </div>
 
-                                    <p className="mb-4 text-sm leading-relaxed text-gray-600">
+                                    <p className="mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
                                         {experience.description}
                                     </p>
 
                                     <div className="mb-4">
                                         <div className="mb-3 flex items-center gap-2">
                                             <div className="rounded-md bg-primary/10 p-1.5 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">
-                                                <Award className="h-4 w-4 text-primary/60" />
+                                                <Award className="h-4 w-4 text-primary/60 dark:brightness-150" />
                                             </div>
-                                            <h4 className="text-sm font-semibold text-gray-900">
+                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100">
                                                 Key Contributions
                                             </h4>
                                         </div>
@@ -200,10 +200,10 @@ export function WorkExperience() {
                                                 (achievement, idx) => (
                                                     <li
                                                         key={idx}
-                                                        className="group/item flex items-start gap-2 text-sm text-gray-600 transition-all duration-300 hover:translate-x-1"
+                                                        className="group/item flex items-start gap-2 text-sm text-gray-600 transition-all duration-300 hover:translate-x-1 dark:text-gray-300"
                                                     >
-                                                        <TrendingUp className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary/60 transition-all duration-300 group-hover/item:scale-125 group-hover/item:rotate-12 group-hover/item:text-primary/50" />
-                                                        <span className="text-[13px] leading-relaxed group-hover/item:text-gray-900">
+                                                        <TrendingUp className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary/60 transition-all duration-300 group-hover/item:scale-125 group-hover/item:rotate-12 group-hover/item:text-primary/50 dark:brightness-150" />
+                                                        <span className="text-[13px] leading-relaxed group-hover/item:text-gray-900 dark:group-hover/item:text-gray-100">
                                                             {achievement}
                                                         </span>
                                                     </li>
@@ -215,9 +215,9 @@ export function WorkExperience() {
                                     <div>
                                         <div className="mb-3 flex items-center gap-2">
                                             <div className="rounded-md bg-primary/10 p-1.5 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-12">
-                                                <Code className="h-4 w-4 text-primary/60" />
+                                                <Code className="h-4 w-4 text-primary/60 dark:brightness-150" />
                                             </div>
-                                            <h4 className="text-sm font-semibold text-gray-900">
+                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100">
                                                 Technologies Used
                                             </h4>
                                         </div>
@@ -234,7 +234,7 @@ export function WorkExperience() {
                                                         onMouseLeave={() =>
                                                             setHoveredTech(null)
                                                         }
-                                                        className="group/tech relative cursor-default overflow-hidden rounded-lg border border-gray-200 bg-gradient-to-br from-gray-50 to-gray-100 px-3 py-1 text-xs font-medium text-gray-700 transition-all duration-300 hover:-translate-y-0.5 hover:scale-110 hover:border-primary/50 hover:from-primary/10 hover:to-primary/20 hover:text-primary hover:shadow-md"
+                                                        className="group/tech relative cursor-default overflow-hidden rounded-lg border border-gray-200 bg-gradient-to-br from-gray-50 to-gray-100 px-3 py-1 text-xs font-medium text-gray-700 transition-all duration-300 hover:-translate-y-0.5 hover:scale-110 hover:border-primary/50 hover:from-primary/10 hover:to-primary/20 hover:text-primary hover:shadow-md dark:border-gray-700 dark:from-gray-800 dark:to-gray-700 dark:text-gray-300"
                                                     >
                                                         <span className="relative z-10">
                                                             {tech}
