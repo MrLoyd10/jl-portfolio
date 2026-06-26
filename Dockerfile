@@ -2,11 +2,14 @@ FROM richarvey/nginx-php-fpm:3.1.6
 
 COPY . .
 
-# Copy your custom nginx config to where the image expects it
-COPY docker/nginx.conf /etc/nginx/sites-enabled/default.conf
+# Copy your custom nginx config
+COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
 
-# Copy your start/deploy script to the scripts folder the image runs
+# Copy your deploy script
 COPY docker/start.sh /var/www/html/scripts/00-laravel-deploy.sh
+
+# Increase PHP memory limit
+RUN echo "memory_limit=256M" > /usr/local/etc/php/conf.d/memory.ini
 
 # Image config
 ENV SKIP_COMPOSER 1

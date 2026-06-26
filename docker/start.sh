@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 
 echo "Running composer"
-composer install --no-dev --working-dir=/var/www/html
+php -d memory_limit=256M /usr/local/bin/composer install \
+  --no-dev \
+  --optimize-autoloader \
+  --no-scripts \
+  --working-dir=/var/www/html
 
-echo "Running npm install and build..."
-npm install
-npm run build
+echo "Clearing old cache..."
+php artisan config:clear
+php artisan cache:clear
 
 echo "Caching config..."
 php artisan config:cache
