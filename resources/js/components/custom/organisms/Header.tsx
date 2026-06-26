@@ -1,4 +1,5 @@
-import AppearanceToggleDropdown from '@/components/appearance-dropdown';
+import AppearanceToggle from '@/components/appearance-dropdown';
+import { ColorThemePicker } from '@/components/custom/atoms/ColorThemePicker';
 import { Button } from '@/components/ui/button';
 import { env } from '@/lib/env';
 import { Download, Menu, X } from 'lucide-react';
@@ -29,7 +30,6 @@ export const Header = ({ hideNav = false }: HeaderProps) => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Only track active section when nav is visible (i.e. on the homepage)
     useEffect(() => {
         if (hideNav) return;
 
@@ -84,31 +84,31 @@ export const Header = ({ hideNav = false }: HeaderProps) => {
                         : 'border-b border-transparent bg-white dark:bg-gray-900'
                 }`}
             >
-                <div className="container mx-auto px-6 py-4">
-                    <div className="flex items-center justify-between">
+                <div className="px-4 py-3 sm:px-6 sm:py-4 xl:container xl:mx-auto">
+                    <div className="flex items-center justify-between gap-4">
                         {/* Logo */}
                         <div
-                            className="group flex cursor-pointer items-center justify-center gap-3"
+                            className="group flex shrink-0 cursor-pointer items-center gap-2 sm:gap-3"
                             onClick={() => scrollToSection('home')}
                         >
                             <img
                                 src="/assets/icon.png"
                                 alt="MrLoyd icon"
-                                className="h-8 w-8 shrink-0 rounded-md object-contain dark:bg-gray-500"
+                                className="h-7 w-7 shrink-0 rounded-md object-contain sm:h-8 sm:w-8 dark:bg-gray-500"
                             />
-                            <span className="text-xl font-semibold text-gray-800 transition-colors group-hover:text-primary dark:text-gray-100">
+                            <span className="text-lg font-semibold text-gray-800 transition-colors group-hover:text-primary sm:text-xl dark:text-gray-100">
                                 MrLoyd
                             </span>
                         </div>
 
-                        {/* Desktop nav — hidden when hideNav is true */}
+                        {/* Desktop nav */}
                         {!hideNav && (
-                            <nav className="hidden items-center gap-1 lg:flex">
+                            <nav className="hidden items-center gap-0.5 lg:flex xl:gap-1">
                                 {navItems.map((item) => (
                                     <button
                                         key={item.id}
                                         onClick={() => scrollToSection(item.id)}
-                                        className={`relative rounded-md px-4 py-2 text-sm font-medium transition-all duration-300 ${
+                                        className={`relative rounded-md px-3 py-2 text-sm font-medium transition-all duration-300 xl:px-4 ${
                                             activeSection === item.id
                                                 ? 'text-primary dark:brightness-200'
                                                 : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100'
@@ -124,27 +124,32 @@ export const Header = ({ hideNav = false }: HeaderProps) => {
                         )}
 
                         {/* Right side */}
-                        <div className="flex items-center gap-3">
-                            <AppearanceToggleDropdown className="text-gray-600 dark:text-gray-300" />
+                        <div className="flex shrink-0 items-center gap-1 sm:gap-2">
+                            <div className="flex items-center gap-0.5 sm:gap-1">
+                                <ColorThemePicker />
+                                <AppearanceToggle className="text-gray-600 dark:text-gray-300" />
+                            </div>
 
                             <Button
                                 onClick={handleDownloadResume}
-                                className="transition-all duration-300 hover:scale-105 active:scale-95 dark:brightness-125"
+                                size="sm"
+                                className="px-2 transition-all duration-300 hover:scale-105 active:scale-95 sm:px-3 lg:px-4 dark:brightness-125"
                             >
-                                <Download className="h-4 w-4 lg:mr-2" />
-                                <span className="hidden lg:inline">Resume</span>
+                                <Download className="h-4 w-4" />
+                                <span className="ml-1.5 hidden sm:inline">
+                                    Resume
+                                </span>
                             </Button>
 
-                            {/* Mobile menu toggle — hidden when hideNav is true */}
                             {!hideNav && (
                                 <button
                                     onClick={() => setIsMenuOpen(!isMenuOpen)}
-                                    className="rounded-md p-2 text-gray-600 transition-all duration-300 hover:bg-gray-100 hover:text-gray-900 lg:hidden dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-100"
+                                    className="rounded-md p-1.5 text-gray-600 transition-all duration-300 hover:bg-gray-100 hover:text-gray-900 sm:p-2 lg:hidden dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-100"
                                 >
                                     {isMenuOpen ? (
-                                        <X className="h-6 w-6 rotate-90 transition-transform duration-300" />
+                                        <X className="h-5 w-5 rotate-90 transition-transform duration-300" />
                                     ) : (
-                                        <Menu className="h-6 w-6 transition-transform duration-300" />
+                                        <Menu className="h-5 w-5 transition-transform duration-300" />
                                     )}
                                 </button>
                             )}
@@ -152,7 +157,7 @@ export const Header = ({ hideNav = false }: HeaderProps) => {
                     </div>
                 </div>
 
-                {/* Mobile nav menu — hidden when hideNav is true */}
+                {/* Mobile nav menu */}
                 {!hideNav && (
                     <div
                         className={`overflow-hidden border-t border-gray-200 bg-white/95 backdrop-blur-md transition-all duration-300 ease-in-out lg:hidden dark:border-gray-800 dark:bg-gray-900/95 ${
@@ -161,7 +166,7 @@ export const Header = ({ hideNav = false }: HeaderProps) => {
                                 : 'max-h-0 opacity-0'
                         }`}
                     >
-                        <nav className="container mx-auto px-6 py-4">
+                        <nav className="px-4 py-4 sm:px-6 xl:container xl:mx-auto">
                             <div className="flex flex-col gap-1">
                                 {navItems.map((item, index) => (
                                     <button

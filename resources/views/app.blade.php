@@ -45,6 +45,11 @@
     @viteReactRefresh
     @vite(['resources/js/app.tsx', "resources/js/pages/{$page['component']}.tsx"])
     @inertiaHead
+
+    <script>
+        const t = localStorage.getItem('color-theme') || 'teal';
+        document.documentElement.setAttribute('data-theme', t);
+    </script>
 </head>
 
 <body class="font-sans antialiased">
