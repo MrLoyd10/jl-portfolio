@@ -13,7 +13,7 @@ import { Head } from '@inertiajs/react';
 export default function Home({ projects }: { projects: ProjectCardProps[] }) {
     return (
         <>
-            <Head title="Home" />
+            <Head title="" />
             <Header />
             <main className="min-h-screen">
                 <div className="flex w-full flex-1 flex-col">
