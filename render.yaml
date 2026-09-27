@@ -9,7 +9,7 @@ services:
       - key: PORT
         value: '80'
       - key: APP_NAME
-        value: Portfolio
+        value: MrLoyd
       - key: APP_ENV
         value: production
       - key: APP_DEBUG

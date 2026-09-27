@@ -618,7 +618,7 @@ function TechCard({
                         }`}
                     >
                         <img
-                            src={`http://127.0.0.1:8000/icons/${iconName}.png`}
+                            src={`/icons/${iconName}.png`}
                             alt={name}
                             className="h-full w-full object-contain"
                             onError={(e) => {
