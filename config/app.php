@@ -15,6 +15,8 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'portfolio_public_only' => env('PORTFOLIO_PUBLIC_ONLY', false),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

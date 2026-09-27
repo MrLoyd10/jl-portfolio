@@ -7,7 +7,12 @@ import { defineConfig } from 'vite';
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.tsx'],
+            input: [
+                'resources/css/app.css',
+                process.env.PUBLIC_ONLY_BUILD === '1'
+                    ? 'resources/js/public-app.tsx'
+                    : 'resources/js/app.tsx',
+            ],
             ssr: 'resources/js/ssr.tsx',
             refresh: true,
         }),
@@ -17,9 +22,9 @@ export default defineConfig({
             },
         }),
         tailwindcss(),
-        wayfinder({
-            formVariants: true,
-        }),
+        ...(process.env.SKIP_WAYFINDER === '1'
+            ? []
+            : [wayfinder({ formVariants: true })]),
     ],
     esbuild: {
         jsx: 'automatic',

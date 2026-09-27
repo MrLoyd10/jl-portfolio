@@ -1,21 +1,17 @@
-#!/usr/bin/env bash
+#!/bin/sh
+set -eu
 
-echo "Running composer"
-php -d memory_limit=256M /usr/local/bin/composer install \
-  --no-dev \
-  --optimize-autoloader \
-  --no-scripts \
-  --working-dir=/var/www/html
+cd /var/www/html
 
-echo "Clearing old cache..."
-php artisan config:clear
-php artisan cache:clear
+# Render generates a stable base64 key; Laravel expects the base64: prefix.
+if [ -z "${APP_KEY:-}" ]; then
+    : "${APP_KEY_BASE64:?Set APP_KEY or APP_KEY_BASE64}"
+    export APP_KEY="base64:${APP_KEY_BASE64}"
+fi
 
-echo "Caching config..."
+export APP_URL="${APP_URL:-${RENDER_EXTERNAL_URL:-http://localhost}}"
+
 php artisan config:cache
-
-echo "Caching routes..."
 php artisan route:cache
 
-echo "Running migrations..."
-php artisan migrate --force
+exec /start.sh

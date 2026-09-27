@@ -1,29 +1,41 @@
-FROM richarvey/nginx-php-fpm:3.1.6
+FROM richarvey/nginx-php-fpm:3.1.6 AS php-build
+
+WORKDIR /var/www/html
+
+COPY composer.json composer.lock ./
+RUN COMPOSER_ALLOW_SUPERUSER=1 composer install \
+    --no-dev --no-interaction --no-scripts --optimize-autoloader --prefer-dist
 
 COPY . .
+RUN php artisan package:discover --ansi
 
-# Copy your custom nginx config
-COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
+FROM node:22-alpine AS assets
 
-# Copy your deploy script
-COPY docker/start.sh /var/www/html/scripts/00-laravel-deploy.sh
+WORKDIR /app
 
-# Increase PHP memory limit
-RUN echo "memory_limit=256M" > /usr/local/etc/php/conf.d/memory.ini
+COPY package.json package-lock.json ./
+RUN npm ci
 
-# Image config
-ENV SKIP_COMPOSER 1
-ENV WEBROOT /var/www/html/public
-ENV PHP_ERRORS_STDERR 1
-ENV RUN_SCRIPTS 1
-ENV REAL_IP_HEADER 1
+COPY . .
+RUN cp .env.example .env && PUBLIC_ONLY_BUILD=1 SKIP_WAYFINDER=1 npm run build
 
-# Laravel config
-ENV APP_ENV production
-ENV APP_DEBUG false
-ENV LOG_CHANNEL stderr
+FROM richarvey/nginx-php-fpm:3.1.6
 
-# Allow composer to run as root
-ENV COMPOSER_ALLOW_SUPERUSER 1
+WORKDIR /var/www/html
 
-CMD ["/start.sh"]
+COPY --from=php-build /var/www/html /var/www/html
+COPY --from=assets /app/public/build /var/www/html/public/build
+COPY docker/nginx.conf /etc/nginx/sites-available/default.conf
+COPY docker/start.sh /usr/local/bin/portfolio-start
+
+RUN chmod +x /usr/local/bin/portfolio-start \
+    && mkdir -p storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs bootstrap/cache
+
+ENV SKIP_COMPOSER=1 \
+    WEBROOT=/var/www/html/public \
+    PHP_ERRORS_STDERR=1 \
+    APP_ENV=production \
+    APP_DEBUG=false \
+    LOG_CHANNEL=stderr
+
+CMD ["/usr/local/bin/portfolio-start"]
