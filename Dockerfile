@@ -17,6 +17,7 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
+ARG VITE_PROFILE_IMAGE_URL
 RUN cp .env.example .env && PUBLIC_ONLY_BUILD=1 SKIP_WAYFINDER=1 npm run build
 
 FROM richarvey/nginx-php-fpm:3.1.6
