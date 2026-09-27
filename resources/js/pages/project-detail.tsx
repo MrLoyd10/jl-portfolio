@@ -179,6 +179,8 @@ const HeroScreenshots = ({ screenshots }: { screenshots: Screenshot[] }) => {
                                 <img
                                     src={shot.url}
                                     alt={shot.caption ?? `Screenshot ${i + 1}`}
+                                    loading="lazy"
+                                    decoding="async"
                                     draggable={false}
                                     className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.04]"
                                 />

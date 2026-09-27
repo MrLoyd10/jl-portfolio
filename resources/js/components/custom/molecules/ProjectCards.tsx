@@ -171,6 +171,8 @@ export const ProjectCard = ({
                                 <img
                                     src={image}
                                     alt={`${title} preview`}
+                                    loading="lazy"
+                                    decoding="async"
                                     onLoad={() => setImageLoaded(true)}
                                     className={`h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
                                 />
@@ -179,6 +181,8 @@ export const ProjectCard = ({
                             <img
                                 src={image}
                                 alt={`${title} preview`}
+                                loading="lazy"
+                                decoding="async"
                                 onLoad={() => setImageLoaded(true)}
                                 className={`h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
                             />
@@ -240,6 +244,8 @@ export const ProjectCard = ({
                         <img
                             src={image}
                             alt={`${title} preview`}
+                            loading="lazy"
+                            decoding="async"
                             onLoad={() => setImageLoaded(true)}
                             className={`h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
                         />
@@ -248,6 +254,8 @@ export const ProjectCard = ({
                     <img
                         src={image}
                         alt={`${title} preview`}
+                        loading="lazy"
+                        decoding="async"
                         onLoad={() => setImageLoaded(true)}
                         className={`h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
                     />

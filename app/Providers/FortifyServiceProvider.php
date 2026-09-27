@@ -20,7 +20,9 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        if (config('app.portfolio_public_only')) {
+            Fortify::ignoreRoutes();
+        }
     }
 
     /**

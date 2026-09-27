@@ -43,7 +43,11 @@
     <link href="https://fonts.bunny.net/css?family=poppins:400,500,600,700" rel="stylesheet" />
 
     @viteReactRefresh
-    @vite(['resources/js/app.tsx', "resources/js/pages/{$page['component']}.tsx"])
+    @if (config('app.portfolio_public_only'))
+        @vite('resources/js/public-app.tsx')
+    @else
+        @vite(['resources/js/app.tsx', "resources/js/pages/{$page['component']}.tsx"])
+    @endif
     @inertiaHead
 
     <script>
