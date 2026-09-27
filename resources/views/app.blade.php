@@ -42,6 +42,10 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=poppins:400,500,600,700" rel="stylesheet" />
 
+    <script>
+        window.__PORTFOLIO_ENV__ = {{ Illuminate\Support\Js::from(config('portfolio.public_env')) }};
+    </script>
+
     @viteReactRefresh
     @if (config('app.portfolio_public_only'))
         @vite('resources/js/public-app.tsx')

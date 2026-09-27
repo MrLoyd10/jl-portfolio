@@ -1,5 +1,13 @@
+declare global {
+    interface Window {
+        __PORTFOLIO_ENV__?: Record<string, string | null>;
+    }
+}
+
 const getEnv = (key: string, fallback: string) => {
-    const value = import.meta.env[key];
+    const value =
+        (typeof window !== 'undefined' && window.__PORTFOLIO_ENV__?.[key]) ||
+        import.meta.env[key];
 
     return typeof value === 'string' && value.trim() !== '' ? value : fallback;
 };
