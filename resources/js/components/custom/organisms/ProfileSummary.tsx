@@ -85,6 +85,16 @@ export const ProfileSummary = () => {
                                     <img
                                         src={profile.imageUrl}
                                         alt={profile.name}
+                                        onError={(event) => {
+                                            if (
+                                                !event.currentTarget.src.endsWith(
+                                                    '/assets/icon.png',
+                                                )
+                                            ) {
+                                                event.currentTarget.src =
+                                                    '/assets/icon.png';
+                                            }
+                                        }}
                                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />

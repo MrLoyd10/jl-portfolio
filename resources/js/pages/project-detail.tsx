@@ -2,7 +2,7 @@ import { Lightbox, Screenshot } from '@/components/custom/atoms/ImageLightBox';
 import { Footer } from '@/components/custom/organisms/Footer';
 import { Header } from '@/components/custom/organisms/Header';
 import { Badge } from '@/components/ui/badge';
-import { Head, Link } from '@inertiajs/react';
+import { env } from '@/lib/env';
 import {
     AlertTriangle,
     ArrowLeft,
@@ -54,7 +54,7 @@ interface CaseStudy {
     projectOutcome?: string;
 }
 
-interface Project {
+export interface Project {
     slug: string;
     title: string;
     systemType?: string;
@@ -498,6 +498,10 @@ const MobileNav = ({ sections }: { sections: typeof SECTIONS }) => {
 /* ─── Main page ──────────────────────────────────────────────────────────── */
 
 export default function ProjectDetail({ project }: Props) {
+    useEffect(() => {
+        document.title = `${project.title} — Case Study - ${env.appName}`;
+    }, [project.title]);
+
     const {
         title,
         systemType,
@@ -520,7 +524,6 @@ export default function ProjectDetail({ project }: Props) {
 
     return (
         <>
-            <Head title={`${title} — Case Study`} />
             <Header hideNav />
 
             <div className="relative min-h-screen w-full bg-gray-50/60 pt-20 dark:bg-gray-950/60">
@@ -544,13 +547,13 @@ export default function ProjectDetail({ project }: Props) {
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10" />
 
                                 {/* Back pill */}
-                                <Link
+                                <a
                                     href="/#project"
                                     className="absolute top-3 left-3 z-10 inline-flex items-center gap-1.5 rounded-full border-2 border-primary bg-black/50 px-3.5 py-1.5 text-xs font-medium text-white shadow-[0_2px_12px_rgba(0,0,0,0.25)] backdrop-blur-md transition-all duration-200 hover:bg-black/65 sm:top-4 sm:left-4"
                                 >
                                     <ArrowLeft className="h-3 w-3" />
                                     Back to Projects
-                                </Link>
+                                </a>
 
                                 {/* Badges */}
                                 <div className="absolute top-3 right-3 flex flex-wrap gap-1.5 sm:top-4 sm:right-4">
@@ -924,13 +927,13 @@ export default function ProjectDetail({ project }: Props) {
                                             <p className="text-sm text-gray-500 dark:text-gray-300">
                                                 Want to see more of my work?
                                             </p>
-                                            <Link
+                                            <a
                                                 href="/#project"
                                                 className="flex items-center gap-1.5 rounded-xl border border-gray-200 bg-gray-50 px-5 py-2.5 text-sm font-semibold text-gray-700 shadow-sm transition-all duration-200 hover:border-primary/30 hover:bg-white hover:text-primary hover:shadow-md dark:border-gray-700 dark:bg-gray-700/50 dark:text-gray-300 dark:hover:bg-gray-700"
                                             >
                                                 <ArrowLeft className="h-3.5 w-3.5" />
                                                 Back to All Projects
-                                            </Link>
+                                            </a>
                                         </div>
                                     </AnimatedSection>
                                 </div>

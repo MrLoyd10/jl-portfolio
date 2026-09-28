@@ -8,12 +8,16 @@ import { Header } from '@/components/custom/organisms/Header';
 import { ProfileSummary } from '@/components/custom/organisms/ProfileSummary';
 import { TechArsenal } from '@/components/custom/organisms/TechArsenal';
 import { WorkExperience } from '@/components/custom/organisms/WorkExperience';
-import { Head } from '@inertiajs/react';
+import { env } from '@/lib/env';
+import { useEffect } from 'react';
 
 export default function Home({ projects }: { projects: ProjectCardProps[] }) {
+    useEffect(() => {
+        document.title = env.appName;
+    }, []);
+
     return (
         <>
-            <Head title="" />
             <Header />
             <main className="min-h-screen">
                 <div className="flex w-full flex-1 flex-col">

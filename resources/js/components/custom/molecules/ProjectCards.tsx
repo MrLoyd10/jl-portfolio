@@ -1,5 +1,4 @@
 import { Badge } from '@/components/ui/badge';
-import { Link } from '@inertiajs/react';
 import {
     ArrowUpRight,
     BookOpen,
@@ -66,13 +65,13 @@ export const ProjectCard = ({
             <>
                 {/* Case Study button — always shown when slug exists */}
                 {slug && (
-                    <Link
+                    <a
                         href={`/projects/${slug}`}
                         className="flex items-center gap-1.5 rounded-lg bg-primary px-4 py-1.5 text-xs font-semibold text-white shadow-sm transition-all duration-200 hover:bg-primary/90 hover:shadow-md"
                     >
                         <BookOpen className="h-3.5 w-3.5" />
                         Case Study
-                    </Link>
+                    </a>
                 )}
 
                 {/* Live Demo — shown when liveUrl exists (regardless of slug) */}
@@ -134,9 +133,9 @@ export const ProjectCard = ({
 
         if (slug) {
             return (
-                <Link href={`/projects/${slug}`} className="block">
+                <a href={`/projects/${slug}`} className="block">
                     {content}
-                </Link>
+                </a>
             );
         }
 
@@ -164,7 +163,7 @@ export const ProjectCard = ({
                             <div className="absolute inset-0 animate-pulse bg-gray-200 dark:bg-gray-700" />
                         )}
                         {slug ? (
-                            <Link
+                            <a
                                 href={`/projects/${slug}`}
                                 className="block h-full w-full"
                             >
@@ -176,7 +175,7 @@ export const ProjectCard = ({
                                     onLoad={() => setImageLoaded(true)}
                                     className={`h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
                                 />
-                            </Link>
+                            </a>
                         ) : (
                             <img
                                 src={image}
@@ -237,7 +236,7 @@ export const ProjectCard = ({
                     <div className="absolute inset-0 animate-pulse bg-gray-200 dark:bg-gray-700" />
                 )}
                 {slug ? (
-                    <Link
+                    <a
                         href={`/projects/${slug}`}
                         className="block h-full w-full"
                     >
@@ -249,7 +248,7 @@ export const ProjectCard = ({
                             onLoad={() => setImageLoaded(true)}
                             className={`h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
                         />
-                    </Link>
+                    </a>
                 ) : (
                     <img
                         src={image}
