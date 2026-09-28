@@ -32,11 +32,16 @@
             ) {
                 document.documentElement.classList.add('dark');
             }
-            document.documentElement.setAttribute(
-                'data-theme',
-                localStorage.getItem('color-theme') || 'teal',
-            );
         </script>
+        <script>
+            window.__PORTFOLIO_ENV__ = {
+                VITE_COLOR_THEME_ROTATION_MINUTES:
+                    '%VITE_COLOR_THEME_ROTATION_MINUTES%',
+                VITE_COLOR_THEME_MANUAL_EXPIRY_MINUTES:
+                    '%VITE_COLOR_THEME_MANUAL_EXPIRY_MINUTES%',
+            };
+        </script>
+        <script src="/theme-init.js"></script>
     </head>
     <body class="font-sans antialiased">
         <div id="app"></div>

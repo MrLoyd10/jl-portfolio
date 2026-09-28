@@ -25,9 +25,20 @@ export const COLOR_THEMES: { id: ColorTheme; label: string; color: string }[] =
     ];
 
 export function useColorTheme() {
-    const [theme, setTheme] = useState<ColorTheme>(() => {
+    const [theme, setCurrentTheme] = useState<ColorTheme>(() => {
         return (localStorage.getItem('color-theme') as ColorTheme) ?? 'teal';
     });
+
+    const setTheme = (selectedTheme: ColorTheme) => {
+        localStorage.setItem('color-theme-mode', 'manual');
+        localStorage.setItem(
+            'color-theme-manual-selected-at',
+            String(Date.now()),
+        );
+        localStorage.removeItem('color-theme-last-auto-change');
+        localStorage.setItem('color-theme', selectedTheme);
+        setCurrentTheme(selectedTheme);
+    };
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);

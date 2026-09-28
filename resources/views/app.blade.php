@@ -54,10 +54,7 @@
     @endif
     @inertiaHead
 
-    <script>
-        const t = localStorage.getItem('color-theme') || 'teal';
-        document.documentElement.setAttribute('data-theme', t);
-    </script>
+    <script src="/theme-init.js"></script>
 </head>
 
 <body class="font-sans antialiased">

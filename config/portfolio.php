@@ -3,6 +3,8 @@
 return [
     // These values are public and are sent to the browser on every page load.
     'public_env' => [
+        'VITE_COLOR_THEME_ROTATION_MINUTES' => env('VITE_COLOR_THEME_ROTATION_MINUTES', 5),
+        'VITE_COLOR_THEME_MANUAL_EXPIRY_MINUTES' => env('VITE_COLOR_THEME_MANUAL_EXPIRY_MINUTES', 60),
         'VITE_PROFILE_NAME' => env('VITE_PROFILE_NAME'),
         'VITE_PROFILE_ADDRESS' => env('VITE_PROFILE_ADDRESS'),
         'VITE_PROFILE_IMAGE_URL' => env('VITE_PROFILE_IMAGE_URL'),

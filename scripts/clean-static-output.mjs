@@ -3,6 +3,7 @@ import { join } from 'node:path';
 
 const published = new Set([
     'index.html',
+    'theme-init.js',
     'assets',
     'favicon.ico',
     'apple-touch-icon.png',
