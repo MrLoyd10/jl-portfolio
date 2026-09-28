@@ -34,12 +34,12 @@ const COLOR_CONFIGS = [
         bar: 'from-indigo-300 to-indigo-400',
     },
     {
-        dot: 'from-emerald-400 to-emerald-500',
-        badge: 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800',
-        accent: 'bg-emerald-500',
-        light: 'bg-emerald-50 dark:bg-emerald-900/30',
-        text: 'text-emerald-600 dark:text-emerald-400',
-        bar: 'from-emerald-500 to-emerald-600',
+        dot: 'from-purple-400 to-purple-500',
+        badge: 'bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300 border-purple-100 dark:border-purple-800',
+        accent: 'bg-purple-400',
+        light: 'bg-purple-50/60 dark:bg-purple-900/30',
+        text: 'text-purple-500 dark:text-purple-300',
+        bar: 'from-purple-400 to-purple-500',
     },
     {
         dot: 'from-primary to-blue-600',
@@ -349,7 +349,7 @@ const EducationItem = ({
                         {achievements.length > 0 && (
                             <div
                                 className={`mt-3 rounded-lg p-3 transition-colors duration-300 ${
-                                    isActive
+                                    isActive && colorIndex !== 2
                                         ? cfg.light
                                         : 'bg-gray-50 dark:bg-gray-800'
                                 }`}
