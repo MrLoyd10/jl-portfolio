@@ -3,13 +3,18 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build": "vite build",
-        "build:ssr": "vite build && vite build --ssr",
+        "build": "npm run build:static",
+        "build:static": "vite build --config vite.static.config.ts && node scripts/clean-static-output.mjs",
+        "build:laravel": "vite build",
+        "dev:static": "vite --config vite.static.config.ts",
+        "preview:static": "vite preview --config vite.static.config.ts",
+        "build:ssr": "npm run build:laravel && vite build --ssr",
         "dev": "vite",
         "format": "prettier --write resources/",
         "format:check": "prettier --check resources/",
         "lint": "eslint . --fix",
-        "types": "tsc --noEmit"
+        "types": "tsc --noEmit",
+        "types:static": "tsc --noEmit --project tsconfig.static.json"
     },
     "devDependencies": {
         "@eslint/js": "^9.19.0",
